@@ -1,14 +1,12 @@
 var gulp         = require('gulp'),
     concat       = require('gulp-concat'),
-    minifycss    = require('gulp-minify-css'),
-    uglify       = require('gulp-uglify'),
+    minifycss    = require('gulp-minify-css'),//css压缩
+    uglify       = require('gulp-uglify'),// js压缩
     rev          = require('gulp-rev'),
-    gulp         = require("gulp"),
     coffee       = require("gulp-coffee"), // 编译coffee
     gutil        = require("gulp-util"),// 一个工具库
     plumber      = require("gulp-plumber"), // 自动处理全部错误信息防止因为错误而导致 watch 不正常工作
-    less         = require("gulp-less"),
-    sass         = require('gulp-ruby-sass');
+    less         = require("gulp-less");
 
 //less转化css，并压缩
 gulp.task('less', function () {
@@ -17,7 +15,7 @@ gulp.task('less', function () {
         .pipe(minifycss()) //兼容IE7及以下需设置compatibility属性 .pipe(cssmin({compatibility: 'ie7'}))
         .pipe(gulp.dest('public/stylesheets'));
 });
-//coffee 生成 js
+//coffee 生成 js,并压缩
 gulp.task("coffee",function(){
     gulp.src("public/coffee/index.coffee")
         .pipe(coffee())// 编译 coffee
