@@ -6,7 +6,11 @@ var gulp         = require('gulp'),
     coffee       = require("gulp-coffee"), // 编译coffee
     gutil        = require("gulp-util"),// 一个工具库
     plumber      = require("gulp-plumber"), // 自动处理全部错误信息防止因为错误而导致 watch 不正常工作
-    less         = require("gulp-less");
+    less         = require("gulp-less"),
+    reactify     = require('reactify'),
+    browserify   = require("browserify"),//用来 require js 的模块
+    babelify     = require("babelify"),//转化es6或者jsx语法
+    source       = require("vinyl-source-stream");//把 browserify 输出的数据进行准换，使之流符合 gulp 的标准
 
 //less转化css，并压缩
 gulp.task('less', function () {
@@ -22,6 +26,15 @@ gulp.task("coffee",function(){
         .pipe(uglify())//
         .pipe(gulp.dest("public/javascripts"));
 })
+
+gulp.task('reactjs', function(){
+    browserify('./public/jsx/react.jsx')
+        .transform(reactify)
+        .bundle()
+        .pipe(source('jsxParse.js'))
+        .pipe(gulp.dest('public/javascripts'));
+});
+
 
 // 自动监听less、coffee转化为css、js
 gulp.task('lessWatch', function () {
