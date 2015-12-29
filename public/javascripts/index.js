@@ -1,1 +1,1 @@
-(function(){var o;console.log("hello world!"),o=function(){return console.log("my name is qi.chen5")},console.log("2222"),console.log("444"),console.log("444"),console.log("444"),console.log("uusdfsd")}).call(this);
+(function(){var o;console.log("hello world!"),o=function(){return console.log("my name is qi.chen5")},console.log("2222"),console.log("444"),console.log("444"),console.log("444"),console.log("uus")}).call(this);

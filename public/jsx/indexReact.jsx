@@ -22,7 +22,7 @@ var CommentBox = React.createClass({
     render: function() {
         return (
             <div className="commentBox">
-            <h1>Comments hello world!</h1>
+            <h1>Comdsa你好啊嗯嗯呢呢!</h1>
             <CommentList />
             <CommentForm />
             </div>

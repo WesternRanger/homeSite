@@ -11,14 +11,16 @@ var gulp         = require('gulp'),
     browserify   = require("browserify"),//用来 require js 的模块
     babelify     = require("babelify"),//转化es6或者jsx语法
     source       = require("vinyl-source-stream"),//把 browserify 输出的数据进行准换，使之流符合 gulp 的标准
-    react        = require('gulp-react');
+    react        = require('gulp-react'),
+    livereload   = require('gulp-livereload');//自动刷新
 
 //less转化css，并压缩
 gulp.task('less', function () {
     gulp.src('public/less/index.less')
         .pipe(less())
         .pipe(minifycss()) //兼容IE7及以下需设置compatibility属性 .pipe(cssmin({compatibility: 'ie7'}))
-        .pipe(gulp.dest('public/stylesheets'));
+        .pipe(gulp.dest('public/stylesheets'))
+        .pipe(livereload());
 });
 //coffee 生成 js,并压缩
 gulp.task("coffee",function(){
@@ -29,10 +31,11 @@ gulp.task("coffee",function(){
 })
 // jsx 生成 js,并压缩
 gulp.task('jsxParse', function () {
-    return gulp.src('./public/jsx/indexReact.jsx')
+    gulp.src('./public/jsx/indexReact.jsx')
         .pipe(react())
         .pipe(uglify())
-        .pipe(gulp.dest('public/javascripts'));
+        .pipe(gulp.dest('public/javascripts'))
+        .pipe(livereload());
 });
 
 
@@ -49,4 +52,9 @@ gulp.task('jsxWatch', function () {
     gulp.watch('public/jsx/indexReact.jsx', ['jsxParse']); //当所有jsx文件发生改变时，调用jsxParse任务
 });
 
-gulp.task('default', ['lessWatch','coffeeWatch','jsxWatch']);
+gulp.task('reload', function () {    // 检测修改，自动刷新
+    livereload.listen()
+    gulp.watch('./public/**/*.*',['less','jsxParse']);
+});
+
+gulp.task('default', ['reload','lessWatch','jsxWatch']);
