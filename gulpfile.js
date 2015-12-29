@@ -10,42 +10,28 @@ var gulp         = require('gulp'),
     less         = require("gulp-less"),
     sass         = require('gulp-ruby-sass');
 
-
-// 合并css
-gulp.task('css', function() {                              
-    gulp.src(['./public/stylesheets/index1.css', './public/stylesheets/index2.css'])
-        .pipe(concat('style.min.css'))
-        .pipe(minifycss()) 
-        .pipe(gulp.dest('./public/style_min'))
-        .pipe(rev())                                   
-        .pipe(gulp.dest('./public/style_rev'))
-        .pipe(rev.manifest())
-        .pipe(gulp.dest('./rev/css'))                             
-});
-
-//生成less
-gulp.task('Less', function () {
-    gulp.src('public/less/*.less')
+//less转化css，并压缩
+gulp.task('less', function () {
+    gulp.src('public/less/index.less')
         .pipe(less())
+        .pipe(minifycss()) //兼容IE7及以下需设置compatibility属性 .pipe(cssmin({compatibility: 'ie7'}))
         .pipe(gulp.dest('public/stylesheets'));
 });
-
-//生成sass
-gulp.task('sass', function () {
-    return sass('public/scss/*.scss')
-        .on('error', function (err) {
-            console.error('Error!', err.message);
-        })
-        .pipe(gulp.dest('public/stylesheets'));
-});
-
-
-//生成 js
+//coffee 生成 js
 gulp.task("coffee",function(){
-    gulp.src("public/coffee/*.coffee")
+    gulp.src("public/coffee/index.coffee")
         .pipe(coffee())// 编译 coffee
-        .pipe(gulp.dest("public/javascripts"
-        ))
+        .pipe(uglify())//
+        .pipe(gulp.dest("public/javascripts"));
 })
 
-gulp.task('default', ['css','Less','sass','coffee']);
+// 自动监听less、coffee转化为css、js
+gulp.task('lessWatch', function () {
+    gulp.watch('public/less/index.less', ['less']); //当所有less文件发生改变时，调用testLess任务
+});
+
+gulp.task('coffeeWatch', function () {
+    gulp.watch('public/coffee/index.coffee', ['coffee']); //当所有less文件发生改变时，调用testLess任务
+});
+
+gulp.task('default', ['lessWatch','coffeeWatch']);
