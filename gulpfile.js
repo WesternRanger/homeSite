@@ -10,7 +10,8 @@ var gulp         = require('gulp'),
     reactify     = require('reactify'),
     browserify   = require("browserify"),//用来 require js 的模块
     babelify     = require("babelify"),//转化es6或者jsx语法
-    source       = require("vinyl-source-stream");//把 browserify 输出的数据进行准换，使之流符合 gulp 的标准
+    source       = require("vinyl-source-stream"),//把 browserify 输出的数据进行准换，使之流符合 gulp 的标准
+    react        = require('gulp-react');
 
 //less转化css，并压缩
 gulp.task('less', function () {
@@ -26,12 +27,11 @@ gulp.task("coffee",function(){
         .pipe(uglify())//
         .pipe(gulp.dest("public/javascripts"));
 })
-
-gulp.task('reactjs', function(){
-    browserify('./public/jsx/react.jsx')
-        .transform(reactify)
-        .bundle()
-        .pipe(source('jsxParse.js'))
+// jsx 生成 js,并压缩
+gulp.task('jsxParse', function () {
+    return gulp.src('./public/jsx/indexReact.jsx')
+        .pipe(react())
+        .pipe(uglify())
         .pipe(gulp.dest('public/javascripts'));
 });
 
@@ -45,4 +45,8 @@ gulp.task('coffeeWatch', function () {
     gulp.watch('public/coffee/index.coffee', ['coffee']); //当所有less文件发生改变时，调用testLess任务
 });
 
-gulp.task('default', ['lessWatch','coffeeWatch']);
+gulp.task('jsxWatch', function () {
+    gulp.watch('public/jsx/indexReact.jsx', ['jsxParse']); //当所有jsx文件发生改变时，调用jsxParse任务
+});
+
+gulp.task('default', ['lessWatch','coffeeWatch','jsxWatch']);
