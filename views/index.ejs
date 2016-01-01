@@ -5,6 +5,11 @@
     <link rel='stylesheet' href='/stylesheets/index.css' />
   </head>
   <body>
+  <ul>
+    <% for(var i=0; i < res.length; i++) { %>
+      <li><%= res[i].info %></li>
+    <% } %>
+  </ul>
     <div id="content"></div>
     <script src="/javascripts/react.min.js"></script>
     <script src="/javascripts/indexReact.js"></script>

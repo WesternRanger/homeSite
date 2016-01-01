@@ -1,9 +1,19 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express'),
+    router = express.Router(),
+    db = require('./conn'); //先引入数据库链接
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', function(req, resIndex) {
+  db.pool.getConnection(function(err, connection) {
+    var sql = 'select * from test';
+    connection.query(sql, function(error, res) {
+        resIndex.render('index', {
+            title: "从这里开始",
+            res:res
+        });
+    });
+    connection.release();
+  });
+
 });
 
 module.exports = router;
