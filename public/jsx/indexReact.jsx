@@ -1,48 +1,67 @@
-//var data = {id: "1", text: "This is one comment"}
+var Comment = React.createClass({
+    render: function() {
+        return (
+            <div className="comment">
+                {this.props.children}
+                <span className="commentAuthor">
+                    --{this.props.author}
+                </span>
 
-var PerComment = React.createClass({
-    render:function(){
-        return(
-            <li className="perComment">
-                <span>hello</span>
-            </li>
-        )
+            </div>
+        );
     }
-})
+});
+
 
 var CommentList = React.createClass({
     render: function() {
+        var commentNodes = this.props.data.map(function (comment) {
+            return (
+                <Comment author={comment.author}>
+                    {comment.text}
+                </Comment>
+            );
+        });
         return (
-            <ul className="commentList">
-                <PerComment/>
-            </ul>
-        );
-    }
-})
-
-var CommentForm = React.createClass({
-    render: function() {
-        return (
-            <div className="commentForm">
-                Hello, world! I am a CommentForm.
+            <div className="commentList">
+                {commentNodes}
             </div>
         );
     }
-})
+});
 
 var CommentBox = React.createClass({
+    getInitialState: function() {
+        return {data: [
+            {author: "西泊浪人", text: "晚上吃面条"},
+            {author: "约翰逊", text: "中午吃多了。略撑"}
+        ]};
+    },
+    componentDidMount: function() {
+        $.ajax({
+            url: this.props.url,
+            type:'post',
+            dataType: 'json',
+            cache: false,
+            success: function(data) {
+                this.setState({data: data.result});
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
+    },
     render: function() {
         return (
             <div className="commentBox">
-                <h1>hello world哈哈哈</h1>
-                <CommentList/>
-                <CommentForm />
+                <h1>评论列表</h1>
+                <CommentList data={this.state.data} />
             </div>
         );
     }
-})
+});
 
 React.render(
-    <CommentBox/>,
+    <CommentBox url="/comment" />,
     document.getElementById('content')
 );
