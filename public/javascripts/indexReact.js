@@ -33,16 +33,28 @@ var CommentList = React.createClass({displayName: "CommentList",
 var CommentForm = React.createClass({displayName: "CommentForm",
     handleClick: function(e) {
         e.preventDefault();
-        var author = this.refs.post;
-        var text = this.refs.text.value;
-        debugger;
-        //if (!text || !author) {
-        //    return;
-        //}
-        this.props.onCommentSubmit({author: author, text: text});
-        //this.refs.author.value = '';
-        //this.refs.text.value = '';
-        //return;
+        var author = this.refs.author.getDOMNode().value;
+        var text = this.refs.text.getDOMNode().value;
+        if (author.length != 0 || text.length != 0) {
+            this.handleCommentSubmit({author: author, text: text});
+        }
+        this.refs.author.value = '';
+        this.refs.text.value = '';
+        return;
+    },
+    handleCommentSubmit: function(comment) {
+        $.ajax({
+            url: '/commit?name='+comment.author+'&talk='+comment.text,
+            type:'post',
+            dataType: 'json',
+            cache: false,
+            success: function(data) {
+                this.setState({data: data});
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
     },
     render: function() {
         return (
@@ -64,7 +76,7 @@ var CommentBox = React.createClass({displayName: "CommentBox",
     },
     loadCommentsFromServer: function() {
         $.ajax({
-            url: this.props.url,
+            url: '/comment',
             type:'post',
             dataType: 'json',
             cache: false,
@@ -76,20 +88,7 @@ var CommentBox = React.createClass({displayName: "CommentBox",
             }.bind(this)
         });
     },
-    handleCommentSubmit: function(comment) {
-        //$.ajax({
-        //    url: '/commit?name='+comment.author+'&talk='+comment.text,
-        //    type:'post',
-        //    dataType: 'json',
-        //    cache: false,
-        //    success: function(data) {
-        //        this.setState({data: data});
-        //    }.bind(this),
-        //    error: function(xhr, status, err) {
-        //        console.error(this.props.url, status, err.toString());
-        //    }.bind(this)
-        //});
-    },
+
     componentDidMount: function() {
         this.loadCommentsFromServer();
         //setInterval(,40000000000);
@@ -99,13 +98,13 @@ var CommentBox = React.createClass({displayName: "CommentBox",
             React.createElement("div", {className: "commentBox"}, 
                 React.createElement("h1", null, "评论列表"), 
                 React.createElement(CommentList, {data: this.state.data}), 
-                React.createElement(CommentForm, {onCommentSubmit: this.handleCommentSubmit})
+                React.createElement(CommentForm, null)
             )
         );
     }
 });
 
 React.render(
-    React.createElement(CommentBox, {url: "/comment"}),
+    React.createElement(CommentBox, null),
     document.getElementById('content')
 );
