@@ -33,7 +33,7 @@ gulp.task("coffee",function(){
 gulp.task('jsxParse', function () {
     gulp.src('./public/jsx/indexReact.jsx')
         .pipe(react())
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest('public/javascripts'))
         .pipe(livereload());
 });

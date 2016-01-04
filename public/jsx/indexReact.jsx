@@ -1,12 +1,12 @@
+/**
+ * Created by WesternRanger on 15/12/28.
+ */
 var Comment = React.createClass({
     render: function() {
         return (
             <div className="comment">
-                {this.props.children}
-                <span className="commentAuthor">
-                    --{this.props.author}
-                </span>
-
+                <div className="commentAuthor">{this.props.author}</div>
+                <div className="tip">{this.props.children}</div>
             </div>
         );
     }
@@ -49,7 +49,10 @@ var CommentForm = React.createClass({
             dataType: 'json',
             cache: false,
             success: function(data) {
-                this.setState({data: data});
+                if(data.code == 0){
+                    var formNode = React.findDOMNode(this.refs.forms)
+
+                }
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
@@ -59,9 +62,10 @@ var CommentForm = React.createClass({
     render: function() {
         return (
             <div className="commentForm" ref="forms">
-                <input type="text" placeholder="Your name" ref="author"/>
-                <input type="text" placeholder="Say something..." ref="text"/>
-                <a href="javascript:;" ref="post" onClick={this.handleClick}>提交</a>
+                <div className="commentTitle">发表评论</div>
+                <label for="">用户名：</label><input className="username" type="text" placeholder="Your name" ref="author"/>
+                <textarea className="saySome" type="text" placeholder="Say something..." ref="text"></textarea>
+                <a href="javascript:;" className="postSays" ref="post" onClick={this.handleClick}>提交</a>
             </div>
         );
     }
@@ -95,8 +99,8 @@ var CommentBox = React.createClass({
     },
     render: function() {
         return (
-            <div className="commentBox">
-                <h1>评论列表</h1>
+            <div className="commentBox" ref="commentbox">
+                <div className="chartTitle">评论列表</div>
                 <CommentList data={this.state.data} />
                 <CommentForm />
             </div>
@@ -106,5 +110,5 @@ var CommentBox = React.createClass({
 
 React.render(
     <CommentBox/>,
-    document.getElementById('content')
+    document.getElementById('commentList')
 );
