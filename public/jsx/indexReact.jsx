@@ -30,6 +30,31 @@ var CommentList = React.createClass({
     }
 });
 
+var CommentForm = React.createClass({
+    handleClick: function(e) {
+        e.preventDefault();
+        var author = this.refs.post;
+        var text = this.refs.text.value;
+        debugger;
+        //if (!text || !author) {
+        //    return;
+        //}
+        this.props.onCommentSubmit({author: author, text: text});
+        //this.refs.author.value = '';
+        //this.refs.text.value = '';
+        //return;
+    },
+    render: function() {
+        return (
+            <div className="commentForm" ref="forms">
+                <input type="text" placeholder="Your name" ref="author" />
+                <input type="text" placeholder="Say something..." ref="text" />
+                <a href="javascript:;" ref="post" onClick={this.handleClick}>提交</a>
+            </div>
+        );
+    }
+});
+
 var CommentBox = React.createClass({
     getInitialState: function() {
         return {data: [
@@ -37,7 +62,7 @@ var CommentBox = React.createClass({
             {author: "约翰逊", text: "中午吃多了。略撑"}
         ]};
     },
-    componentDidMount: function() {
+    loadCommentsFromServer: function() {
         $.ajax({
             url: this.props.url,
             type:'post',
@@ -51,11 +76,30 @@ var CommentBox = React.createClass({
             }.bind(this)
         });
     },
+    handleCommentSubmit: function(comment) {
+        //$.ajax({
+        //    url: '/commit?name='+comment.author+'&talk='+comment.text,
+        //    type:'post',
+        //    dataType: 'json',
+        //    cache: false,
+        //    success: function(data) {
+        //        this.setState({data: data});
+        //    }.bind(this),
+        //    error: function(xhr, status, err) {
+        //        console.error(this.props.url, status, err.toString());
+        //    }.bind(this)
+        //});
+    },
+    componentDidMount: function() {
+        this.loadCommentsFromServer();
+        //setInterval(,40000000000);
+    },
     render: function() {
         return (
             <div className="commentBox">
                 <h1>评论列表</h1>
                 <CommentList data={this.state.data} />
+                <CommentForm onCommentSubmit={this.handleCommentSubmit} />
             </div>
         );
     }
