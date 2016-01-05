@@ -1,6 +1,8 @@
 /**
  * Created by WesternRanger on 15/12/28.
  */
+var arr = [];
+
 var Comment = React.createClass({
     render: function() {
         return (
@@ -49,10 +51,14 @@ var CommentForm = React.createClass({
             dataType: 'json',
             cache: false,
             success: function(data) {
-                if(data.code == 0){
-                    var formNode = React.findDOMNode(this.refs.forms)
-
-                }
+                arr.push({
+                    author:comment.author,
+                    text:comment.text
+                })
+                React.render(
+                    <CommentBox/>,
+                    document.getElementById('commentList')
+                );
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
@@ -85,6 +91,7 @@ var CommentBox = React.createClass({
             dataType: 'json',
             cache: false,
             success: function(data) {
+                arr = data.result;
                 this.setState({data: data.result});
             }.bind(this),
             error: function(xhr, status, err) {
