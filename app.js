@@ -5,10 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var comment = require('./routes/comment');
-var commit = require('./routes/commit');
+var routes = require('./routes/index'); // 首页
+var blog = require('./routes/blog'); // 博客详情
+var users = require('./routes/users');//
+var comment = require('./routes/comment');// 获取评论
+var commit = require('./routes/commit');// 添加评论
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/blog', blog);
 app.use('/users', users);
 app.use('/comment',comment);
 app.use('/commit',commit);

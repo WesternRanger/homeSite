@@ -31,7 +31,7 @@ gulp.task("coffee",function(){
 })
 // jsx 生成 js,并压缩
 gulp.task('jsxParse', function () {
-    gulp.src('./public/jsx/indexReact.jsx')
+    gulp.src('./public/jsx/*.*')
         .pipe(react())
         .pipe(uglify())
         .pipe(gulp.dest('public/javascripts'))

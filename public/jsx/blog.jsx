@@ -1,7 +1,7 @@
 /**
- * Created by WesternRanger on 15/12/28.
+ * Created by WesternRanger on 16/01/05.
  */
-var arr = [];
+var arr = [];// 评论数据
 
 var Comment = React.createClass({
     render: function() {
@@ -151,7 +151,6 @@ var CommentBox = React.createClass({
     },
     render: function() {
         var css_com = {
-            width:980,
             background: '#e5dfe5',
             margin:'20px auto'
         }
