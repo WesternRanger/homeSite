@@ -55,6 +55,9 @@ var CommentForm = React.createClass({
         if (author.length != 0 || text.length != 0) {
             this.handleCommentSubmit({author: author, text: text});
         }
+        else{
+            alert("hello world");
+        }
         this.refs.author.value = '';
         this.refs.text.value = '';
         return;
@@ -135,7 +138,7 @@ var CommentBox = React.createClass({
             type:'post',
             dataType: 'json',
             cache: false,
-            success: function(data) {
+            success: function(data){
                 arr = data.result;
                 this.setState({data: data.result});
             }.bind(this),

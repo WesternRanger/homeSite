@@ -32,3 +32,65 @@ React.render(
     <BlogList/>,
     document.getElementById('blogList')
 );
+
+
+var Hello = React.createClass({
+    getInitialState: function () {
+        return {
+            opacity: 1.0
+        };
+    },
+
+    componentDidMount: function () {
+        this.timer = setInterval(function () {
+            var opacity = this.state.opacity;
+            opacity -= .05;
+            if (opacity < 0.1) {
+                opacity = 1.0;
+            }
+            this.setState({
+                opacity: opacity
+            });
+        }.bind(this), 400);
+    },
+
+    render: function () {
+        return (
+            <div style={{opacity: this.state.opacity}}>
+                Hello {this.props.name}
+            </div>
+        );
+    }
+});
+
+React.render(
+    <Hello name="world"/>,
+    document.getElementById('hello')
+);
+
+
+var Search = React.createClass({
+    render: function() {
+        return (
+            <div>
+                {this.props.searchType}:<input type="text" />
+                <button>Search</button>
+            </div>
+        );
+    }
+});
+var Page = React.createClass({
+    render: function() {
+        return (
+            <div>
+                <h1>Welcome!</h1>
+                <Search searchType="Title" />
+                <Search  searchType="Content" />
+            </div>
+        );
+    }
+});
+React.render(
+    <Page />,
+    document.getElementById('container')
+);
