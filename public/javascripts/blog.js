@@ -2,129 +2,55 @@
  * Created by WesternRanger on 16/01/05.
  */
 var arr = [];// 评论数据
+var Article = React.createClass({displayName: "Article", // blog 页面
+    render:function(){
+        return(
+            React.createElement("div", {ref: "article"}, 
+                React.createElement(Blog, null), 
+                React.createElement(CommentBox, null), 
+                React.createElement(CommentForm, null)
+            )
+        )
+    }
+})
+var Blog = React.createClass({displayName: "Blog",
+    getInitialState: function() {
+        return {
+            data: {
+                title: "bfc探秘",
+                content: "为大家讲述sdafg哈舒服撒点撒地方还是啦感觉饿哦啊热噶老师的感觉了 十大收到啦将阿斯顿发 "
+            }
+        };
+    },
 
-var Comment = React.createClass({displayName: "Comment",
-    render: function() {
+    render:function(){
         var css_comment = {
-            marginBottom:20
+            border:'#e5dfe5 solid 1px'
         }
         var css_auth = {
             background: '#a8cc45',
             color: '#805f63',
-            fontSize:14,
+            fontSize:20,
+            fontWeight:700,
+            textAlign:'center',
             textIndent:8,
-            height:25,
-            lineHeight:'25px',
+            height:60,
+            lineHeight:'60px',
             marginBottom:10
         }
-        return (
+        var css_blog = {
+            textIndent:'10px',
+            lineHeight:'18px',
+            fontSize:14
+        }
+        return(
             React.createElement("div", {style: css_comment}, 
-                React.createElement("div", {style: css_auth}, this.props.author), 
-                React.createElement("div", null, this.props.children)
+                React.createElement("div", {style: css_auth}, this.state.data.title), 
+                React.createElement("p", {style: css_blog}, this.state.data.content)
             )
-        );
+        )
     }
-});
-
-
-var CommentList = React.createClass({displayName: "CommentList",
-    render: function() {
-        var commentNodes = this.props.data.map(function (comment) {
-            return (
-                React.createElement(Comment, {author: comment.author}, 
-                    comment.text
-                )
-            );
-        });
-        var css_com = {
-            marginTop:8
-        }
-        return (
-            React.createElement("div", {style: css_com}, 
-                commentNodes
-            )
-        );
-    }
-});
-
-var CommentForm = React.createClass({displayName: "CommentForm",
-    handleClick: function(e) {
-        e.preventDefault();
-        var author = this.refs.author.getDOMNode().value;
-        var text = this.refs.text.getDOMNode().value;
-        if (author.length != 0 || text.length != 0) {
-            this.handleCommentSubmit({author: author, text: text});
-        }
-        else{
-            alert("hello world");
-        }
-        this.refs.author.value = '';
-        this.refs.text.value = '';
-        return;
-    },
-    handleCommentSubmit: function(comment) {
-        $.ajax({
-            url: '/commit?name='+comment.author+'&talk='+comment.text,
-            type:'post',
-            dataType: 'json',
-            cache: false,
-            success: function(data) {
-                arr.push({
-                    author:comment.author,
-                    text:comment.text
-                })
-                React.render(
-                    React.createElement(CommentBox, null),
-                    document.getElementById('commentList')
-                );
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-            }.bind(this)
-        });
-    },
-    render: function() {
-        var css_form = {
-            width:400,
-            margin:'auto'
-        }
-        var css_tit = {
-            background: '#a5cc8c',
-            height:30,
-            lineHeight:"30px",
-            fontSize:18,
-            textIndent: 8,
-            marginBottom:8
-        }
-        var css_say = {
-            marginTop:8,
-            display: 'block',
-            width:400,
-            height:200
-        }
-        var css_post = {
-            display:'block',
-            margin:'8px auto 0',
-            width:150,
-            height:30,
-            lineHeight:"30px",
-            textAlign:'center',
-            textDecoration: 'none',
-            color:'#000',
-            background: '#a5cc8c',
-            borderRadius: 5
-        }
-        return (
-            React.createElement("div", {ref: "forms", style: css_form}, 
-                React.createElement("div", {style: css_tit}, "发表评论"), 
-                React.createElement("label", {for: ""}, "用户名："), React.createElement("input", {type: "text", placeholder: "Your name", ref: "author"}), 
-                React.createElement("textarea", {style: css_say, type: "text", placeholder: "Say something...", ref: "text"}), 
-                React.createElement("a", {href: "javascript:;", style: css_post, ref: "post", onClick: this.handleClick}, "提交")
-            )
-        );
-    }
-});
-
+})
 var CommentBox = React.createClass({displayName: "CommentBox",
     getInitialState: function() {
         return {data: [
@@ -154,27 +80,134 @@ var CommentBox = React.createClass({displayName: "CommentBox",
     },
     render: function() {
         var css_com = {
-            background: '#e5dfe5',
-            margin:'20px auto'
+            margin:'20px auto',
+            padding:'0 20px',
+            border:'#e5dfe5 solid 1px'
         }
         var css_title = {
-            background: '#a5cc8c',
-            height:30,
-            lineHeight:"30px",
-            fontSize:18,
-            textIndent: 8
+            padding:'10px 0',
+            fontSize:18
         }
         return (
             React.createElement("div", {ref: "commentbox", style: css_com}, 
-                React.createElement("div", {style: css_title}, "评论列表"), 
-                React.createElement(CommentList, {data: this.state.data}), 
-                React.createElement(CommentForm, null)
+                React.createElement("div", {style: css_title}, "评论列表:"), 
+                React.createElement(CommentList, {data: this.state.data})
+            )
+        );
+    }
+});
+var CommentList = React.createClass({displayName: "CommentList",
+    render: function() {
+        var commentNodes = this.props.data.map(function (comment) {
+            var css_comment = {
+                marginBottom:20
+            }
+            var css_auth = {
+                color: '#805f63',
+                fontSize:14,
+                width:200,
+                height:25,
+                lineHeight:'25px',
+                marginBottom:10
+            }
+            var css_com = {
+                background:'#e5e5e5',
+                padding:10,
+                fontSize:14,
+                borderRadius:5
+            }
+            return (
+                React.createElement("div", {style: css_comment}, 
+                    React.createElement("div", {style: css_auth}, "用户：“", comment.author, "” 说到："), 
+                    React.createElement("span", {style: css_com}, comment.text)
+                )
+            );
+        });
+        return (
+            React.createElement("div", null, 
+                commentNodes
+            )
+        );
+    }
+});
+
+var CommentForm = React.createClass({displayName: "CommentForm",
+    handleClick: function(e) {
+        e.preventDefault();
+        var author = this.refs.author.getDOMNode().value;
+        var text = this.refs.text.getDOMNode().value;
+        if (author.length != 0 || text.length != 0) {
+            this.handleCommentSubmit({author: author, text: text});
+        }
+        else{
+            alert("评论不为空！");
+        }
+        this.refs.author.value = '';
+        this.refs.text.value = '';
+        return;
+    },
+    handleCommentSubmit: function(comment) {
+        $.ajax({
+            url: '/commit?name='+comment.author+'&talk='+comment.text,
+            type:'post',
+            dataType: 'json',
+            cache: false,
+            success: function(data) {
+                arr.push({
+                    author:comment.author,
+                    text:comment.text
+                })
+                React.render(
+                    React.createElement(Article, null),
+                    document.getElementById('article')
+                );
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
+    },
+    render: function() {
+        var css_form = {
+            margin:'auto',
+            padding:'0 20px',
+            border:'#e5dfe5 solid 1px'
+        }
+        var css_tit = {
+            height:30,
+            fontSize:18,
+            padding:'10px 0'
+        }
+        var css_say = {
+            marginTop:8,
+            display: 'block',
+            width:400,
+            height:200
+        }
+        var css_post = {
+            display:'block',
+            margin:'10px 0 20px 125px',
+            width:150,
+            height:30,
+            lineHeight:"30px",
+            textAlign:'center',
+            textDecoration: 'none',
+            color:'#000',
+            background: '#a5cc8c',
+            borderRadius: 5
+        }
+        return (
+            React.createElement("div", {ref: "forms", style: css_form}, 
+                React.createElement("div", {style: css_tit}, "发表评论"), 
+                React.createElement("label", {for: ""}, "用户名："), React.createElement("input", {type: "text", placeholder: "Your name", ref: "author"}), 
+                React.createElement("textarea", {style: css_say, type: "text", placeholder: "Say something...", ref: "text"}), 
+                React.createElement("a", {href: "javascript:;", style: css_post, ref: "post", onClick: this.handleClick}, "提交")
             )
         );
     }
 });
 
 React.render(
-    React.createElement(CommentBox, null),
-    document.getElementById('commentList')
+    React.createElement(Article, null),
+    document.getElementById('article')
 );
