@@ -3,7 +3,7 @@
 <head>
     <title><%= title %></title>
     <meta charset="utf-8"/>
-    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <link rel='stylesheet' href='/stylesheets/blog.css' />
 </head>
 <body>
 <div class="header"></div>
@@ -16,7 +16,15 @@
             Follow me
         </div>
     </div>
-    <div id="article" style="overflow: hidden;"></div>
+    <div id="article">
+        <% for(var i=0; i < res.length; i++) { %>
+            <div class="blogPer">
+                <div class="auth"><%= res[i].title %></div>
+                <p><%= res[i].content %></p>
+            </div>
+        <% } %>
+    </div>
+    <div id="artBottom"></div>
 </div>
 
 <script src="/javascripts/jquery.min.js"></script>

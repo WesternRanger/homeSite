@@ -4,9 +4,11 @@
 var arr = [];// 评论数据
 var Article = React.createClass({displayName: "Article", // blog 页面
     render:function(){
+        var css_artBottom = {
+            overflow:'hidden'
+        }
         return(
-            React.createElement("div", {ref: "article"}, 
-                React.createElement(Blog, null), 
+            React.createElement("div", {ref: "artBottom", style: css_artBottom}, 
                 React.createElement(CommentBox, null), 
                 React.createElement(CommentForm, null)
             )
@@ -159,7 +161,7 @@ var CommentForm = React.createClass({displayName: "CommentForm",
                 })
                 React.render(
                     React.createElement(Article, null),
-                    document.getElementById('article')
+                    document.getElementById('artBottom')
                 );
             }.bind(this),
             error: function(xhr, status, err) {
@@ -209,5 +211,5 @@ var CommentForm = React.createClass({displayName: "CommentForm",
 
 React.render(
     React.createElement(Article, null),
-    document.getElementById('article')
+    document.getElementById('artBottom')
 );
