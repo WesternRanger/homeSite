@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="/admin/redactor.css" />
+</head>
+<body>
+    <h3>redactor.js</h3>
+    <form name="_form">
+        <div class="hori clearfix">
+            <div class="hori-name span3"><label for="">标题：</label></div>
+            <div class="hori-input span7"><input type="text" name="title"/></div>
+        </div>
+        <div class="hori clearfix">
+            <div class="hori-name span3"><label for="">文章：</label></div>
+            <textarea id="redactor_content" name="content" style="height: 560px;"></textarea>
+        </div>
+        <div class="hori" style="position:relative;">
+            <input class="submit-input" type="button" value="发布">
+            <div class="write-info" style="position:absolute;top:4px;font-size:12px;color:#333;display:none;color:orange;">亲，这两个都要填哦~</div>
+        </div>
+    </form>
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="/admin/redactor.js"></script>
+    <script>
+        $('#redactor_content').redactor();
+
+        $("input[type='button']").click(function(){
+            var user = $("input[type='text']").val();
+            var pass = $("input[type='password']").val();
+            if(user!=''&&pass!=''){
+                document._form.submit();
+            }
+            else{
+                alert("请输入内容")
+            }
+        });
+    </script>
+</body>
+</html>

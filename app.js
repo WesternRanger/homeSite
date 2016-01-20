@@ -10,6 +10,7 @@ var blog = require('./routes/blog'); // 博客详情
 var users = require('./routes/users');//
 var comment = require('./routes/comment');// 获取评论
 var commit = require('./routes/commit');// 添加评论
+var publishBlog = require('./routes/publishBlog');// 后台添加博客
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use('/', blog);
 app.use('/users', users);
 app.use('/comment',comment);
 app.use('/commit',commit);
+app.use('/publishBlog',publishBlog);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
