@@ -6,9 +6,11 @@ var express = require('express'),
     db = require('./conn'); //先引入数据库链接
 
 router.get('/', function(req, resIndex) {
+    var id = req.query.id;
     db.pool.getConnection(function(err, connection) {
-      var sql = 'select * from blogs';
-      connection.query(sql, function(error, res) {
+      var sql = 'select * from blogs where id=?',
+          sql_val = [id];
+      connection.query(sql, sql_val ,function(error, res) {
           resIndex.render('blog', {
               title: "从这里开始",
               res:res
@@ -16,10 +18,6 @@ router.get('/', function(req, resIndex) {
       });
       connection.release();
     });
-    //resIndex.render('blog', {
-    //    title: "西泊浪人－博客",
-    //});
-
 });
 
 module.exports = router;
