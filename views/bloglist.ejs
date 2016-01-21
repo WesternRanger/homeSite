@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <meta charset="utf-8"/>
+    <link rel='stylesheet' href='/stylesheets/blog.css' />
+</head>
+<body>
+<div class="header"></div>
+<div class="content">
+    <div class="right">
+        <div class="about">
+            关于我
+        </div>
+        <div class="follow">
+            Follow me
+        </div>
+    </div>
+    <ul id="article">
+        <% for(var i=0; i < res.length; i++) { %>
+        <li>
+            <a href="/blog?id=<%= res[i].id %>"class="auth"><%= res[i].title %></a>
+        </li>
+        <% } %>
+    </ul>
+    <div id="artBottom"></div>
+</div>
+
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/react.min.js"></script>
+<script src="/javascripts/blog.js"></script>
+</body>
+</html>

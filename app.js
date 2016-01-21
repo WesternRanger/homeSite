@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index'); // 首页
 var blog = require('./routes/blog'); // 博客详情
+var bloglist = require('./routes/bloglist'); // 博客列表
 var users = require('./routes/users');//
 var comment = require('./routes/comment');// 获取评论
 var commit = require('./routes/commit');// 添加评论
@@ -27,7 +28,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/index', routes);
-app.use('/', blog);
+app.use('/blog', blog);
+app.use('/',bloglist);
 app.use('/users', users);
 app.use('/comment',comment);
 app.use('/commit',commit);
