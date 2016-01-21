@@ -17,7 +17,7 @@ router.get('/', function(req, resIndex) {
         var sql = 'select * from blogs where id=?',
             sql_val = [id];
         connection.query(sql, sql_val ,function(error, res) {
-            console.log(res[0].content);
+            //console.log(res[0].content);
             resIndex.render('blog', {
                 title: "从这里开始",
                 res:res

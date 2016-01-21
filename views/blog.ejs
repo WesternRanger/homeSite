@@ -3,30 +3,41 @@
 <head>
     <title><%= title %></title>
     <meta charset="utf-8"/>
-    <link rel='stylesheet' href='/stylesheets/blog.css' />
+    <link rel='stylesheet' href='/stylesheets/bloglist.css' />
 </head>
 <body>
-<div class="header"></div>
+<% for(var i=0; i < res.length; i++) { %>
+    <div class="header"><%= res[i].title %></div>
+<% } %>
 <div class="content">
     <div class="right">
         <div class="about">
-            关于我
+            <h3>关于我</h3>
+            <p>
+                <b>西泊浪人</b>，立志成为一名屌屌的前端开发工程师，更是要成为一名全栈工程师。
+            </p>
+            <p>
+                前端之路漫漫，其修远兮。资历尚浅之吾，将上下而求索至地老天荒。
+            </p>
         </div>
         <div class="follow">
-            Follow me
+            <h3>Follow me on</h3>
+            <ul>
+                <li><a href="http://weibo.com/WesternRanger">新浪微博</a></li>
+                <li><a href="http://blog.csdn.net/westernranger">CSDN博客</a></li>
+                <li><a href="https://github.com/WesternRanger">github</a></li>
+                <li><a href="http://western-ranger.com">个人主页</a></li>
+            </ul>
         </div>
     </div>
-    <div id="article">
+    <div>
         <% for(var i=0; i < res.length; i++) { %>
-            <div class="blogPer">
-                <div class="auth"><%= res[i].title %></div>
-                <p><%- res[i].content %></p>
-            </div>
+            <p><%- res[i].content %></p>
         <% } %>
     </div>
     <div id="artBottom"></div>
 </div>
-
+<% include footer %>
 <script src="/javascripts/jquery.min.js"></script>
 <script src="/javascripts/react.min.js"></script>
 <script src="/javascripts/blog.js"></script>

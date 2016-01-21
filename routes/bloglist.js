@@ -10,7 +10,6 @@ router.get('/', function(req, resIndex) {
 
         var sql = 'select * from blogs';
         connection.query(sql ,function(error, res) {
-            console.log(res[0].content);
             resIndex.render('bloglist', {
                 title: "从这里开始",
                 res:res
