@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <meta charset="utf-8"/>
-    <link rel='stylesheet' href='/stylesheets/base.css' />
-    <link rel='stylesheet' href='/stylesheets/index.css' />
+      <title><%= title %></title>
+      <meta charset="utf-8"/>
+      <link rel='stylesheet' href='/stylesheets/base.css' />
+      <link rel='stylesheet' href='/stylesheets/index.css' />
   </head>
   <body>
     <div class="slideHead">
+        <div class="slide-content clearfix" onselectstart="return false">
+            <div class="prev">
+                <img src="http://7xp7rf.com1.z0.glb.clouddn.com/arrow-prev.gif"/>
+            </div>
+            <div class="next">
+                <img src="http://7xp7rf.com1.z0.glb.clouddn.com/arrow-next.gif"/>
+            </div>
+            <div class="img show">
+                <img src="http://7xp7rf.com1.z0.glb.clouddn.com/slide1.jpg" alt="">
+                <p class="img-text">北京的夜－四惠</p>
+            </div>
+            <div class="img hide">
+                <img src="http://7xp7rf.com1.z0.glb.clouddn.com/slide2.jpg" alt="">
+                <p class="img-text">八达岭长城</p>
+            </div>
+            <div class="img hide">
+                <img src="http://7xp7rf.com1.z0.glb.clouddn.com/slide3.jpg" alt="">
+                <p class="img-text">程序员的日常</p>
+            </div>
+            <div class="img hide">
+                <img src="http://7xp7rf.com1.z0.glb.clouddn.com/slide4.jpg" alt="">
+                <p class="img-text">一脚就是1200的喵星人</p>
+            </div>
+            <div class="img hide">
+                <img src="http://7xp7rf.com1.z0.glb.clouddn.com/slide5.jpg" alt="">
+                <p class="img-text">十三陵一览</p>
+            </div>
+        </div>
         <div class="fixedHead"></div>
-        <div class="prev"><</div>
-        <div class="next">></div>
         <ul class="fixedBar">
-            <li>关于我</li>
-            <li>技术博客</li>
-            <li>五味杂陈</li>
-            <li>图集</li>
+            <li><a href="javascript:;">关于我</a></li>
+            <li><a href="http://blog.western-ranger.com/">技术博客</a></li>
+            <li><a href="/bloglist">五味杂陈</a></li>
+            <li><a href="javascript:;">图集</a></li>
         </ul>
     </div>
     <ul class="content clearfix">
@@ -28,7 +54,18 @@
         aboutUs
     </div>
     <% include footer %>
-    <script src="/javascripts/common/jquery.min.js"></script>
-    <script src="/javascripts/common/react.min.js"></script>
+    <script src="/javascripts/common/require.js"></script>
+    <script>
+        require.config({
+            paths: {
+                'jquery': '/javascripts/common/jquery.min',
+                'tool':'/javascripts/common/tool',
+                'index':'/javascripts/index'
+            }
+        });
+        require(['index'], function(index) {
+            index.init()
+        });
+    </script>
   </body>
 </html>

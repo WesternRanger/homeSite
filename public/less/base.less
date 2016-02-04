@@ -1,6 +1,7 @@
-body{
-    padding:0;
-    margin:0;
+* {
+    margin: 0;
+    padding: 0;
+    word-break: break-all
 }
 .footer {
     background: #f6f5ee;
@@ -16,4 +17,52 @@ body{
             text-decoration: underline;
         }
     }
+}
+.show{
+    display: block;
+}
+.hide{
+    display: none;
+}
+input,textarea {
+    background: 0 0;
+    border: 0;
+    outline: 0;
+    resize: none;
+    font: 16px/1.2 "Microsoft YaHei","微软雅黑","Microsoft JhengHei","黑体",arial,STHeiti
+}
+
+li,ul {
+    list-style-type: none
+}
+
+a,a:focus,a:hover {
+    outline: 0;
+    text-decoration: none;
+    color: #333
+}
+
+a img,a:focus img,a:hover img {
+    border: 0
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+table th {
+    font-weight: 400
+}
+
+i {
+    font-style: normal
+}
+.clearfix {
+    *zoom:1
+}
+.clearfix:after {
+    content: " ";
+    display: block;
+    clear: both
 }
