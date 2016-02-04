@@ -3,28 +3,32 @@
   <head>
     <title><%= title %></title>
     <meta charset="utf-8"/>
+    <link rel='stylesheet' href='/stylesheets/base.css' />
     <link rel='stylesheet' href='/stylesheets/index.css' />
   </head>
   <body>
-    <div class="header"></div>
-    <div class="content">
-      <div class="right">
-        <div class="about">
-          关于我
-        </div>
-        <div class="follow">
-          Follow me
-        </div>
-      </div>
-      <div class="article">
-        <div id="blogList"></div>
-        <div id="hello"></div>
-        <div id="container"></div>
-      </div>
+    <div class="slideHead">
+        <div class="fixedHead"></div>
+        <div class="prev"><</div>
+        <div class="next">></div>
+        <ul class="fixedBar">
+            <li>关于我</li>
+            <li>技术博客</li>
+            <li>五味杂陈</li>
+            <li>图集</li>
+        </ul>
     </div>
-
-    <script src="/javascripts/jquery.min.js"></script>
-    <script src="/javascripts/react.min.js"></script>
-    <script src="/javascripts/index.js"></script>
+    <ul class="content clearfix">
+        <li>box1</li>
+        <li>box1</li>
+        <li>box1</li>
+        <li>box1</li>
+    </ul>
+    <div class="aboutUs">
+        aboutUs
+    </div>
+    <% include footer %>
+    <script src="/javascripts/common/jquery.min.js"></script>
+    <script src="/javascripts/common/react.min.js"></script>
   </body>
 </html>

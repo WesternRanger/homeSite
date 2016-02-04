@@ -27,9 +27,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/index', routes);
+app.use('/', routes);
 app.use('/blog', blog);
-app.use('/',bloglist);
+app.use('/bloglist',bloglist);
 app.use('/users', users);
 app.use('/comment',comment);
 app.use('/commit',commit);

@@ -35,7 +35,7 @@ gulp.task('jsxParse', ()=> {
     gulp.src('./public/jsx/*.*')
         .pipe(react())
         //.pipe(uglify())
-        .pipe(gulp.dest('public/javascripts'))
+        .pipe(gulp.dest('public/jsxParseFile'))
         .pipe(livereload());
 });
 
