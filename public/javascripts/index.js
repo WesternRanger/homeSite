@@ -1,7 +1,7 @@
 /**
  * Created by WesternRanger on 16/2/4.
  */
-define('index',[,'jquery','tool'],function($,Tool){
+define('index',['jquery'],function($){
     var Index = {
         init:function(){
             Index.slide()
