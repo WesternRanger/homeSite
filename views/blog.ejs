@@ -33,7 +33,7 @@
     </div>
     <div>
         <% for(var i=0; i < res.length; i++) { %>
-            <p><%- res[i].content %></p>
+            <p id="showdown-text" style="opacity: 0;"><%- res[i].content %></p>
         <% } %>
     </div>
     <div id="artBottom"></div>
@@ -42,5 +42,18 @@
 <script src="/javascripts/common/jquery.min.js"></script>
 <script src="/javascripts/common/react.min.js"></script>
 <script src="/jsxParseFile/blog.js"></script>
+<script type="text/javascript" src="/javascripts/common/showdown.js"></script>
+<script>
+//    var showdown_text = $(".showdown-text").text();
+//    document.querySelector(".header").addEventListener("click",compile,!1);
+    ~function compile(){
+        var _result = document.getElementById("showdown-text"),
+            text = _result.innerHTML,
+            converter = new showdown.Converter(),
+            html = converter.makeHtml(text);
+        _result.innerHTML = html;
+        _result.style.opacity = 1;
+    }();
+</script>
 </body>
 </html>
