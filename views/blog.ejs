@@ -5,6 +5,7 @@
     <meta charset="utf-8"/>
     <link rel='stylesheet' href='/stylesheets/base.css' />
     <link rel='stylesheet' href='/stylesheets/bloglist.css' />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">
 </head>
 <body>
 <% for(var i=0; i < res.length; i++) { %>
@@ -31,9 +32,9 @@
             </ul>
         </div>
     </div>
-    <div>
+    <div class="bloglist">
         <% for(var i=0; i < res.length; i++) { %>
-            <p id="showdown-text" style="opacity: 0;"><%- res[i].content %></p>
+            <p id="showdown-text" style="opacity: 0;"><%= res[i].content %></p>
         <% } %>
     </div>
     <div id="artBottom"></div>
@@ -42,7 +43,9 @@
 <script src="/javascripts/common/jquery.min.js"></script>
 <script src="/javascripts/common/react.min.js"></script>
 <script src="/jsxParseFile/blog.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
 <script type="text/javascript" src="/javascripts/common/showdown.js"></script>
+<script type="text/javascript" src="/javascripts/common/marked.js"></script>
 <script>
 //    var showdown_text = $(".showdown-text").text();
 //    document.querySelector(".header").addEventListener("click",compile,!1);
@@ -54,6 +57,23 @@
         _result.innerHTML = html;
         _result.style.opacity = 1;
     }();
+    marked.setOptions({
+        renderer: new marked.Renderer(),
+        gfm: true,
+        tables: true,
+        breaks: true,
+        pedantic: false,
+        sanitize: false,
+        smartLists: false,
+        smartypants: false,
+        highlight: function (code) {
+            return hljs.highlightAuto(code).value;
+        }
+    });
+
+
+    var article = $('#article').val();
+    $('.article').html(marked(article));
 </script>
 </body>
 </html>
