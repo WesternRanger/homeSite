@@ -33,18 +33,19 @@
     </div>
     <div class="bloglist">
         <% for(var i=0; i < res.length; i++) { %>
-            <p id="showdown-text" style="opacity: 0;"><%=-res[i].content %></p>
+            <div id="showdown-text" style="opacity: 0;"><%- res[i].content %></div>
         <% } %>
     </div>
-    <div id="artBottom"></div>
+    <div id="artBottom">
+        <!-- 多说评论框 start -->
+        <% for(var i=0; i < res.length; i++) { %>
+            <div class="ds-thread" data-thread-key="<%= res[i].id %>" data-title="<%= res[i].title %>" data-url="http://western-ranger.com/blog?id=<%= res[i].id %>"></div>
+        <% } %>
+        <!-- 多说评论框 end -->
+    </div>
 </div>
 
-<!-- 多说评论框 start -->
-<% for(var i=0; i < res.length; i++) { %>
-    <div class="ds-thread" data-thread-key="<%= res[i].id %>" data-title="<%= res[i].title %>" data-url="http://western-ranger.com/blog?id=<%= res[i].id %>"></div>
-<% } %>
-<!-- <div class="ds-thread" data-thread-key="请将此处替换成文章在你的站点中的ID" data-title="请替换成文章的标题" data-url="请替换成文章的网址"></div> -->
-<!-- 多说评论框 end -->
+<% include footer %>
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"western-ranger"};
@@ -59,10 +60,9 @@ var duoshuoQuery = {short_name:"western-ranger"};
     </script>
 <!-- 多说公共JS代码 end -->
 
-<% include footer %>
 <script src="/javascripts/common/jquery.min.js"></script>
-<script src="/javascripts/common/react.min.js"></script>
-<script src="/jsxParseFile/blog.js"></script>
+<!-- <script src="/javascripts/common/react.min.js"></script> -->
+<!-- <script src="/jsxParseFile/blog.js"></script> -->
 
 <script type="text/javascript" src="/javascripts/common/showdown.js"></script>
 <script>
@@ -71,13 +71,7 @@ var duoshuoQuery = {short_name:"western-ranger"};
     }
     $.extend(Warpper.prototype,{
         init:function(){
-            this.alert();
             this.compile();
-        },
-        alert:function(){
-            this.warp.on("click",this,function(){
-                console.log("444");
-            })
         },
         compile:function(){
             var _text = this.warp.html(),
@@ -85,7 +79,7 @@ var duoshuoQuery = {short_name:"western-ranger"};
                 _html = _converter.makeHtml(_text);
             this.warp.html(_html);
             this.warp.css("opacity",1)
-        }
+        },
     })
     new Warpper().init();// 事件操作预加载
 
