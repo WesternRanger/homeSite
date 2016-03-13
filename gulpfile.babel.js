@@ -13,6 +13,7 @@ import    babelify     from "babelify";//转化es6或者jsx语法
 import    source       from "vinyl-source-stream";//把 browserify 输出的数据进行准换，使之流符合 gulp 的标准
 import    react        from 'gulp-react';
 import    livereload   from 'gulp-livereload';//自动刷新
+import    babel        from 'gulp-babel';//es6->es5
 
 
 //less转化css，并压缩
@@ -33,11 +34,19 @@ gulp.task("coffee",()=> {
 // jsx 生成 js,并压缩
 gulp.task('jsxParse', ()=> {
     gulp.src('./public/jsx/*.*')
-        .pipe(react())
-        //.pipe(uglify())
-        .pipe(gulp.dest('public/jsxParseFile'))
-        .pipe(livereload());
+        .pipe(react()) // react 转化
+        .pipe(uglify()) // 压缩
+        .pipe(gulp.dest('public/jsxParseFile')) // 转化为js后输出
+        .pipe(livereload()); // 实时监控刷新浏览器
 });
+// 编译并压缩js
+gulp.task('es6Parse', function(){
+    return gulp.src('./public/es6/*.*')
+        .pipe(babel())
+        //.pipe(uglify())
+        .pipe(gulp.dest('public/javascripts'))
+        .pipe(livereload());
+})
 
 
 // 自动监听less、coffee转化为css、js
@@ -53,9 +62,13 @@ gulp.task('jsxWatch', ()=> {
     gulp.watch('public/jsx/*.*', ['jsxParse']); //当所有jsx文件发生改变时，调用jsxParse任务
 });
 
+gulp.task('es6Watch', ()=> {
+    gulp.watch('public/es6/*.*', ['es6Parse']); //当所有jsx文件发生改变时，调用jsxParse任务
+});
+
 gulp.task('reload', ()=> {    // 检测修改，自动刷新
     livereload.listen()
     gulp.watch('./public/**/*.*',['less','jsxParse']);
 });
 
-gulp.task('default', ['reload','lessWatch','jsxWatch']);
+gulp.task('default', ['reload','lessWatch','jsxWatch','es6Watch']);

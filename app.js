@@ -8,10 +8,13 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index'); // 首页
 var blog = require('./routes/blog'); // 博客详情
 var bloglist = require('./routes/bloglist'); // 博客列表
+var publishBlog = require('./routes/publishBlog');// 后台添加博客
 var users = require('./routes/users');//
+
+/* ajax接口 */
 var comment = require('./routes/comment');// 获取评论
 var commit = require('./routes/commit');// 添加评论
-var publishBlog = require('./routes/publishBlog');// 后台添加博客
+
 
 var app = express();
 
@@ -27,13 +30,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', bloglist);
+app.use('/', routes);
 app.use('/blog', blog);
-// app.use('/bloglist',bloglist);
+app.use('/bloglist',bloglist);
+app.use('/publishBlog',publishBlog);
 app.use('/users', users);
+
+/* ajax接口 */
 app.use('/comment',comment);
 app.use('/commit',commit);
-app.use('/publishBlog',publishBlog);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
