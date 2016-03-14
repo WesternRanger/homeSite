@@ -86,20 +86,8 @@
         <ul/>
       </div>
     <% include footer %>
-    <script src="/javascripts/common/require.js"></script>
-    <script>
-        require.config({
-            paths: {
-                'jquery': '/javascripts/common/jquery.min',
-                'tool':'/javascripts/common/tool',
-                'index':'/javascripts/index',
-                'Slide':'/javascripts/Slide'
-            }
-        });
-//        require(['Slide'], function(Slide) {
-//            Slide.init()
-//        });
-        require(['index']);
-    </script>
+      <!--<script src="bundle.js"></script>-->
+      <script src="/javascripts/common/jquery.min.js"></script>
+      <script src="./javascripts/index.js"></script>
   </body>
 </html>

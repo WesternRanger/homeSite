@@ -8,7 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index'); // 首页
 var blog = require('./routes/blog'); // 博客详情
 var bloglist = require('./routes/bloglist'); // 博客列表
-var publishBlog = require('./routes/publishBlog');// 后台添加博客
+var publishBlog = require('./routes/publishBlog');// markdown后台添加博客
+var publishBlog1 = require('./routes/publishBlog1');// redactor后台添加博客
 var users = require('./routes/users');//
 
 /* ajax接口 */
@@ -34,6 +35,7 @@ app.use('/', routes);
 app.use('/blog', blog);
 app.use('/bloglist',bloglist);
 app.use('/publishBlog',publishBlog);
+app.use('/publishBlog1',publishBlog1);
 app.use('/users', users);
 
 /* ajax接口 */

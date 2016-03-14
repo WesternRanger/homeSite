@@ -9,6 +9,8 @@ import    plumber      from "gulp-plumber"; // 自动处理全部错误信息防
 import    less         from "gulp-less";
 import    reactify     from 'reactify';
 import    browserify   from "browserify";//用来 require js 的模块
+import    sourcemaps   from "gulp-sourcemaps";
+import    buffer       from "vinyl-buffer";
 import    babelify     from "babelify";//转化es6或者jsx语法
 import    source       from "vinyl-source-stream";//把 browserify 输出的数据进行准换，使之流符合 gulp 的标准
 import    react        from 'gulp-react';
@@ -47,6 +49,20 @@ gulp.task('es6Parse', function(){
         .pipe(gulp.dest('public/javascripts'))
         .pipe(livereload());
 })
+
+gulp.task("browserify", function () {
+    var b = browserify({
+        entries: "./public/es6/point.js",
+        debug: true
+    });
+
+    return b.bundle()
+        .pipe(source("bundle.js"))
+        .pipe(buffer())
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(sourcemaps.write("."))
+        .pipe(gulp.dest("./public/javascripts"));
+});
 
 
 // 自动监听less、coffee转化为css、js

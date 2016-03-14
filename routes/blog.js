@@ -8,16 +8,9 @@ var express = require('express'),
 router.get('/', function(req, resIndex) {
     var id = req.query.id;
     db.pool.getConnection(function(err, connection) {
-        //var id = '';
-        //if(req.query.id == '')
-        //    id = 17;
-        //else
-        //    id = req.query.id;
-
         var sql = 'select * from blogs where id=?',
             sql_val = [id];
         connection.query(sql, sql_val ,function(error, res) {
-            //console.log(res[0].content);
             resIndex.render('blog', {
                 title: "从这里开始",
                 res:res

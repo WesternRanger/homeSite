@@ -1,19 +1,23 @@
 /**
  * Created by WesternRanger on 16/2/4.
  */
-define('index',['jquery'],function($){
-    function DOM(){
-        this.wrap = $(".content");
+//import "./point.js";
+//console.log(square(5));
+
+class DOM {
+    constructor(name) {
+        this.wrap = name;
     }
-    $.extend(DOM.prototype,{
-        init:function(){
-            this.getEvery();
-        },
-        getEvery:function(){
-            this.wrap.on("click","li",function(){
-                console.log($(this).html());
-            })
-        }
-    })
-    new DOM().init()//dom操作
-})
+}
+class Exts extends DOM {
+    constructor(name) {
+        super(name);
+    }
+    getEvery() {
+        this.wrap.on("click",".head-box1",()=>{
+            console.log("extend");
+        })
+    }
+}
+let wayou = new Exts($(".head-top"));
+wayou.getEvery();

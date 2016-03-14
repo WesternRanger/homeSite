@@ -1,1 +1,52 @@
-"use strict";define("Slide",["jquery"],function(e){var n={init:function(){n.slide()},slide:function(){function n(){i=setTimeout(n,o),t=++t%h.length;for(var e=0;e<h.length;e++)h.eq(e).hide();h.eq(t).show()}var i,t=0,o=4e3,h=e(".slide-content").children(".img");i=setTimeout(n,o),e(".next").on("click",function(){t=++t%h.length;for(var e=0;e<h.length;e++)h.eq(e).hide();h.eq(t).show()}),e(".prev").on("click",function(){t=--t%h.length,0>t&&(t=h.length-1);for(var e=0;e<h.length;e++)h.eq(e).hide();h.eq(t).show()})}};return{init:n.init}});
+'use strict';
+
+/**
+ * Created by WesternRanger on 16/3/13.
+ */
+define('Slide', ['jquery'], function ($) {
+    var Index = {
+        init: function init() {
+            Index.slide();
+        },
+        slide: function slide() {
+            var step = 0,
+                time = 4000,
+                imgArr = $(".slide-content").children(".img"),
+                id,
+                clearId;
+
+            //slide
+            id = setTimeout(change, time);
+            function change() {
+                id = setTimeout(change, time);
+                step = ++step % imgArr.length;
+                for (var i = 0; i < imgArr.length; i++) {
+                    imgArr.eq(i).hide();
+                }
+                imgArr.eq(step).show();
+            }
+
+            $(".next").on("click", function () {
+                step = ++step % imgArr.length;
+                for (var i = 0; i < imgArr.length; i++) {
+                    imgArr.eq(i).hide();
+                }
+                imgArr.eq(step).show();
+            });
+
+            $(".prev").on('click', function () {
+                step = --step % imgArr.length;
+                if (step < 0) {
+                    step = imgArr.length - 1;
+                }
+                for (var i = 0; i < imgArr.length; i++) {
+                    imgArr.eq(i).hide();
+                }
+                imgArr.eq(step).show();
+            });
+        }
+    };
+    return {
+        init: Index.init
+    };
+});
