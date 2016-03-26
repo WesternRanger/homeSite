@@ -16,7 +16,7 @@ import    source       from "vinyl-source-stream";//把 browserify 输出的数�
 import    react        from 'gulp-react';
 import    livereload   from 'gulp-livereload';//自动刷新
 import    babel        from 'gulp-babel';//es6->es5
-
+import    rename       from 'gulp-rename'; // 重命名文件
 
 //less转化css，并压缩
 gulp.task('less', ()=> {
@@ -49,18 +49,13 @@ gulp.task('es6Parse', function(){
         .pipe(gulp.dest('public/javascripts'))
         .pipe(livereload());
 })
-
+// 编译import export ,使之支持模块化
 gulp.task("browserify", function () {
-    var b = browserify({
-        entries: "./public/es6/point.js",
-        debug: true
-    });
-
-    return b.bundle()
+    browserify("./public/es6/*.js")
+        .bundle()
         .pipe(source("bundle.js"))
         .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(sourcemaps.write("."))
+        .pipe(uglify())
         .pipe(gulp.dest("./public/javascripts"));
 });
 
