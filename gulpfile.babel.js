@@ -49,16 +49,6 @@ gulp.task('es6Parse', function(){
         .pipe(gulp.dest('public/javascripts'))
         .pipe(livereload());
 })
-// 编译import export ,使之支持模块化
-gulp.task("browserify", function () {
-    browserify("./public/es6/*.js")
-        .bundle()
-        .pipe(source("bundle.js"))
-        .pipe(buffer())
-        .pipe(uglify())
-        .pipe(gulp.dest("./public/javascripts"));
-});
-
 
 // 自动监听less、coffee转化为css、js
 gulp.task('lessWatch', ()=> {
