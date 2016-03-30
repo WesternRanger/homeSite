@@ -60,7 +60,7 @@ gulp.task('coffeeWatch', ()=> {
 });
 
 gulp.task('jsxWatch', ()=> {
-    gulp.watch('public/jsx/*.*', ['jsxParse']); //当所有jsx文件发生改变时，调用jsxParse任务
+    gulp.watch('public/jsx/*.*', ['jsxParse']); //当所有jsx文件发生改变时，调用jsxParse任务git
 });
 
 gulp.task('es6Watch', ()=> {
