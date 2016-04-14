@@ -1,44 +1,35 @@
-"use strict";
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _module = require('./module.js');
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+//var a = require('./module.js');
+//new a.Employee();
+//a.fun_aa();
+new _module.Employee(); /**
+                         * Created by WesternRanger on 16/2/4.
+                         */
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
+(0, _module.fun_aa)();
+},{"./module.js":2}],2:[function(require,module,exports){
 /**
- * Created by WesternRanger on 16/2/4.
+ * Created by WesternRanger on 16/4/14.
  */
-
-var DOM = function DOM(name) {
-    _classCallCheck(this, DOM);
-
-    this.wrap = name;
-    this.age = 11;
-};
-
-var Exts = function (_DOM) {
-    _inherits(Exts, _DOM);
-
-    function Exts(name) {
-        _classCallCheck(this, Exts);
-
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(Exts).call(this, name));
+class Employee{
+    constructor(){
+        this.id = '111';
+        this.getAge();
     }
+    getAge(){
+        console.log(this.id);
+    }
+}
 
-    _createClass(Exts, [{
-        key: "getEvery",
-        value: function getEvery() {
-            this.wrap.on("click", ".head-box1", function () {
-                console.log("extend");
-            });
-        }
-    }]);
-
-    return Exts;
-}(DOM);
-
-var wayou = new Exts($(".head-top"));
-wayou.getEvery();
+function fun_aa(){
+    console.log('export fss success');
+}
+module.exports = {
+    Employee,
+    fun_aa
+};
+},{}]},{},[1])
