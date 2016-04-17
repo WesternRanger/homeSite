@@ -43,7 +43,7 @@ gulp.task('es6Parse', function(){
     return gulp.src('./public/es6/*.*')
         .pipe(babel())
         .pipe(browserify())// 支持require
-        .pipe(concat())
+        //.pipe(concat())
         .pipe(gulp.dest('public/javascripts'))
         .pipe(livereload());
 });

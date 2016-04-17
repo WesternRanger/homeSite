@@ -24,7 +24,6 @@ class Employee{
         console.log(this.id);
     }
 }
-
 function fun_aa(){
     console.log('export fss success');
 }

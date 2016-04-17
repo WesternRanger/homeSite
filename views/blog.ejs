@@ -3,37 +3,17 @@
 <head>
     <title><%= title %></title>
     <meta charset="utf-8"/>
-    <link rel='stylesheet' href='/stylesheets/base.css' />
     <link rel='stylesheet' href='/stylesheets/bloglist.css' />
+    <link rel="stylesheet" href="/stylesheets/common/bootstrap.min.css">
 </head>
 <body>
 <% for(var i=0; i < res.length; i++) { %>
     <div class="header"><%= res[i].title %></div>
 <% } %>
 <div class="content">
-    <div class="right">
-        <div class="about">
-            <h3>关于我</h3>
-            <p>
-                <b>西泊浪人</b>，立志成为一名屌屌的前端开发工程师，更是要成为一名全栈工程师。
-            </p>
-            <p>
-                前端之路漫漫，其修远兮。资历尚浅之吾，将上下而求索至地老天荒。
-            </p>
-        </div>
-        <div class="follow">
-            <h3>Follow me on</h3>
-            <ul>
-                <li><a href="http://weibo.com/WesternRanger">新浪微博</a></li>
-                <li><a href="http://blog.csdn.net/westernranger">CSDN博客</a></li>
-                <li><a href="https://github.com/WesternRanger">github</a></li>
-                <li><a href="http://western-ranger.com">个人主页</a></li>
-            </ul>
-        </div>
-    </div>
     <div class="bloglist">
         <% for(var i=0; i < res.length; i++) { %>
-            <div id="showdown-text" style="opacity: 0;"><%- res[i].content %></div>
+            <div id="showdown-text"><%- res[i].content %></div>
         <% } %>
     </div>
     <div id="artBottom">
@@ -57,32 +37,7 @@ var duoshuoQuery = {short_name:"western-ranger"};
         (document.getElementsByTagName('head')[0] 
          || document.getElementsByTagName('body')[0]).appendChild(ds);
     })();
-    </script>
-<!-- 多说公共JS代码 end -->
-
-<script src="/javascripts/common/jquery.min.js"></script>
-<!-- <script src="/javascripts/common/react.min.js"></script> -->
-<!-- <script src="/jsxParseFile/blog.js"></script> -->
-
-<script type="text/javascript" src="/javascripts/common/showdown.js"></script>
-<script>
-    function Warpper(){
-        this.warp = $("#showdown-text");
-    }
-    $.extend(Warpper.prototype,{
-        init:function(){
-            this.compile();
-        },
-        compile:function(){
-            var _text = this.warp.html(),
-                _converter = new showdown.Converter(),
-                _html = _converter.makeHtml(_text);
-            this.warp.html(_html);
-            this.warp.css("opacity",1)
-        },
-    })
-    new Warpper().init();// 事件操作预加载
-
 </script>
+<!-- 多说公共JS代码 end -->
 </body>
 </html>

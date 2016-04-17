@@ -1,3 +1,6 @@
+/**
+ * Created by WesternRanger on 16/4/17.
+ */
 ;/*! showdown 02-02-2016 */
 (function(){
     /**
