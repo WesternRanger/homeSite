@@ -1,7 +1,6 @@
 import    gulp         from 'gulp';
-import    concat       from 'gulp-concat';
+import    concat       from 'gulp-concat';//js压缩
 import    minifycss    from 'gulp-minify-css';//css压缩
-import    uglify       from 'gulp-uglify';// js压缩
 import    rev          from 'gulp-rev';
 import    coffee       from "gulp-coffee"; // 编译coffee
 import    gutil        from "gulp-util";// 一个工具库
@@ -30,14 +29,12 @@ gulp.task('lessParse', ()=> {
 gulp.task("coffeeParse",()=> {
     gulp.src("public/coffee/index.coffee")
         .pipe(coffee())// 编译 coffee
-        .pipe(uglify())//
         .pipe(gulp.dest("public/javascripts"));
 })
 // jsx 生成 js,并压缩
 gulp.task('jsxParse', ()=> {
     gulp.src('./public/jsx/*.*')
         .pipe(react()) // react 转化
-        .pipe(uglify()) // 压缩
         .pipe(gulp.dest('public/jsxParseFile')) // 转化为js后输出
         .pipe(livereload()); // 实时监控刷新浏览器
 });
@@ -46,7 +43,7 @@ gulp.task('es6Parse', function(){
     return gulp.src('./public/es6/*.*')
         .pipe(babel())
         .pipe(browserify())// 支持require
-        .pipe(uglify())
+        .pipe(concat())
         .pipe(gulp.dest('public/javascripts'))
         .pipe(livereload());
 });

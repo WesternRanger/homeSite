@@ -93,3 +93,119 @@ i {
         border:solid 1px #e5e5e5;
     }
 }
+
+//<S-分页style>
+.package-num {
+    padding: 50px 0;
+    width: 100%;
+    text-align: center;
+    color: #666;
+}
+.package-num .pre {
+    position: relative;
+    width: 80px;
+    background: #eee;
+    font-size: 12px;
+    margin-right: 5px;
+}
+.package-num .pre.disabled {
+    background: #fff;
+    cursor: not-allowed;
+}
+.package-num .pre.disabled .pre2 {
+    border-color: transparent #fff transparent transparent;
+}
+.package-num .pre .pre1 {
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent #888 transparent transparent;
+    position: absolute;
+    top: 9px;
+    left: 2px;
+}
+.package-num .pre .pre2 {
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent #eee transparent transparent;
+    position: absolute;
+    top: 9px;
+    left: 4px;
+}
+.package-num .num {
+    font-size: 14px;
+    background: #fafafa;
+    margin-right: 4px;
+}
+.package-num .num:hover {
+    color: #74a0e3;
+    border: solid #74a0e3 1px;
+}
+.package-num a {
+    text-decoration: none;
+    border: 1px solid #eee;
+    display: inline-block;
+    min-width: 30px;
+    height: 30px;
+    color: #666;
+    font-size: 14px;
+    line-height: 30px;
+    text-align: center;
+}
+.package-num .num-active {
+    border: solid #74a0e3 1px;
+    background: #74a0e3;
+    color: #fff;
+}
+.package-num .num-active:hover {
+    color: #fff;
+}
+.package-num .etc {
+    border: 0;
+}
+.package-num .next {
+    position: relative;
+    width: 80px;
+    background: #eee;
+    font-size: 12px;
+}
+.package-num .next.disabled {
+    background: #fff;
+    cursor: not-allowed;
+}
+.package-num .next.disabled .next2 {
+    border-color: transparent transparent transparent #fff;
+}
+.package-num .next .next1 {
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent transparent #888;
+    position: absolute;
+    top: 9px;
+    right: 6px;
+}
+.package-num .next .next2 {
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent transparent #eee;
+    position: absolute;
+    top: 9px;
+    right: 8px;
+}
+.package-num label {
+    margin-left: 33px;
+}
+
+.package-num input {
+    display: inline-block;
+    height: 16px;
+    width: 40px;
+    padding: 2px 0;
+    border: 1px solid #eee;
+    text-align: center;
+    font-size: 12px;
+    margin: 0 5px;
+}
+.package-num .skip {
+    padding: 0 5px;
+}
+//<E-分页style>
