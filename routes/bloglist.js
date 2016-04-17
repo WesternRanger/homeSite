@@ -8,10 +8,7 @@ var express = require('express'),
 function fatchData(sql,sql_val,req,result){
     db.pool.getConnection((err, connection)=> {
         connection.query(sql ,sql_val,(error, res)=> {
-            result.render('bloglist', {
-                title: "从这里开始",
-                res:res
-            });
+            db.renderPage(result,'bloglist','从这里开始',res);
         });
         connection.release();
     });

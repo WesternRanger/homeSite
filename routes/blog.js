@@ -18,13 +18,6 @@ marked.setOptions({
     smartypants: false
 });
 
-function renderPage(res,par){
-    res.render('blog',{
-        title:'从现在开始',
-        res:par
-    })
-}
-
 function fetchData(req, resIndex){
     let id = req.query.id;
     db.pool.getConnection((err, connection)=> {
@@ -33,7 +26,7 @@ function fetchData(req, resIndex){
         connection.query(sql, sql_val ,(error, res)=> {
             let _content = res[0].content;
             res[0].content = marked(_content);// markdown 转化为html
-            renderPage(resIndex,res);
+            db.renderPage(resIndex,'blog','从现在开始',res);
         });
         connection.release();
     });
