@@ -1,7 +1,8 @@
 /**
  * Created by WesternRanger on 16/1/5.
  */
-var express = require('express'),
+'use strict'
+let express = require('express'),
     marked = require('marked'), // markdown转化
     router = express.Router(),
     db = require('./conn'); //先引入数据库链接
@@ -17,21 +18,27 @@ marked.setOptions({
     smartypants: false
 });
 
-router.get('/', function(req, resIndex) {
-    var id = req.query.id;
-    db.pool.getConnection(function(err, connection) {
-        var sql = 'select * from blogs where id=?',
+function renderPage(res,par){
+    res.render('blog',{
+        title:'从现在开始',
+        res:par
+    })
+}
+
+function fetchData(req, resIndex){
+    let id = req.query.id;
+    db.pool.getConnection((err, connection)=> {
+        let sql = 'select * from blogs where id=?',
             sql_val = [id];
-        connection.query(sql, sql_val ,function(error, res) {
-            var _content = res[0].content;
+        connection.query(sql, sql_val ,(error, res)=> {
+            let _content = res[0].content;
             res[0].content = marked(_content);// markdown 转化为html
-            resIndex.render('blog', {
-                title: "从这里开始",
-                res:res
-            });
+            renderPage(resIndex,res);
         });
         connection.release();
     });
-});
+}
+
+router.get('/',fetchData);
 
 module.exports = router;
