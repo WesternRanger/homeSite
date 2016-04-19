@@ -52,10 +52,18 @@
     <script type="text/javascript" src="/admin/showdown.js"></script>
     <script>
         $("input[type='button']").click(function(){
-            var user = $("input[type='text']").val();
-            var pass = $("input[type='password']").val();
+            var user = $("input[name='title']").val();
+            var pass = $("textarea[name='content']").val();
             if(user!=''&&pass!=''){
-                document._form.submit();
+                var _url = '/api/publish/blog',
+                    _data = {
+                        name:user,
+                        talk:pass
+                    };
+
+                getAjax(_url,_data,function(rs){
+                    console.log(rs);
+                });
             }
             else{
                 alert("请输入内容")
@@ -66,6 +74,16 @@
             var converter = new showdown.Converter();
             var html = converter.makeHtml(text);
             document.getElementById("result").innerHTML = html;
+        }
+        function getAjax(_url,_data,d){
+            $.ajax({
+                url:_url,
+                type:'post',
+                data:_data,
+                success:function(rs){
+                    d(rs);
+                }
+            });
         }
     </script>
 </body>
