@@ -3,7 +3,7 @@
  */
 var express = require('express');
 var router = express.Router();
-var db = require('./conn');
+var db = require('../common/tool');
 
 router.post('/', function(req, res) {
     var name = req.query.name;

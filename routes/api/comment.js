@@ -3,10 +3,10 @@
  */
 var express = require('express');
 var router = express.Router();
-var db = require('./conn');
+var tool = require('../common/tool');
 
 router.post('/', function(req, res) {
-    db.pool.getConnection(function(err, connection) {
+    tool.pool.getConnection(function(err, connection) {
         var sql = 'select * from test';
         connection.query(sql, function(error, rs) {
             res.send({

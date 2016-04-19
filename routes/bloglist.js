@@ -3,20 +3,17 @@
  */
 var express = require('express'),
     router = express.Router(),
-    db = require('./conn'); //先引入数据库链接
+    tool = require('./common/tool'); //先引入数据库链接
 
-function fatchData(sql,sql_val,req,result){
-    db.pool.getConnection((err, connection)=> {
-        connection.query(sql ,sql_val,(error, res)=> {
-            db.renderPage(result,'bloglist','从这里开始',res);
-        });
-        connection.release();
-    });
-}
 router.get('/',(req, resIndex)=> {
     var sql = 'select * from blogs';
     var sql_val = '';
-    fatchData(sql,sql_val,req,resIndex);
+    tool.pool.getConnection((err, connection)=> {
+        connection.query(sql ,sql_val,(error, res)=> {
+            tool.renderPage(resIndex,'bloglist','从这里开始',res);
+        });
+        connection.release();
+    });
 });
 
 module.exports = router;

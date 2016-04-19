@@ -6,43 +6,22 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index'); // 首页
-var blog = require('./routes/blog'); // 博客详情
-var bloglist = require('./routes/bloglist'); // 博客列表
-var publishBlog = require('./routes/publishBlog');// markdown后台添加博客
-var publishBlog1 = require('./routes/publishBlog1');// redactor后台添加博客
-var users = require('./routes/users');//
-
-/* ajax接口 */
-var comment = require('./routes/comment');// 获取评论
-var commit = require('./routes/commit');// 添加评论
-
+var fileMap = require('./fileMap'); // 路由入口文件
 
 var app = express();
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/blog', blog);
-app.use('/bloglist',bloglist);
-app.use('/publishBlog',publishBlog);
-app.use('/publishBlog1',publishBlog1);
-app.use('/users', users);
-
-/* ajax接口 */
-app.use('/comment',comment);
-app.use('/commit',commit);
-
+// render页面
+for(var p in fileMap){
+    app.use('/'+p,fileMap[p]);
+}
 
 // catch 404 and forward to error handler
 app.use((req, res, next)=> {
@@ -51,8 +30,7 @@ app.use((req, res, next)=> {
   next(err);
 });
 
-// error handlers
-
+// error handlers\
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
