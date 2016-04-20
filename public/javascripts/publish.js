@@ -13,8 +13,11 @@ $("input[type='button']").click(function () {
     };
 
     getAjax(_url, _data, function (rs) {
-        //alert(rs.msg);
-        $("<div>" + rs.msg + "</div>").dialogBox();
+        $("<div style=\"text-align: center;padding-top:30px;\">" + rs.msg + "</div>").dialogBox({
+            title: 'western-ranger.com提示您',
+            width: 280,
+            height: 180
+        });
     });
 }); /**
      * Created by WesternRanger on 16/4/20.
@@ -32,7 +35,7 @@ function getAjax(_url, _data, d) {
 }
 },{"../javascripts/common/tool.js":2}],2:[function(require,module,exports){
 ;(function(){
-    return $.fn.extend({
+    $.fn.extend({
         /*
         * 弹框小组件
         * */
@@ -42,7 +45,7 @@ function getAjax(_url, _data, d) {
             option = $.extend({
                 width: 545,
                 height: 260,
-                titleIcon: false,
+                titleIcon: true,
                 titleShow: true,
                 contentShow: true,
                 title: '',

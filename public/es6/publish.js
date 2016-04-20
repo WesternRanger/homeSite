@@ -12,8 +12,11 @@ $("input[type='button']").click(function(){
         };
 
     getAjax(_url,_data,function(rs){
-        //alert(rs.msg);
-        $(`<div>${rs.msg}</div>`).dialogBox();
+        $(`<div style="text-align: center;padding-top:30px;">${rs.msg}</div>`).dialogBox({
+            title:'western-ranger.com提示您',
+            width:280,
+            height:180
+        });
     });
 });
 function getAjax(_url,_data,d){

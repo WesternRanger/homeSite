@@ -1,5 +1,5 @@
 ;(function(){
-    return $.fn.extend({
+    $.fn.extend({
         /*
         * 弹框小组件
         * */
@@ -9,7 +9,7 @@
             option = $.extend({
                 width: 545,
                 height: 260,
-                titleIcon: false,
+                titleIcon: true,
                 titleShow: true,
                 contentShow: true,
                 title: '',
