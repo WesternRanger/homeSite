@@ -183,3 +183,304 @@ i {
     padding: 0 5px;
 }
 //<E-分页style>
+
+/*-------------------dialogBox start-------------------*/
+.mask {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #000;
+    opacity: .7;
+    filter: alpha(opacity=70);
+    z-index: 10000;
+}
+.dialogBox {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 10001;
+    margin: auto;
+    box-shadow: 0 0 8px rgba(22, 5, 7, 0.3);
+    font-size: 14px;
+}
+.dialogBox .dTitle {
+    text-align: center;
+    font-size: 16px;
+    padding: 0 20px;
+    height: 52px;
+    line-height: 52px;
+    color: #ffffff;
+    background: #ff4800;
+}
+.dialogBox .dContent {
+    padding: 0 20px;
+}
+.dialogBox .dFooter {
+    position: absolute;
+    bottom: 0;
+    background: #f8f8f8;
+    width: 100%;
+    height: 60px;
+    left: 0;
+}
+.dialogBox .dFooter .uiButton {
+    float: right;
+    margin: 15px 20px 0 0;
+    cursor: pointer;
+    width: 88px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 3px;
+    text-align: center;
+}
+.dialogBox .dFooter .uiButton.subBtn {
+    color: #fff;
+    background: #ff4800;
+    border: 1px solid #ff4800;
+}
+.dialogBox .dFooter .uiButton.cancelBtn {
+    color: #ff4800;
+    background: #fff;
+    border: #ff4800 solid 1px;
+}
+.dialogBox .dFooter .cancelBtn {
+    margin-right: 10px;
+}
+.dialogBox .close {
+    position: absolute;
+    right: 20px;
+    top: 14px;
+    width: 20px;
+    height: 20px;
+    background-position: -102px -3px;
+    opacity: 0.8;
+    cursor: pointer;
+}
+.dialogBox .close:hover {
+    opacity: 1;
+}
+.dialogBox div.forwardInput {
+    position: relative;
+    padding: 8px;
+    border: 1px solid #cccccc;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.15) inset;
+    font-size: 12px;
+    line-height: 16px;
+    color: #333333;
+    margin-top: 10px;
+    overflow-y: visible;
+    resize: none;
+    outline: none;
+}
+.confirmBox {
+    display: table;
+    height: 70px;
+}
+.confirmBox .confirmText {
+    display: table-cell;
+    vertical-align: middle;
+    width: 420px;
+    text-align: center;
+}
+.confirmBox .confirmText span {
+    color: #ff8b04;
+}
+.inputBox.hasIcon {
+    position: relative;
+    float: left;
+    margin: 10px 0;
+    width: 258px;
+    background-color: #f4f4f4;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+}
+.inputBox.hasIcon.error {
+    border: 1px solid #ff4800;
+    margin-bottom: 30px;
+}
+.inputBox.hasIcon.hasIcon .dialogInput {
+    margin-left: 40px;
+}
+.inputBox.hasIcon.hasIcon > i {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    margin: 10px;
+    width: 20px;
+    height: 18px;
+}
+.inputBox.hasIcon.hasIcon.phoneNum > i {
+    background-position: -6px -4px;
+}
+.inputBox.hasIcon.hasIcon.password > i {
+    background-position: -28px -4px;
+}
+.inputBox .errorTip {
+    position: absolute;
+    left: 0px;
+    bottom: -25px;
+    color: #ff4800;
+    padding-left: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+}
+.inputBox .errorTip > i {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 20px;
+    height: 20px;
+    background-position: -126px -3px;
+}
+.dialogInput {
+    width: 218px;
+    height: 38px;
+    font-size: 12px;
+    line-height: 38px;
+    text-indent: 10px;
+    background: #ffffff;
+    border-radius: 0 4px 4px 0;
+}
+.loginDialogBox {
+    padding: 30px 40px 0 40px;
+}
+.loginDialogBox .forgetPassword {
+    float: right;
+    font-size: 12px;
+    color: #74a0e3;
+}
+.loginDialogBox .loginBtn {
+    float: left;
+    width: 182px;
+    margin: 30px 39px 0 39px;
+    cursor: pointer;
+}
+.loginDialogBox .bottomBox {
+    float: left;
+    margin: 10px 0 0 70px;
+}
+.loginDialogBox .bottomBox a {
+    float: left;
+    display: inline-block;
+    font-size: 12px;
+    color: #70b4ef;
+}
+.loginDialogBox .bottomBox .verticalLine {
+    float: left;
+    margin: 0 10px;
+    background: #eeeeee;
+    width: 1px;
+    height: 12px;
+}
+.baseInput {
+    position: relative;
+    width: 450px;
+    margin: 0 auto;
+    margin-bottom: 22px;
+}
+.baseInput.error {
+    margin-bottom: 30px;
+}
+.baseInput.error input {
+    border: 1px solid #ff4800;
+}
+.baseInput.error .errorTip {
+    left: 97px;
+}
+.baseInput label {
+    display: inline-block;
+    width: 75px;
+    height: 40px;
+    font-size: 14px;
+    color: #666;
+    text-align: right;
+    margin-right: 20px;
+    line-height: 42px;
+}
+.baseInput input {
+    width: 258px;
+    height: 38px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 0 auto;
+    text-indent: 14px;
+}
+.baseInput input.verify-code-input {
+    width: 144px;
+    margin-right: 12px;
+}
+.baseInput input.passwordInput {
+    position: absolute;
+    left: 98px;
+    opacity: 0;
+    width: 258px;
+    height: 38px;
+    border: 0px;
+    z-index: 100;
+}
+.regDialogBox {
+    margin-top: 50px;
+}
+.regDialogBox .disabled {
+    background: #d4d4d4;
+}
+a.button.miniBtn {
+    display: inline-block;
+    width: 98px;
+}
+a.button.miniBtn.disabled {
+    border: 1px solid #b5b5b5;
+    color: #b5b5b5;
+    background: #fff;
+}
+a.button.submitBtn {
+    display: inline-block;
+    width: 264px;
+    font-size: 16px;
+}
+a.submitBtn.disabled {
+    background: #ccc;
+}
+.info-agree {
+    padding-left: 160px;
+    margin-top: 28px;
+}
+.info-agree span {
+    margin-left: 10px;
+}
+.info-agree .bank-auth-text {
+    padding-left: 0;
+    margin-left: 0;
+    color: #70b4ef;
+}
+.regDialogBox .info-agree {
+    padding-left: 193px;
+}
+.loginDialogBox .checkBox {
+    float: left;
+}
+.checkBox {
+    position: relative;
+    cursor: pointer;
+}
+.checkBox i {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-position: -81px -6px;
+}
+.checkBox.active i {
+    background-position: -56px -6px;
+}
+.checkBox span {
+    padding-left: 18px;
+    font-size: 12px;
+    color: #999999;
+}
+/*-------------------dialogBox end-------------------*/
