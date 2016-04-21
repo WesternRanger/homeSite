@@ -10,6 +10,26 @@ $('.package-num').pagination({
      */
 },{"../javascripts/common/tool.js":2}],2:[function(require,module,exports){
 ;(function(){
+    $.extend({
+        /*
+         * 获取url参数
+         * */
+        getSearch:function (key, type) {
+            var search = window.location.search;
+            var result;
+
+            if(type == "parse"){
+                result = (function (t){t=t||location.search,"?"==t[0]&&(t=t.substring(1)),t=t.split("&");for(var e,r=t.length-1,n={},o=decodeURIComponent;r>=0;r--)e=t[r],n[e.split("=")[0]]=o(e.substr(e.indexOf("=")+1));return n})(key);
+                return result;
+            }else{
+                result =  search.match(
+                    new RegExp("(\\?|&)" + key + "(\\[\\])?=([^&]*)")
+                );
+
+                return result ? decodeURIComponent(result[3]) : false;
+            }
+        }
+    });
     $.fn.extend({
         /*
         * 弹框小组件

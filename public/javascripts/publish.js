@@ -3,6 +3,12 @@
 
 require("../javascripts/common/tool.js");
 
+/**
+ * Created by WesternRanger on 16/4/20.
+ */
+
+
+// 发布博客
 $("input[type='button']").click(function () {
     var user = $("input[name='title']").val(),
         pass = $("textarea[name='content']").val(),
@@ -19,10 +25,27 @@ $("input[type='button']").click(function () {
             height: 180
         });
     });
-}); /**
-     * Created by WesternRanger on 16/4/20.
-     */
+});
 
+//修改博客
+$("#fixBlog").click(function () {
+    var user = $("input[name='title']").val(),
+        pass = $("textarea[name='content']").val(),
+        _url = '/api/publish/fixBlog',
+        _data = {
+        title: user,
+        content: pass,
+        id: $.getSearch('id')
+    };
+
+    getAjax(_url, _data, function (rs) {
+        $("<div style=\"text-align: center;padding-top:30px;\">" + rs.msg + "</div>").dialogBox({
+            title: 'western-ranger.com提示您',
+            width: 280,
+            height: 180
+        });
+    });
+});
 function getAjax(_url, _data, d) {
     $.ajax({
         url: _url,
@@ -35,6 +58,26 @@ function getAjax(_url, _data, d) {
 }
 },{"../javascripts/common/tool.js":2}],2:[function(require,module,exports){
 ;(function(){
+    $.extend({
+        /*
+         * 获取url参数
+         * */
+        getSearch:function (key, type) {
+            var search = window.location.search;
+            var result;
+
+            if(type == "parse"){
+                result = (function (t){t=t||location.search,"?"==t[0]&&(t=t.substring(1)),t=t.split("&");for(var e,r=t.length-1,n={},o=decodeURIComponent;r>=0;r--)e=t[r],n[e.split("=")[0]]=o(e.substr(e.indexOf("=")+1));return n})(key);
+                return result;
+            }else{
+                result =  search.match(
+                    new RegExp("(\\?|&)" + key + "(\\[\\])?=([^&]*)")
+                );
+
+                return result ? decodeURIComponent(result[3]) : false;
+            }
+        }
+    });
     $.fn.extend({
         /*
         * 弹框小组件

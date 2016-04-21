@@ -61,4 +61,19 @@ router.get('/publishTXT', function(req, res) {
     tool.renderPage(res,'publishBlog1','从现在开始');
 });
 
+// 修改文章,markdown方式
+router.get('/fixBlog', function(req, resIndex) {
+    let id = req.query.id;
+    tool.pool.getConnection((err, connection)=> {
+        let sql = 'select * from blogs where id=?',
+            sql_val = [id];
+        connection.query(sql, sql_val ,(error, res)=> {
+            let _content = res[0].content;
+            res[0].content_markdown = marked(_content);// markdown 转化为html
+            tool.renderPage(resIndex,'fixBlog','从现在开始',res);
+        });
+        connection.release();
+    });
+});
+
 module.exports = router;

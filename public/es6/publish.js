@@ -2,6 +2,8 @@
  * Created by WesternRanger on 16/4/20.
  */
 import '../javascripts/common/tool.js'
+
+// 发布博客
 $("input[type='button']").click(function(){
     var user = $("input[name='title']").val(),
         pass = $("textarea[name='content']").val(),
@@ -9,6 +11,26 @@ $("input[type='button']").click(function(){
         _data = {
             title:user,
             content:pass
+        };
+
+    getAjax(_url,_data,function(rs){
+        $(`<div style="text-align: center;padding-top:30px;">${rs.msg}</div>`).dialogBox({
+            title:'western-ranger.com提示您',
+            width:280,
+            height:180
+        });
+    });
+});
+
+//修改博客
+$("#fixBlog").click(function(){
+    var user = $("input[name='title']").val(),
+        pass = $("textarea[name='content']").val(),
+        _url = '/api/publish/fixBlog',
+        _data = {
+            title:user,
+            content:pass,
+            id:$.getSearch('id')
         };
 
     getAjax(_url,_data,function(rs){
