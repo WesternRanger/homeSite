@@ -12,10 +12,16 @@ var obj = {
         database: 'homesite'
     }),
     renderPage:function(res,url,title,par){
+        res.cookie('western-ranger-cookie','cookie-WS',{
+            maxAge: 20000,
+            httpOnly:true,
+            path:'/',
+            secure:true
+        });
         res.render(url,{
             title:title,
             res:par
-        })
+        });
     }
 }
 module.exports = obj;
