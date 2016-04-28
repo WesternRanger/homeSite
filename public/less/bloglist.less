@@ -1,6 +1,11 @@
 *{
     font-family: 'Microsoft YaHei';
 }
+ul,li{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
 .header{
     background: #f6f5ee;
     font-size:30px;
@@ -8,71 +13,52 @@
     padding:30px 0;
     border-bottom:1px solid #e7e7e7;
 }
-.content{
-    width:980px;
+.wrap{
+    max-width: 980px;
     margin:20px auto;
-    overflow: hidden;
-    .right{
-        width:200px;
-        float:right;
-        background: #DEEBF7;
-        margin-left:30px;
-        .about{
-            margin:10px auto;
-            h3{
-                text-indent:8px;
-                color: #ffbbc7;
-            }
-            p{
-                padding:0 10px;
-                text-indent:16px;
-                line-height: 25px;
-            }
+}
+.content{
+    width:90%;
+    margin:auto;
+}
+/* S- 右边框*/
+.right{
+    //width:200px;
+    //float:right;
+    background: #DEEBF7;
+    .about{
+        margin:10px auto;
+        h3{
+            text-indent:8px;
+            color: #ffbbc7;
         }
-        .follow{
-            h3{
-                text-indent:8px;
-                color: #ffbbc7;
-            }
-            ul{
-                padding:10px 15px 0;
-                li{
-                    margin-bottom:15px;
-                    a{
-                        color:#333;
-                        font-size:14px;
-                        &:hover{
-                            color:#ffbbc7;
-                        }
+        p{
+            padding:0 10px;
+            text-indent:16px;
+            line-height: 25px;
+        }
+    }
+    .follow{
+        h3{
+            text-indent:8px;
+            color: #ffbbc7;
+        }
+        ul{
+            padding:10px 15px 0;
+            li{
+                margin-bottom:15px;
+                a{
+                    color:#333;
+                    font-size:14px;
+                    &:hover{
+                        color:#ffbbc7;
                     }
                 }
             }
         }
     }
-    .bloglist{
-        overflow: hidden;
-        padding:0;
-        margin:0;
-        min-height: 380px;
-        margin-bottom:50px;
-        .blogPer{
-            list-style: none;
-            margin-bottom:20px;
-            .auth{
-                color:#000;
-                font-size:20px;
-                font-weight:700;
-                text-indent:8px;
-                margin-bottom:10px;
-                text-decoration:none;
-                &:hover{
-                    text-decoration: underline;
-                    color: #805f63;
-                }
-            }
-        }
-    }
 }
+/* E- 右边框*/
 
 .footer {
     background: #f6f5ee;

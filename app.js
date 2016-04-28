@@ -30,8 +30,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // render页面
 for(var p in fileMap){
-    app.use('/'+p,fileMap[p]);
+    if(p == 'index'){
+        app.use('/',fileMap[p]); // 首页
+    }else{
+        app.use('/'+p,fileMap[p]);
+    }
 }
+
 //app.use('/', routes);
 //app.use('/blog', blog);
 //app.use('/bloglist',bloglist);

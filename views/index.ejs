@@ -3,45 +3,50 @@
   <head>
       <title><%= title %></title>
       <meta charset="utf-8"/>
-      <link rel='stylesheet' href='/stylesheets/base.css' />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="/stylesheets/common/bootstrap.min.css">
       <link rel='stylesheet' href='/stylesheets/index.css' />
   </head>
   <body>
       <div class="head-top">
-          <div class="head clearfix">
-              <img src="http://7xp7rf.com1.z0.glb.clouddn.com/1.jpeg" alt="" class="head-box1">
-              <div class="intro">
-                  var WesternRanger = { name:'西泊浪人',motto：'勿以往之不谏，知来者之可追。'}
+          <div class="head row">
+              <img src="http://7xp7rf.com1.z0.glb.clouddn.com/7286096.jpeg" alt="" class="hidden-xs col-sm-1 img-responsive" alt="Responsive image">
+              <div class="row col-xs-12 col-sm-11 nav-bar">
+                  <a class="col-xs-12 col-sm-2" href="/page/bloglist">技术积累</a>
+                  <a class="col-xs-12 col-sm-2" href="/page/bloglist">历史感悟</a>
+                  <a class="col-xs-12 col-sm-2" href="/page/bloglist">生活杂记</a>
+                  <a class="col-xs-12 col-sm-2" href="http://blog.western-ranger.com">hexo博客</a>
+                  <a class="col-xs-12 col-sm-2" href="http://blog.western-ranger.com">github</a>
+                  <a class="col-xs-12 col-sm-2" href="http://weibo.com/WesternRanger">微博</a>
               </div>
-              <img src="http://7xp7rf.com1.z0.glb.clouddn.com/7286096.jpeg" alt="" class="head-box2">
           </div>
       </div>
-      <div class="wrap clearfix">
-        <ul class="jobs">
+      <div class="row main-body">
+        <ul class="intro col-xs-12 col-sm-3 col-md-3 col-lg-3">
             <li>
-                老家: <a href="http://baike.baidu.com/link?url=4h5XhZklqTuKxCcbfok6vmLValtzmXoruSEI02_OVyRjv0MAOR1bjk55mri_fNXmuGwFQmBQODeltprIs-mTRK">山东-烟台-莱阳</a>
+                <span class="intro-tip">老家: </span><a href="http://baike.baidu.com/link?url=4h5XhZklqTuKxCcbfok6vmLValtzmXoruSEI02_OVyRjv0MAOR1bjk55mri_fNXmuGwFQmBQODeltprIs-mTRK">山东-烟台-莱阳</a>
             </li>
             <li>
-                毕业于: <a href="http://baike.baidu.com/link?url=4TOXHvJzA8P6ZRRQgc_c8U0XYzWQ1XwOKtecAWknYgR4jnWdUnzbiq8f0etIbUZalPqhjhxq-ushQd_fi65mJq">山东财经大学</a>
+                <span class="intro-tip">毕业于: </span><a href="http://sdufe.edu.cn/">山东财经大学</a>
             </li>
             <li>
-                前公司: <a href="http://www.renren.com/">人人网</a>
+                <span class="intro-tip">前公司: </span><a href="http://www.renren.com/">人人网</a>
             </li>
             <li>
-                现公司: <a href="http://www.360.com/">奇虎360</a>
+                <span class="intro-tip">现公司: </span><a href="http://www.360.com/">奇虎360</a>
             </li>
             <li>
-                职位: <a href="http://baike.baidu.com/link?url=gltw9DHEVE88KzliTh4HLI563T26HMSelVVKSpBvMrrurlET4Y7p-pu7upMS7R0C2xYj-lioK1cyvI4I_i_ODq">前端开发工程师</a>
+                <span class="intro-tip">职位: </span><a href="http://baike.baidu.com/link?url=gltw9DHEVE88KzliTh4HLI563T26HMSelVVKSpBvMrrurlET4Y7p-pu7upMS7R0C2xYj-lioK1cyvI4I_i_ODq">前端开发工程师</a>
             </li>
             <li style="line-height: 25px;">
-                感觉:
-                <span style="font-size:14px;">萌萌哒.前端小程序猿,为身后那座辉煌的都市贡献着青春与热血,不祈求有多么牛逼,只因深爱着my job,管他现实有多残酷,但愿人生在世潇潇洒洒走一回.</span>
+                <span class="intro-tip">感觉: </span>
+                <span>萌萌哒.前端小程序猿,为身后那座辉煌的都市贡献着青春与热血,不祈求有多么牛逼,只因深爱着my job,管他现实有多残酷,但愿人生在世潇潇洒洒走一回.</span>
             </li>
         </ul>
-        <ul class="hobby">
+        <ul class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
             <li>
                 <div class="hobby-item">
-                    <img style="width:163px;height:200px;float:left;margin-right:20px;" src="http://7xp7rf.com1.z0.glb.clouddn.com/55e736d12f2eb938e57f4a13d5628535e4dd6fc4.jpg" alt="">
+                    <img class="sushi img-responsive" src="http://7xp7rf.com1.z0.glb.clouddn.com/55e736d12f2eb938e57f4a13d5628535e4dd6fc4.jpg" alt="">
                     明月几时有？把酒问青天。不知天上宫阙，今夕是何年。我欲乘风归去，又恐琼楼玉宇，高处不胜寒。起舞弄清影，何似在人间。
                     　　转朱阁，低绮户，照无眠。不应有恨，何事长向别时圆？人有悲欢离合，月有阴晴圆缺，此事古难全。但愿人长久，千里共婵娟。
                     <p style="padding:20px 30px 20px 0;text-align: right;">
@@ -74,7 +79,7 @@
             </li>
             <li>
                 <div class="hobby-item" style="text-indent: 0;">
-                    <video style="width:483px;float:left;margin-right:20px;" src="../IMG_1448.MOV" controls></video>
+                    <!--<video style="width:483px;float:left;margin-right:20px;" src="../IMG_1448.MOV" controls></video>-->
                     最后还是这个带劲,看,刷刷的,多带劲.图中我是执行了一个scp命令,从本地到阿里云服务器上传输东西的过程,想了解这一切吗?快快随我来coding!!!
                 </div>
                 <div class="hobby-note">
@@ -87,6 +92,7 @@
       </div>
     <% include footer %>
       <script src="/javascripts/common/jquery.js"></script>
+      <script src="/javascripts/common/bootstrap.min.js"></script>
       <script src="/javascripts/index.js"></script>
   </body>
 </html>

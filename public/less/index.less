@@ -1,77 +1,66 @@
+ul,li{
+    padding:0;
+    margin:0;
+    list-style: none;
+}
+/*S- header*/
 .head-top{
     background:#f6f5ee;
-    .head{
-        width:980px;
-        margin:auto;
-        background: #f6f5ee;
-        .head-box1{
-            display: block;
-            float:left;
-            width:120px;
-            height:120px;
+}
+.head{
+    max-width:980px;
+    min-width:320px;
+    margin:auto;
+    .hover-tip{
+        background: red;
+        height:30px;
+    }
+    .nav-bar{
+        a{
+            text-align:center;
+            padding:10px 0;
         }
-        .intro{
-            float:left;
-            width: 740px;
-            padding-top:40px;
-            text-align: center;
-            font-size:18px;
-        }
-        .head-box2{
-            display: block;
-            float:right;
-            width:120px;
-            height:120px;
+    }
+}
+/*E- header*/
+
+/*S- body*/
+.main-body{
+    margin:30px auto;
+    max-width:1200px;
+    min-width:320px;
+}
+.intro{
+    max-width:320px;
+    margin-bottom:30px;
+    .intro-tip{
+        display: inline-block;
+        width:60px;
+        color:#333;
+    }
+}
+.sushi{
+    width:163px;
+    height:200px;
+    float:left;
+    margin-right:20px;
+}
+/*E- header*/
+
+.footer {
+    min-width:320px;
+    background: #f6f5ee;
+    padding:50px 0 100px;
+    border-top:solid 1px #e5e5e5;
+    font-size: 12px;
+    text-align: center;
+    color: #888;
+    .contact {
+        margin-bottom: 10px;
+        a {
+            color: #666;
+            text-decoration: underline;
         }
     }
 }
 
-.wrap{
-    margin:30px auto 0;
-    width:980px;
-    .jobs{
-        float:left;
-        width:180px;
-        background: #f6f5ee;
-        padding:0 10px;
-        li{
-            padding:10px 0;
-            a{
-                color:#666;
-                &:hover{
-                    color:#999;
-                    text-decoration: underline;
-                }
-            }
-        }
-    }
-    .hobby{
-        float:left;
-        width:740px;
-        padding-left:40px;
-        li{
-            margin-bottom:40px;
-            border: solid #f6f5ee 3px;
-        }
-        .hobby-item{
-            text-indent: 20px;
-            line-height: 30px;
-            font-style:italic;
-            overflow: hidden;
-            img{
-                display: block;
-            }
-        }
-        .hobby-note{
-            text-indent: 20px;
-            line-height: 30px;
-            a{
-                color:#666;
-                text-decoration: underline;
-                &:hover{
-                    color:#999;
-                }
-            }
-        }
-    }
-}
