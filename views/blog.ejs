@@ -3,8 +3,30 @@
 <head>
     <title><%= title %></title>
     <meta charset="utf-8"/>
-    <link rel='stylesheet' href='/stylesheets/bloglist.css' />
     <link rel="stylesheet" href="/stylesheets/common/bootstrap.min.css">
+    <style>
+        .header{
+            background: #f6f5ee;
+            font-size:30px;
+            text-align:center;
+            padding:30px 0;
+            border-bottom:1px solid #e7e7e7;
+        }
+        .content{
+            max-width:980px;
+            width:90%;
+            margin:30px auto;
+        }
+
+        .footer {
+            background: #f6f5ee;
+            padding:50px 0 100px;
+            border-top:solid 1px #e5e5e5;
+            font-size: 12px;
+            text-align: center;
+            color: #888;
+        }
+    </style>
 </head>
 <body>
 <% for(var i=0; i < res.length; i++) { %>

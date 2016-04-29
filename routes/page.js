@@ -7,7 +7,7 @@ var express = require('express'),
     router = express.Router(),
     tool = require('./common/tool');
 
-// 配置marked,(marked转化)
+ //配置marked,(marked转化)
 marked.setOptions({
     renderer: new marked.Renderer(),
     gfm: true,
