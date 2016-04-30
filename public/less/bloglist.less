@@ -6,13 +6,27 @@ ul,li{
     padding:0;
     list-style: none;
 }
-.header{
-    background: #f6f5ee;
-    font-size:30px;
-    text-align:center;
-    padding:30px 0;
-    border-bottom:1px solid #e7e7e7;
+/*S- header*/
+.head-top{
+    background:#f6f5ee;
 }
+.head{
+    max-width:980px;
+    min-width:320px;
+    margin:auto;
+    .hover-tip{
+        background: red;
+        height:30px;
+    }
+    .nav-bar{
+        a{
+            text-align:center;
+            padding:10px 0;
+        }
+    }
+}
+/*E- header*/
+
 .wrap{
     max-width: 980px;
     margin:20px auto;
@@ -21,6 +35,15 @@ ul,li{
     width:90%;
     margin:auto;
 }
+/* S- 博客列表*/
+.bloglist{
+    font-size:16px;
+    li{
+        margin-bottom:10px;
+    }
+}
+/* E- 博客列表*/
+
 /* S- 右边框*/
 .right{
     //width:200px;

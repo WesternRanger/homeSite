@@ -36,8 +36,9 @@ router.get('/blog',(req, resIndex)=>{
 
 //  博客列表
 router.get('/bloglist',(req, resIndex)=> {
-    var sql = 'select * from blogs';
-    var sql_val = '';
+    let type = req.query.type,
+        sql = 'select * from blogs where type = ?',
+        sql_val = [type];
     tool.pool.getConnection((err, connection)=> {
         connection.query(sql ,sql_val,(error, res)=> {
             tool.renderPage(resIndex,'bloglist','从这里开始',res);

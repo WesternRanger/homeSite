@@ -3,21 +3,38 @@
 <head>
     <title><%= title %></title>
     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/common/bootstrap.min.css">
     <style>
-        .header{
-            background: #f6f5ee;
-            font-size:30px;
+        .head-top{
+            background:#f6f5ee;
+        }
+        .head {
+            max-width: 980px;
+            min-width: 320px;
+            margin: auto;
+        }
+        .hover-tip{
+            background: red;
+            height:30px;
+        }
+        .nav-bar a{
             text-align:center;
-            padding:30px 0;
-            border-bottom:1px solid #e7e7e7;
+            padding:10px 0;
+        }
+        .art-title{
+            text-align:center;
         }
         .content{
             max-width:980px;
+            min-width:320px;
             width:90%;
             margin:30px auto;
         }
-
+        div.art-content img{
+            display: block;
+            max-width:280px;
+        }
         .footer {
             background: #f6f5ee;
             padding:50px 0 100px;
@@ -29,15 +46,14 @@
     </style>
 </head>
 <body>
-<% for(var i=0; i < res.length; i++) { %>
-    <div class="header"><%= res[i].title %></div>
-<% } %>
+<% include header %>
+
 <div class="content">
-    <div class="bloglist">
-        <% for(var i=0; i < res.length; i++) { %>
-            <div id="showdown-text"><%- res[i].content %></div>
-        <% } %>
-    </div>
+    <!--title-->
+    <h1 class="art-title"><%= res[0].title %></h1>
+    <!--正文-->
+    <div class="art-content"><%- res[0].content %></div>
+
     <div id="artBottom">
         <!-- 多说评论框 start -->
         <% for(var i=0; i < res.length; i++) { %>
