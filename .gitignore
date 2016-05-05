@@ -1,2 +1,4 @@
 *.xml
 node_modules/
+.idea/
+.idea/*.xml
