@@ -8,6 +8,7 @@ var express = require('express'),
 app.post('/blog', function(req, res) {
     var title = req.body.title;
     var content = req.body.content;
+    var type = 'it';
     if(!title || !content){
         res.json({
             code:10001,
@@ -15,8 +16,8 @@ app.post('/blog', function(req, res) {
         })
     }else{
         tool.pool.getConnection(function(err, connection) {
-            var sql = 'insert into blogs(title,content) values(?,?)',
-                sql_val = [title,content];
+            var sql = 'insert into blogs(title,content,type) values(?,?,?)',
+                sql_val = [title,content,type];
             connection.query(sql, sql_val, function(error, rs) {
                 res.json({
                     code:0,

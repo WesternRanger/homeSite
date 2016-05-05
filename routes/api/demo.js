@@ -8,8 +8,9 @@ var express = require('express'),
 app.post('/profile',function (req, res, next) {
     //console.log(req.body);
     res.json({
-        a:req.body.name,
-        b:4
+        name:req.body.name,
+        login:req.body.login,
+        value:4
     });
 });
 app.post('/profile1',function(req,res,next){

@@ -1,16 +1,44 @@
-* {
-    margin: 0;
-    padding: 0;
-    word-break: break-all;
-    font-family:"Microsoft YaHei";
+body{
+    background: #F6F6F6;
+    font-family: 'Microsoft YaHei';
 }
+/*S- header*/
+.head-top{
+    background:#fff;
+}
+.head{
+    max-width:980px;
+    min-width:320px;
+    margin:auto;
+    .hover-tip{
+        background: red;
+        height:30px;
+    }
+    .nav-bar{
+        a{
+            text-align:center;
+            padding:10px 0;
+            font-size:18px;
+            color:#666;
+            &:hover{
+                color: #337ab7;
+            }
+            &.active{
+                color:#337ab7;
+            }
+        }
+    }
+}
+/*E- header*/
+
 .footer {
-    background: #f6f5ee;
-    padding:50px 0 100px;
+    min-width:320px;
+    background: #fff;
+    padding:40px 0;
     border-top:solid 1px #e5e5e5;
     font-size: 12px;
     text-align: center;
-    color: #888;
+    color: #999;
     .contact {
         margin-bottom: 10px;
         a {
@@ -19,45 +47,12 @@
         }
     }
 }
-.show{
+
+.ws-show{
     display: block;
 }
-.hide{
+.ws-hide{
     display: none;
-}
-input,textarea {
-    background: 0 0;
-    border: 0;
-    outline: 0;
-    resize: none;
-    font: 16px/1.2 "Microsoft YaHei","微软雅黑","Microsoft JhengHei","黑体",arial,STHeiti
-}
-
-li,ul {
-    list-style-type: none
-}
-
-a,a:focus,a:hover {
-    outline: 0;
-    text-decoration: none;
-    color: #333
-}
-
-a img,a:focus img,a:hover img {
-    border: 0
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0
-}
-
-table th {
-    font-weight: 400
-}
-
-i {
-    font-style: normal
 }
 .clearfix {
     *zoom:1

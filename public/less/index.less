@@ -3,30 +3,6 @@ ul,li{
     margin:0;
     list-style: none;
 }
-body{
-    background: url(http://7xp7rf.com1.z0.glb.clouddn.com/index-bg.jpg) no-repeat;
-    background-size:cover;
-}
-/*S- header*/
-.head-top{
-    background:#f6f5ee;
-}
-.head{
-    max-width:980px;
-    min-width:320px;
-    margin:auto;
-    .hover-tip{
-        background: red;
-        height:30px;
-    }
-    .nav-bar{
-        a{
-            text-align:center;
-            padding:10px 0;
-        }
-    }
-}
-/*E- header*/
 
 /*S- body*/
 .main-body{
@@ -38,7 +14,7 @@ body{
 .item-block{
     padding:10px 20px 20px;
     margin-bottom:30px;
-    background:#DEEBF7;
+    background:#fff;
     .intro-tip{
         display: inline-block;
         width:60px;
@@ -58,22 +34,77 @@ body{
 .poem-block{
     text-align: center;
 }
-/*E- header*/
+/*E- body*/
 
-.footer {
-    min-width:320px;
-    background: #f6f5ee;
-    padding:50px 0 100px;
-    border-top:solid 1px #e5e5e5;
-    font-size: 12px;
-    text-align: center;
-    color: #888;
-    .contact {
-        margin-bottom: 10px;
-        a {
-            color: #666;
-            text-decoration: underline;
+/*S - slide */
+.slide-content{
+    margin:auto;
+    width:720px;
+    height:258px;
+    overflow: hidden;
+    position:relative;
+
+    .slide-content-copy{
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        .left-prev{
+            float:left;
+            width:50%;
+            height:100%;
+            &:hover{
+                .prev{
+                    background:transparent;
+                    display: block;
+                    cursor:pointer;
+                    &:hover{
+                        background:#999;
+                    }
+                }
+            }
+            .prev{
+                display: none;
+                position:absolute;
+                top:50%;
+                left:5px;
+                z-index:5;
+                margin-top:-31.5px;
+                padding:10px;
+                border-radius:5px;
+            }
         }
+        .right-next{
+            float:left;
+            width:50%;
+            height:100%;
+            &:hover{
+                .next{
+                    background:transparent;
+                    display: block;
+                    cursor:pointer;
+                    &:hover{
+                        background:#999;
+                    }
+                }
+            }
+            .next{
+                display: none;
+                position:absolute;
+                top:50%;
+                right:5px;
+                z-index:5;
+                margin-top:-31.5px;
+                padding:10px;
+                border-radius:5px;
+            }
+        }
+    }
+
+    .img{
+        float:left;
     }
 }
 
+/*E - slide */
