@@ -19,6 +19,13 @@ marked.setOptions({
     smartypants: false
 });
 
+let randomImg = [ // 推荐文章配图 首页
+    'http://7xp7rf.com1.z0.glb.clouddn.com/WEB.jpg',
+    'http://7xp7rf.com1.z0.glb.clouddn.com/jianzhan.jpg',
+    'http://7xp7rf.com1.z0.glb.clouddn.com/maid.jpg',
+    'http://7xp7rf.com1.z0.glb.clouddn.com/js.jpg'
+];
+
 // 博客页
 router.get('/blog',(req, resIndex)=>{
     let id = req.query.id;
@@ -28,7 +35,7 @@ router.get('/blog',(req, resIndex)=>{
         connection.query(sql, sql_val ,(error, res)=> {
             let _content = res[0].content;
             res[0].content = marked(_content);// markdown 转化为html
-            tool.renderPage(resIndex,'blog','从现在开始',res);
+            tool.renderPage(resIndex,'blog',res[0].title,res);
         });
         connection.release();
     });
@@ -45,11 +52,6 @@ router.get('/bloglist',(req, resIndex)=> {
         });
         connection.release();
     });
-});
-
-// 首页
-router.get('/index',(req, res)=> {
-    tool.renderPage(res,'index','从现在开始');
 });
 
 // publish 文章,markdown方式
@@ -75,6 +77,22 @@ router.get('/fixBlog', function(req, resIndex) {
         });
         connection.release();
     });
+});
+
+// 免费发前端开发招聘
+router.get('/recruit',(req, resIndex)=>{
+    //let id = req.query.id;
+    //tool.pool.getConnection((err, connection)=> {
+    //    let sql = 'select * from blogs where id=?',
+    //        sql_val = [id];
+    //    connection.query(sql, sql_val ,(error, res)=> {
+    //        let _content = res[0].content;
+    //        res[0].content = marked(_content);// markdown 转化为html
+    //        tool.renderPage(resIndex,'blog',res[0].title,res);
+    //    });
+    //    connection.release();
+    //});
+    tool.renderPage(resIndex,'recruit','招聘信息发布');
 });
 
 module.exports = router;

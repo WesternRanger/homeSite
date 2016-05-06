@@ -2,6 +2,7 @@
  * Created by WesternRanger on 16/2/4.
  */
 
+// 轮播图
 !function(){
     var step = 0,
         time = 4000,
@@ -42,6 +43,11 @@
 
 }();
 
+
+// 推荐文章跳转
+$(".publish-list").on("click",".new-item",function(){
+    window.location.href = $(this).data('url');
+});
 
 $(".main-body").click(function(){
     var _url = '/api/demo/profile',
