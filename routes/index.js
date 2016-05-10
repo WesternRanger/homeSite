@@ -27,13 +27,14 @@ let randomImg = [ // 推荐文章配图
 ];
 
 // 首页
-router.get('/',(req, res)=> {
+router.get('/',(req, renderPage)=> {
 
     let sql = 'select * from blogs order by id desc',
         sql_val = [];
 
     tool.pool.getConnection((err, connection)=> {
         connection.query(sql ,sql_val,(error, result)=> {
+
             let newArr = []; // 存储4个最新文章
             result.forEach((item,index)=>{
                 item.content = marked(item.content);// markdown 转化为html
@@ -59,8 +60,10 @@ router.get('/',(req, res)=> {
             newArr.forEach((item,index)=>{
                 item['imgurl'] = randomImg[index];// 配图
             });
-            tool.renderPage(res,'index','从这里开始',newArr);
+            tool.renderPage(renderPage,'index','从这里开始',newArr);
+
         });
+
         connection.release();
     });
 });

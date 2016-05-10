@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.27, for osx10.8 (x86_64)
 --
 -- Host: localhost    Database: homesite
 -- ------------------------------------------------------
--- Server version	5.6.28
+-- Server version	5.6.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -42,6 +42,33 @@ INSERT INTO `blogs` VALUES ('数组最大和次大元素交换位置',2,'看着�
 UNLOCK TABLES;
 
 --
+-- Table structure for table `pushInfo`
+--
+
+DROP TABLE IF EXISTS `pushInfo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pushInfo` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `url` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `ctype` varchar(20) NOT NULL,
+  `typename` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pushInfo`
+--
+
+LOCK TABLES `pushInfo` WRITE;
+/*!40000 ALTER TABLE `pushInfo` DISABLE KEYS */;
+INSERT INTO `pushInfo` VALUES (1,'鑫空间鑫生活','http://www.zhangxinxu.com/','site','知名博客'),(2,'大前端','http://www.daqianduan.com/','site','知名博客'),(3,'轩风阁','http://www.xuanfengge.com/','site','知名博客'),(4,'75team','http://www.75team.com/','site','知名博客'),(5,'淘宝前端团队','http://taobaofed.org/','site','知名博客'),(6,'百度fex','http://fex.baidu.com/','site','知名博客'),(7,'alloyteam','http://www.alloyteam.com/','site','知名博客'),(8,'函数式编程离我们有多远','http://www.75team.com/post/functional-how-far.html','blog','精华博客推荐'),(9,'去除inline-block元素间间距的N种方法','http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/','blog','精华博客推荐'),(10,'Tell Me ','http://play.baidu.com/?__m=mboxCtrl.playSong&__a=241187&__o=song/241187||playBtn&fr=-1%7C%7C-1||play.baidu.com#','music','今日音乐');
+/*!40000 ALTER TABLE `pushInfo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `test`
 --
 
@@ -73,4 +100,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-06 10:56:01
+-- Dump completed on 2016-05-10 13:59:25

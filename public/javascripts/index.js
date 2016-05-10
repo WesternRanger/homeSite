@@ -49,8 +49,8 @@ $(".publish-list").on("click", ".new-item", function () {
     window.location.href = $(this).data('url');
 });
 
-$(".main-body").click(function () {
-    var _url = '/api/demo/profile',
+$(function () {
+    var _url = '/api/pushInfo/list',
         _data = {};
 
     //getAjax(_url,_data,function(rs){
@@ -64,10 +64,31 @@ $(".main-body").click(function () {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            name: 'Hubot',
-            login: 'hubot'
+            //name: 'Hubot',
+            //login: 'hubot',
         })
-    }).then(function (response) {}).then(function (text) {}).catch(function (ex) {});
+    }).then(function (response) {
+        return response.json();
+    }).then(function (j) {
+        var _html_site = '',
+            _html_blog = '',
+            _html_music = '';
+
+        j.res.forEach(function (item, index) {
+            if (item.ctype == 'site') {
+                _html_site += "<li><a target=\"_blank\" href=\"" + item.url + "\">" + item.title + "</a></li>";
+            }
+            if (item.ctype == 'blog') {
+                _html_blog += "<li><a target=\"_blank\" href=\"" + item.url + "\">" + item.title + "</a></li>";
+            }
+            if (item.ctype == 'music') {
+                _html_music += "<li>\n                          <span class=\"intro-tip\">推荐</span>\n                          <a target=\"_blank\" href=\"" + item.url + "\">" + item.title + "</a>\n                      </li>";
+            }
+        });
+        $(".item-block#site ul").empty().html(_html_site);
+        $(".item-block#blog ul").empty().html(_html_blog);
+        $(".item-block#music ul").empty().html(_html_music);
+    }).catch(function (ex) {});
 });
 
 function getAjax(_url, _data, d) {
