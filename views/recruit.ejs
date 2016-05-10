@@ -3,15 +3,32 @@
 <head>
     <title><%= title %></title>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0" name="viewport" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta content="telephone=no" name="format-detection" />
     <link rel="stylesheet" href="/stylesheets/common/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/base.css' />
     <style>
         .content{
-            max-width:980px;
+            max-width:1100px;
             min-width:320px;
-            width:90%;
             margin:30px auto;
+        }
+        .zhao-col{
+            background: #fff;
+            border:solid 1px #efefef;
+            border-radius:3px;
+            color:#999;
+            margin-bottom:30px;
+        }
+        .liuyan-col{
+            width:99%;
+            margin:auto;
+            background: #fff;
+            border:solid 1px #efefef;
+            border-radius:3px;
+            color:#333;
         }
 
     </style>
@@ -19,8 +36,31 @@
 <body>
 <% include header %>
 
-<div class="content">
-    <h1>hello wlrd</h1>
+<div class="row content">
+    <div class="zhao-col col-xs-12 col-sm-2 col-md-2">
+        <h4 style="text-align:center;color:#000;">免费发布招聘</h4>
+        <hr>
+        <p style="text-indent: 16px;">
+            感谢您选择大前端作为招聘平台,我们只接受<font color="red">前端开发</font>职位的招聘,发布招聘免费。
+            <br>
+            <br>
+            目前有以下公司在本站发布招聘：
+            <ul>
+                <li><font color="#778899">人人网</font></li>
+                <li><font color="#778899">奇虎360</font></li>
+            </ul>
+        非常感谢各大公司对 <font color="red">西泊浪人</font> 的信赖，鄙人将竭力为好企业输送靠谱前端开发者。
+        <hr>
+        求职简历请发送至页尾邮箱 <br>亦可以将想法提到留言板.
+        </p>
+    </div>
+    <div class="col-xs-12 col-sm-10 col-md-10">
+        <div class="liuyan-col">
+            <h3 style="text-align: center;">留言板</h3>
+            <hr>
+        </div>
+    </div>
+
 </div>
 
 <% include footer %>

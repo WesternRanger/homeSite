@@ -3,7 +3,10 @@
   <head>
       <title><%= title %></title>
       <meta charset="utf-8"/>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0" name="viewport" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+      <meta content="telephone=no" name="format-detection" />
       <link rel="stylesheet" href="/stylesheets/common/bootstrap.min.css">
       <link rel='stylesheet' href='/stylesheets/base.css' />
       <link rel='stylesheet' href='/stylesheets/index.css' />
@@ -15,32 +18,20 @@
 
             <!--S 轮播图-->
             <div class="slide-content" onselectstart="return false">
-                <div class="slide-content-copy clearfix">
-                    <div class="left-prev">
-                        <div class="prev">
-                            <img src="http://7xp7rf.com1.z0.glb.clouddn.com/arrow-prev.gif"/>
-                        </div>
-                    </div>
-                    <div class="right-next">
-                        <div class="next">
-                            <img src="http://7xp7rf.com1.z0.glb.clouddn.com/arrow-next.gif"/>
-                        </div>
-                    </div>
-                </div>
                 <div class="img ws-show">
-                    <a href="javascript:;">
+                    <a href="/page/recruit">
                         <img src="http://7xp7rf.com1.z0.glb.clouddn.com/hs-job.jpg" alt="">
                         <p class="img-text">互联网招聘</p>
                     </a>
                 </div>
                 <div class="img ws-hide">
-                    <a href="javascript:;">
+                    <a href="/page/recruit">
                         <img src="http://7xp7rf.com1.z0.glb.clouddn.com/hs-xiu.jpg" alt="">
                         <p class="img-text">布局</p>
                     </a>
                 </div>
                 <div class="img ws-hide">
-                    <a href="javascript:;">
+                    <a href="/page/recruit">
                         <img src="http://7xp7rf.com1.z0.glb.clouddn.com/hs-nav.jpg" alt="">
                         <p class="img-text">前端圈子</p>
                     </a>
@@ -95,21 +86,26 @@
                   <h3>知名博客</h3>
                   <ul>
                       <li>
+                          <a target="_blank" href="http://www.zhangxinxu.com/">鑫空间鑫生活</a>
+                      </li>
+                      <li><a target="_blank" href="http://www.daqianduan.com/">大前端</a></li>
+                      <li>
+                          <a target="_blank" href="http://www.xuanfengge.com/">轩枫阁</a>
+                      </li>
+                      <li>
                           <a target="_blank" href="http://www.75team.com/">奇舞团博客</a>
                       </li>
                       <li>
                           <a target="_blank" href="http://taobaofed.org/">淘宝前端团队博客</a>
                       </li>
-                      <li>
-                          <a target="_blank" href="http://www.xuanfengge.com/">轩枫阁</a>
-                      </li>
+
                       <li>
                           <a target="_blank" href="http://fex.baidu.com/">百度前端团队</a>
                       </li>
                       <li>
                           <a target="_blank" href="http://www.alloyteam.com/">腾讯前端团队</a>
                       </li>
-                      <li><a target="_blank" href="http://www.daqianduan.com/">大前端</a></li>
+
                   </ul>
               </div>
 
@@ -122,6 +118,7 @@
                       <li>
                           <a target="_blank" href="http://taobaofed.org/blog/2016/04/05/optimize-in-tbhome/">淘宝首页性能优化实践</a>
                       </li>
+                      <li><a target="_blank" href="http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/">去除inline-block元素间间距的N种方法</a></li>
                   </ul>
               </div>
 
