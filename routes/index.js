@@ -71,7 +71,7 @@ router.get('/',(req, renderPage)=> {
                 });
                 var comboArr = [newArr,ress];
 
-                tool.renderPage(renderPage,'index','从这里开始',comboArr);
+                tool.renderPage(renderPage,'index','',comboArr);
             });
 
         });

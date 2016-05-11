@@ -48,7 +48,7 @@ router.get('/bloglist',(req, resIndex)=> {
         sql_val = [type];
     tool.pool.getConnection((err, connection)=> {
         connection.query(sql ,sql_val,(error, res)=> {
-            tool.renderPage(resIndex,'bloglist','从这里开始',res);
+            tool.renderPage(resIndex,'bloglist','',res);
         });
         connection.release();
     });
@@ -56,12 +56,12 @@ router.get('/bloglist',(req, resIndex)=> {
 
 // publish 文章,markdown方式
 router.get('/publishMD', function(req, res) {
-    tool.renderPage(res,'publishBlog','从现在开始');
+    tool.renderPage(res,'publishBlog','');
 });
 
 // publish 文章,富文本方式
 router.get('/publishTXT', function(req, res) {
-    tool.renderPage(res,'publishBlog1','从现在开始');
+    tool.renderPage(res,'publishBlog1','');
 });
 
 // 修改文章,markdown方式
@@ -73,7 +73,7 @@ router.get('/fixBlog', function(req, resIndex) {
         connection.query(sql, sql_val ,(error, res)=> {
             let _content = res[0].content;
             res[0].content_markdown = marked(_content);// markdown 转化为html
-            tool.renderPage(resIndex,'fixBlog','从现在开始',res);
+            tool.renderPage(resIndex,'fixBlog','',res);
         });
         connection.release();
     });

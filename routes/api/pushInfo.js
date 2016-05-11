@@ -6,8 +6,6 @@ var express = require('express'),
     tool    = require('../common/tool');
 
 app.post('/list', function(req, page) {
-    var ctype = req.body.ctype;
-
     tool.pool.getConnection(function(err, connection) {
         var sql = 'select * from pushInfo',
             sql_val = [];

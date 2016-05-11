@@ -7,6 +7,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta content="telephone=no" name="format-detection" />
+    <meta name="robots" content="all">
+    <meta name="keywords" content="西泊园,西泊浪人">
+    <meta name="description" content="前端开发工程师,前端,山东财经大学,人人网,奇虎360,你财富">
     <link rel="stylesheet" href="/stylesheets/common/bootstrap.min.css">
     <link rel='stylesheet' href='/stylesheets/base.css' />
     <style>
@@ -50,7 +53,7 @@
     <div id="artBottom">
         <!-- 多说评论框 start -->
         <% for(var i=0; i < res.length; i++) { %>
-            <div class="ds-thread" data-thread-key="<%= res[i].id %>" data-title="<%= res[i].title %>" data-url="http://western-ranger.com/blog?id=<%= res[i].id %>"></div>
+            <div class="ds-thread" data-thread-key="<%= res[i].id %>" data-title="<%= res[i].title %>" data-url="http://western-ranger.com/page/blog?id=<%= res[i].id %>"></div>
         <% } %>
         <!-- 多说评论框 end -->
     </div>

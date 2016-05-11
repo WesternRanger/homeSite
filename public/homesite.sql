@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.27, for osx10.8 (x86_64)
 --
 -- Host: localhost    Database: homesite
 -- ------------------------------------------------------
--- Server version	5.6.28
+-- Server version	5.6.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -69,6 +69,32 @@ INSERT INTO `pushInfo` VALUES (1,'鑫空间鑫生活','http://www.zhangxinxu.com
 UNLOCK TABLES;
 
 --
+-- Table structure for table `slide`
+--
+
+DROP TABLE IF EXISTS `slide`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `slide` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `src` varchar(200) NOT NULL,
+  `url` varchar(200) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `slide`
+--
+
+LOCK TABLES `slide` WRITE;
+/*!40000 ALTER TABLE `slide` DISABLE KEYS */;
+INSERT INTO `slide` VALUES (1,'http://7xp7rf.com1.z0.glb.clouddn.com/hs-job.jpg','/page/recruit','互联网招聘'),(2,'http://7xp7rf.com1.z0.glb.clouddn.com/hs-xiu.jpg','/page/recruit','布局'),(3,'http://7xp7rf.com1.z0.glb.clouddn.com/hs-nav.jpg','/page/recruit','前端圈子'),(4,'','','');
+/*!40000 ALTER TABLE `slide` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `test`
 --
 
@@ -100,4 +126,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-11 10:59:36
+-- Dump completed on 2016-05-11 13:52:35

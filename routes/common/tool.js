@@ -19,7 +19,7 @@ var obj = {
             secure:true
         });
         res.render(url,{
-            title:title,
+            title:title || '西泊园',
             res:par
         });
     }
