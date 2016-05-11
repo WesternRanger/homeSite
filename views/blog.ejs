@@ -22,7 +22,19 @@
         }
         div.art-content img{
             display: block;
-            max-width:280px;
+            border:#91c9cc solid 1px;
+            border-radius: 3px;
+            box-shadow: #91c9cc 2px 2px 2px;
+        }
+        @media screen and (max-width:767px){
+            div.art-content img{
+                width:100%;
+            }
+        }
+        @media screen and (min-width:768px){
+            div.art-content img{
+                width:600px;
+            }
         }
     </style>
 </head>

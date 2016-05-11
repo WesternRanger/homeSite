@@ -18,24 +18,14 @@
 
             <!--S 轮播图-->
             <div class="slide-content" onselectstart="return false">
-                <div class="img ws-show">
-                    <a href="/page/recruit">
-                        <img src="http://7xp7rf.com1.z0.glb.clouddn.com/hs-job.jpg" alt="">
-                        <p class="img-text">互联网招聘</p>
+                <% for(var i=0; i < res[1].length; i++) { %>
+                <div class="img <%= i == 0?'ws-show':'ws-hide' %>">
+                    <a href="<%= res[1][i].url%>">
+                        <img src="<%= res[1][i].src%>" alt="">
+                        <p class="img-text"><%= res[1][i].title%></p>
                     </a>
                 </div>
-                <div class="img ws-hide">
-                    <a href="/page/recruit">
-                        <img src="http://7xp7rf.com1.z0.glb.clouddn.com/hs-xiu.jpg" alt="">
-                        <p class="img-text">布局</p>
-                    </a>
-                </div>
-                <div class="img ws-hide">
-                    <a href="/page/recruit">
-                        <img src="http://7xp7rf.com1.z0.glb.clouddn.com/hs-nav.jpg" alt="">
-                        <p class="img-text">前端圈子</p>
-                    </a>
-                </div>
+                <% } %>
             </div>
             <!--E 轮播图-->
 
@@ -43,16 +33,16 @@
             <div class="new-publish">
                 <h3>最新发布</h3>
                 <div class="publish-list">
-                    <% for(var i=0; i < res.length; i++) { %>
-                    <div class="new-item clearfix" data-url="/page/blog?id=<%= res[i].id%>">
-                        <img class="new-img hidden-xs" src="<%= res[i].imgurl%>" alt="">
+                    <% for(var i=0; i < res[0].length; i++) { %>
+                    <div data-url="/page/blog?id=<%= res[0][i].id%>" class="new-item clearfix">
+                        <img class="new-img hidden-xs" src="<%= res[0][i].imgurl%>" alt="">
                         <div class="new-cont">
                             <div class="new-title">
-                                <a class="cat" href="/page/bloglist?type=<%= res[i].type %>"><%= res[i].cntype %><i></i></a>
-                                <span><%= res[i].title %></span>
+                                <a class="cat" href="/page/bloglist?type=<%= res[0][i].type %>"><%= res[0][i].cntype %><i></i></a>
+                                <span><%= res[0][i].title %></span>
                             </div>
                             <div class="preview">
-                                <%= res[i].content %> &nbsp;......
+                                <%= res[0][i].content %> &nbsp;......
                             </div>
                         </div>
                     </div>
@@ -67,18 +57,10 @@
               <div class="item-block">
                   <h3>自我介绍</h3>
                   <ul>
-                      <li>
-                          <span class="intro-tip">家乡: </span><span>地道山东人</span>
-                      </li>
-                      <li>
-                          <span class="intro-tip">母校: </span><a target="_blank" href="http://sdufe.edu.cn/">山东财经大学</a>
-                      </li>
-                      <li>
-                          <span class="intro-tip">干活: </span><span>水货研发人员</span>
-                      </li>
-                      <li>
-                          <span class="intro-tip">感觉: </span><span>生命不息,奋斗不止</span>
-                      </li>
+                      <li><span class="intro-tip">家乡: </span><span>地道山东人</span></li>
+                      <li><span class="intro-tip">母校: </span><a target="_blank" href="http://sdufe.edu.cn/">山东财经大学</a></li>
+                      <li><span class="intro-tip">干活: </span><span>水货研发人员</span></li>
+                      <li><span class="intro-tip">感觉: </span><span>生命不息,奋斗不止</span></li>
                   </ul>
               </div>
 

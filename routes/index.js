@@ -5,6 +5,7 @@
 var express = require('express'),
     router = express.Router(),
     marked = require('marked'), // markdown转化
+    async = require('async'),
     tool = require('./common/tool');
 
 //配置marked,(marked转化)
@@ -60,12 +61,25 @@ router.get('/',(req, renderPage)=> {
             newArr.forEach((item,index)=>{
                 item['imgurl'] = randomImg[index];// 配图
             });
-            tool.renderPage(renderPage,'index','从这里开始',newArr);
+
+            connection.query('select * from slide' ,[],(error, result)=> {
+                let ress = [];
+                result.forEach(function(item,index){
+                    if(item.src){
+                        ress.push(item);
+                    }
+                });
+                var comboArr = [newArr,ress];
+
+                tool.renderPage(renderPage,'index','从这里开始',comboArr);
+            });
 
         });
 
         connection.release();
     });
+
+
 });
 
 module.exports = router;
