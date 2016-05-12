@@ -26,20 +26,8 @@
 }();
 
 // 推荐文章跳转
-//let $list = document.querySelector('.publish-list');
-//let $item = document.querySelector('.new-item');
-//$list.addEventListener('click',function(e){
-//    debugger;
-//    let target = e.target&&e.target.parentElement;
-//    if(target.className == 'new-item'){
-//        window.location.href = this.getAttribute('data-url');
-//    }
-//},false);
-
 $('.publish-list').on('click', '.new-item', function () {
-    //debugger;
     var se = $(this);
-    console.log(se.data('url'));
     window.location.href = se.attr('data-url');
 });
 

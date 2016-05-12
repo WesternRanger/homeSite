@@ -2,16 +2,7 @@
 <html>
   <head>
       <title><%= title %></title>
-      <meta charset="utf-8"/>
-      <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0" name="viewport" />
-      <meta name="apple-mobile-web-app-capable" content="yes" />
-      <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-      <meta content="telephone=no" name="format-detection" />
-      <meta name="robots" content="all">
-      <meta name="keywords" content="西泊园,西泊浪人">
-      <meta name="description" content="前端开发工程师,前端,山东财经大学,人人网,奇虎360,你财富">
-      <link rel="stylesheet" href="/stylesheets/common/bootstrap.min.css">
-      <link rel='stylesheet' href='/stylesheets/base.css' />
+      <% include meta%>
       <link rel='stylesheet' href='/stylesheets/index.css' />
   </head>
   <body>
@@ -23,7 +14,7 @@
             <div class="slide-content" onselectstart="return false">
                 <% for(var i=0; i < res[1].length; i++) { %>
                 <div class="img <%= i == 0?'ws-show':'ws-hide' %>">
-                    <a href="<%= res[1][i].url%>">
+                    <a href="javascript:;" data-url="<%= res[1][i].url%>">
                         <img src="<%= res[1][i].src%>" alt="">
                         <p class="img-text"><%= res[1][i].title%></p>
                     </a>
@@ -89,8 +80,6 @@
           </div>
       </div>
     <% include footer %>
-      <script src="/javascripts/common/jquery.js"></script>
-      <script src="/javascripts/common/bootstrap.min.js"></script>
       <script src="/javascripts/index.js"></script>
   </body>
 </html>

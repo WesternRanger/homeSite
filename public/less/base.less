@@ -2,6 +2,41 @@ body{
     background: #F6F6F6;
     font-family: 'Microsoft YaHei';
 }
+@media screen and (max-width:767px){
+    .nav-bar{
+        display: none;
+    }
+    .cs_hide{
+        display: block;
+    }
+    .phone-nav{
+        color:#45B6F7;
+        font-size:20px;
+        display: block;
+        .col-bar{
+            display: block;
+            font-size:20px;
+            float:left;
+            margin:8px 0 0 20px;
+        }
+        .phonelogo{
+            width:30px;
+            height:30px;
+            border-radius: 15px;
+            margin:5px 10px 5px 26%;
+        }
+    }
+
+}
+@media screen and (min-width:768px){
+    .nav-bar{
+        display: block;
+    }
+    .col-bar,.phone-nav{
+        display: none;
+    }
+}
+
 /*S- header*/
 .head-top{
     background:#fff;
