@@ -16,6 +16,7 @@
 
         .art-title{
             text-align:center;
+            color: #1390cc;
         }
         .content{
             max-width:980px;
@@ -39,6 +40,11 @@
                 width:600px;
             }
         }
+        .side-info{
+            text-align: center;
+            margin:0 auto 10px;
+            color:#999;
+        }
     </style>
 </head>
 <body>
@@ -46,7 +52,12 @@
 
 <div class="content">
     <!--title-->
-    <h1 class="art-title"><%= res[0].title %></h1>
+    <h3 class="art-title"><%= res[0].title %></h3>
+    <div class="side-info">
+        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= res[0].date %> &nbsp;
+        <span class="glyphicon glyphicon-eye-open"></span> 阅读(777) &nbsp;
+        <span class="glyphicon glyphicon-wrench"></span> <%= res[0].type == 'it'?'技术积累':(res[0].type == 'his'?'历史感悟':'生活杂记') %>
+    </div>
     <!--正文-->
     <div class="art-content"><%- res[0].content %></div>
 

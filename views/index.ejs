@@ -44,6 +44,10 @@
                                 <a class="cat" href="/page/bloglist?type=<%= res[0][i].type %>"><%= res[0][i].cntype %><i></i></a>
                                 <span><%= res[0][i].title %></span>
                             </div>
+                            <div style="color:#999;font-size:12px;padding:8px 0;">
+                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= res[0][i].date %>
+                                <span class="glyphicon glyphicon-eye-open" style="margin-left:10px;"></span> 阅读(777)
+                            </div>
                             <div class="preview">
                                 <%= res[0][i].content %> &nbsp;......
                             </div>
@@ -73,7 +77,7 @@
               </div>
 
               <div class="item-block" id="blog">
-                  <h3>精华博客推荐</h3>
+                  <h3>值得一读</h3>
                   <ul></ul>
               </div>
 

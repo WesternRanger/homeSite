@@ -21,8 +21,15 @@
         <ol class="col-xs-12 col-sm-8 bloglist">
             <% for(var i=0; i < res.length; i++) { %>
             <li class="blogPer">
-                <span><<%= i+1%>></span>
-                <a href="/page/blog?id=<%= res[i].id %>"class="auth"><%= res[i].title %> <%= res[i].date %></a>
+                <div style="margin-bottom:4px;">
+                    <span style="display: inline-block;width:40px;"><<%= i+1%>></span>
+                    <a href="/page/blog?id=<%= res[i].id %>"class="auth"><%= res[i].title %></a>
+                </div>
+                <div style="color:#999;font-size:12px;">
+                    <span style="display: inline-block;width:40px;"></span>
+                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>发布于 <%= res[i].date %>
+                    <span class="glyphicon glyphicon-eye-open"></span> 阅读(777)
+                </div>
             </li>
             <% } %>
         </ol>
@@ -39,9 +46,9 @@
             <div class="follow">
                 <h3>Follow me on</h3>
                 <ul>
-                    <li><a href="http://weibo.com/WesternRanger">新浪微博</a></li>
-                    <li><a href="http://blog.csdn.net/westernranger">CSDN博客</a></li>
-                    <li><a href="https://github.com/WesternRanger">github</a></li>
+                    <li><a target="_blank" href="http://weibo.com/WesternRanger">新浪微博</a></li>
+                    <li><a target="_blank" href="http://blog.csdn.net/westernranger">CSDN博客</a></li>
+                    <li><a target="_blank" href="https://github.com/WesternRanger">github</a></li>
                     <li><a href="http://western-ranger.com">个人主页</a></li>
                 </ul>
             </div>
