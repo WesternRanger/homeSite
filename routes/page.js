@@ -59,11 +59,6 @@ router.get('/publishMD', function(req, res) {
     tool.renderPage(res,'publishBlog','');
 });
 
-// publish 文章,富文本方式
-router.get('/publishTXT', function(req, res) {
-    tool.renderPage(res,'publishBlog1','');
-});
-
 // 修改文章,markdown方式
 router.get('/fixBlog', function(req, resIndex) {
     let id = req.query.id;

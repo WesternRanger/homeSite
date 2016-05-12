@@ -2,15 +2,28 @@
  * Created by WesternRanger on 16/4/20.
  */
 import '../javascripts/common/tool.js'
+import showdown from '../javascripts/common/showdown.js' // markdown 实时转化
+
+//编译markdown
+$('textarea#content').on('keyup',_compile);
+
+function _compile(){
+    var text = document.getElementById("content").value;
+    var converter = new showdown.Converter();
+    var html = converter.makeHtml(text);
+    document.getElementById("result").innerHTML = html;
+}
 
 // 发布博客
 $("input[type='button']").click(function(){
     var user = $("input[name='title']").val(),
         pass = $("textarea[name='content']").val(),
+        type = $("input[name='type']:checked").val(),
         _url = '/api/publish/blog',
         _data = {
             title:user,
-            content:pass
+            content:pass,
+            type:type
         };
 
     getAjax(_url,_data,function(rs){
@@ -26,10 +39,12 @@ $("input[type='button']").click(function(){
 $("#fixBlog").click(function(){
     var user = $("input[name='title']").val(),
         pass = $("textarea[name='content']").val(),
+        type = $("input[name='type']:checked").val(),
         _url = '/api/publish/fixBlog',
         _data = {
             title:user,
             content:pass,
+            type:type,
             id:$.getSearch('id')
         };
 

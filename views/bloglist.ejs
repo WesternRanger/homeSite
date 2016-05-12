@@ -22,7 +22,7 @@
             <% for(var i=0; i < res.length; i++) { %>
             <li class="blogPer">
                 <span><<%= i+1%>></span>
-                <a href="/page/blog?id=<%= res[i].id %>"class="auth"><%= res[i].title %></a>
+                <a href="/page/blog?id=<%= res[i].id %>"class="auth"><%= res[i].title %> <%= res[i].date %></a>
             </li>
             <% } %>
         </ol>
