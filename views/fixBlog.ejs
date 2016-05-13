@@ -43,14 +43,22 @@
                 it &nbsp;<input type="radio" name="type" value="it" style="display: inline-block;" checked/>
                 his &nbsp;<input type="radio" name="type" value="his" style="display: inline-block;"/>
                 lif &nbsp;<input type="radio" name="type" value="lif" style="display: inline-block;"/>
+                log &nbsp;<input type="radio" name="type" value="log" style="display: inline-block;"/>
             <%}if(res[0].type == 'his'){%>
                 it &nbsp;<input type="radio" name="type" value="it" style="display: inline-block;" />
                 his &nbsp;<input type="radio" name="type" value="his" style="display: inline-block;" checked/>
                 lif &nbsp;<input type="radio" name="type" value="lif" style="display: inline-block;"/>
+                log &nbsp;<input type="radio" name="type" value="log" style="display: inline-block;"/>
             <%}if(res[0].type == 'lif'){%>
                 it &nbsp;<input type="radio" name="type" value="it" style="display: inline-block;"/>
                 his &nbsp;<input type="radio" name="type" value="his" style="display: inline-block;"/>
                 lif &nbsp;<input type="radio" name="type" value="lif" style="display: inline-block;" checked/>
+                log &nbsp;<input type="radio" name="type" value="log" style="display: inline-block;"/>
+            <%}if(res[0].type == 'log'){%>
+                it &nbsp;<input type="radio" name="type" value="it" style="display: inline-block;"/>
+                his &nbsp;<input type="radio" name="type" value="his" style="display: inline-block;"/>
+                lif &nbsp;<input type="radio" name="type" value="lif" style="display: inline-block;"/>
+                log &nbsp;<input type="radio" name="type" value="log" style="display: inline-block;" checked/>
             <%}%>
 
         </div>
@@ -66,6 +74,7 @@
         </div>
     </div>
 </div>
+<script src="/javascripts/common/jquery.min.js"></script>
 <script src="/javascripts/publish.js"></script>
 </body>
 </html>

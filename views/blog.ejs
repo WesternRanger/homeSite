@@ -47,12 +47,12 @@
     <div class="side-info">
         <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <%= res[0].date %> &nbsp;
         <span class="glyphicon glyphicon-eye-open"></span> 阅读(777) &nbsp;
-        <span class="glyphicon glyphicon-wrench"></span> <%= res[0].type == 'it'?'技术积累':(res[0].type == 'his'?'历史感悟':'生活杂记') %>
+        <span class="glyphicon glyphicon-wrench"></span> <%= res[0].type == 'it'?'技术积累':(res[0].type == 'his'?'历史感悟':(res[0].type == 'lif'?'生活杂记':'更新记录')) %>
     </div>
     <!--正文-->
     <div class="art-content"><%- res[0].content %></div>
 
-    <div id="artBottom">
+    <div id="artBottom" data-id="<%= res[0].id %>">
         <!-- 多说评论框 start -->
         <% for(var i=0; i < res.length; i++) { %>
             <div class="ds-thread" data-thread-key="<%= res[i].id %>" data-title="<%= res[i].title %>" data-url="http://western-ranger.com/page/blog?id=<%= res[i].id %>"></div>

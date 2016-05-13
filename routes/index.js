@@ -52,6 +52,9 @@ router.get('/',(req, renderPage)=> {
                         case 'lif':
                             item.cntype = '生活杂记';
                             break;
+                        case 'log':
+                            item.cntype = '更新记录';
+                            break;
                         default:
                             break;
                     }
