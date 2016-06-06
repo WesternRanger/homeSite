@@ -72,4 +72,4 @@ gulp.task('reload', ()=> {  // 检测修改，自动刷新
     gulp.watch('./public/**/*.*',['lessParse','es6Parse']);
 });
 
-gulp.task('default', ['reload','lessWatch','es6Watch']);
+gulp.task('default', ['reload','lessWatch','es6Watch','jsxWatch']);

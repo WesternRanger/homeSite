@@ -74,7 +74,7 @@ router.get('/fixBlog', function(req, resIndex) {
     });
 });
 
-// 免费发前端开发招聘
+// 发帖
 router.get('/recruit',(req, resIndex)=>{
     //let id = req.query.id;
     //tool.pool.getConnection((err, connection)=> {
@@ -87,7 +87,7 @@ router.get('/recruit',(req, resIndex)=>{
     //    });
     //    connection.release();
     //});
-    tool.renderPage(resIndex,'recruit','招聘信息发布');
+    tool.renderPage(resIndex,'recruit','西泊园论坛');
 });
 
 module.exports = router;
