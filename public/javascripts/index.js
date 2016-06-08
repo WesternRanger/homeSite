@@ -1,29 +1,84 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-"use strict";
+'use strict';
 
 /**
  * Created by WesternRanger on 16/2/4.
  */
 
-// 轮播图
-!function () {
-    var step = 0,
-        time = 2000,
-        imgArr = $(".slide-content").children(".img"),
-        id,
-        clearId;
+//幻灯片播放
+var slides = document.querySelectorAll('.slide-content .img'),
+    currentSlide = 0,
+    // 当前位置
+time_interval = 4000,
+    $dot_check = document.querySelectorAll('a.dot-item'),
+    // 焦点
+////暂停播放按钮
+//    playing = true,
+//    pauseButton = document.getElementById('pause'),
+////上下翻页
+//    next = document.getElementById('next'),
+//    previous = document.getElementById('previous'),
+//自动切换
+slideInterval = setInterval(nextSlide, time_interval);
 
-    //slide
-    id = setTimeout(change, time);
-    function change() {
-        id = setTimeout(change, time);
-        step = ++step % imgArr.length;
-        for (var i = 0; i < imgArr.length; i++) {
-            imgArr.eq(i).hide();
-        }
-        imgArr.eq(step).show();
-    }
-}();
+//手动切换
+
+var _loop = function _loop(i) {
+    $dot_check[i].addEventListener('click', function () {
+        clearInterval(slideInterval);
+        goToSlide(i);
+        slideInterval = setInterval(nextSlide, time_interval);
+    }, false);
+};
+
+for (var i = 0; i < $dot_check.length; i++) {
+    _loop(i);
+}
+
+//定义下翻
+function nextSlide() {
+    goToSlide(currentSlide + 1);
+}
+////定义上翻
+//function previousSlide() {
+//    goToSlide(currentSlide-1);
+//}
+//切换
+function goToSlide(n) {
+    slides[currentSlide].className = 'img ws-hide';
+    currentSlide = (n + slides.length) % slides.length;
+    slides[currentSlide].className = 'img ws-show';
+}
+////暂停按钮
+//function pauseSlideshow() {
+//    pauseButton.innerHTML = 'Play';
+//    playing = false;
+//    clearInterval(slideInterval);
+//}
+////开始播放
+//function playSlideshow() {
+//    pauseButton.innerHTML = 'Pause';
+//    playing = true;
+//    slideInterval = setInterval(nextSlide,time_interval);
+//}
+//控制开关
+//pauseButton.onclick = function() {
+//    if(playing) {
+//        pauseSlideshow();
+//    } else {
+//        playSlideshow();
+//    }
+//};
+//// 手动下翻
+//next.onclick = function() {
+//    pauseSlideshow();
+//    nextSlide();
+//};
+//// 手动上翻
+//previous.onclick = function() {
+//    pauseSlideshow();
+//    previousSlide();
+//};
 
 // 推荐文章跳转
 $('.publish-list').on('click', '.new-item', function () {
@@ -45,13 +100,13 @@ fetchData(_url, _data, function (j) {
 
     j.res.forEach(function (item, index) {
         if (item.ctype == 'site') {
-            _html_site += "<li><a target=\"_blank\" href=\"" + item.url + "\">" + item.title + "</a></li>";
+            _html_site += '<li><a target="_blank" href="' + item.url + '">' + item.title + '</a></li>';
         }
         if (item.ctype == 'blog') {
-            _html_blog += "<li><a target=\"_blank\" href=\"" + item.url + "\">" + item.title + "</a></li>";
+            _html_blog += '<li><a target="_blank" href="' + item.url + '">' + item.title + '</a></li>';
         }
         if (item.ctype == 'music') {
-            _html_music += "<li>\n                          <span class=\"intro-tip\">推荐</span>\n                          <a target=\"_blank\" href=\"" + item.url + "\">" + item.title + "</a>\n                      </li>";
+            _html_music += '<li>\n                          <span class="intro-tip">推荐</span>\n                          <a target="_blank" href="' + item.url + '">' + item.title + '</a>\n                      </li>';
         }
     });
     document.querySelector(".item-block#site ul").innerHTML = _html_site;

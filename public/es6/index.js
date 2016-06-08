@@ -2,25 +2,73 @@
  * Created by WesternRanger on 16/2/4.
  */
 
-// 轮播图
-!function(){
-    var step = 0,
-        time = 2000,
-        imgArr = $(".slide-content").children(".img"),
-        id,
-        clearId;
+//幻灯片播放
+var slides = document.querySelectorAll('.slide-content .img'),
+    currentSlide = 0,// 当前位置
+    time_interval = 4000,
+    $dot_check = document.querySelectorAll('a.dot-item'),// 焦点
+////暂停播放按钮
+//    playing = true,
+//    pauseButton = document.getElementById('pause'),
+////上下翻页
+//    next = document.getElementById('next'),
+//    previous = document.getElementById('previous'),
+//自动切换
+    slideInterval = setInterval(nextSlide,time_interval);
 
-    //slide
-    id = setTimeout(change,time);
-    function change(){
-        id=setTimeout(change,time);
-        step = (++step)%imgArr.length;
-        for(var i = 0;i<imgArr.length;i++){
-            imgArr.eq(i).hide();
-        }
-        imgArr.eq(step).show();
-    }
-}();
+//手动切换
+for(let i=0;i<$dot_check.length;i++){
+    $dot_check[i].addEventListener('click',function(){
+        clearInterval(slideInterval);
+        goToSlide(i);
+        slideInterval = setInterval(nextSlide,time_interval);
+    },false);
+}
+
+//定义下翻
+function nextSlide() {
+    goToSlide(currentSlide+1);
+}
+////定义上翻
+//function previousSlide() {
+//    goToSlide(currentSlide-1);
+//}
+//切换
+function goToSlide(n) {
+    slides[currentSlide].className = 'img ws-hide';
+    currentSlide = (n+slides.length)%slides.length;
+    slides[currentSlide].className = 'img ws-show';
+}
+////暂停按钮
+//function pauseSlideshow() {
+//    pauseButton.innerHTML = 'Play';
+//    playing = false;
+//    clearInterval(slideInterval);
+//}
+////开始播放
+//function playSlideshow() {
+//    pauseButton.innerHTML = 'Pause';
+//    playing = true;
+//    slideInterval = setInterval(nextSlide,time_interval);
+//}
+//控制开关
+//pauseButton.onclick = function() {
+//    if(playing) {
+//        pauseSlideshow();
+//    } else {
+//        playSlideshow();
+//    }
+//};
+//// 手动下翻
+//next.onclick = function() {
+//    pauseSlideshow();
+//    nextSlide();
+//};
+//// 手动上翻
+//previous.onclick = function() {
+//    pauseSlideshow();
+//    previousSlide();
+//};
 
 // 推荐文章跳转
 $('.publish-list').on('click','.new-item',function(){
