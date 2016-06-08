@@ -7,12 +7,6 @@ var slides = document.querySelectorAll('.slide-content .img'),
     currentSlide = 0,// 当前位置
     time_interval = 4000,
     $dot_check = document.querySelectorAll('a.dot-item'),// 焦点
-////暂停播放按钮
-//    playing = true,
-//    pauseButton = document.getElementById('pause'),
-////上下翻页
-//    next = document.getElementById('next'),
-//    previous = document.getElementById('previous'),
 //自动切换
     slideInterval = setInterval(nextSlide,time_interval);
 
@@ -29,46 +23,14 @@ for(let i=0;i<$dot_check.length;i++){
 function nextSlide() {
     goToSlide(currentSlide+1);
 }
-////定义上翻
-//function previousSlide() {
-//    goToSlide(currentSlide-1);
-//}
 //切换
 function goToSlide(n) {
     slides[currentSlide].className = 'img ws-hide';
+    $dot_check[currentSlide].className = 'dot-item';
     currentSlide = (n+slides.length)%slides.length;
     slides[currentSlide].className = 'img ws-show';
+    $dot_check[currentSlide].className = 'dot-item dot_active';
 }
-////暂停按钮
-//function pauseSlideshow() {
-//    pauseButton.innerHTML = 'Play';
-//    playing = false;
-//    clearInterval(slideInterval);
-//}
-////开始播放
-//function playSlideshow() {
-//    pauseButton.innerHTML = 'Pause';
-//    playing = true;
-//    slideInterval = setInterval(nextSlide,time_interval);
-//}
-//控制开关
-//pauseButton.onclick = function() {
-//    if(playing) {
-//        pauseSlideshow();
-//    } else {
-//        playSlideshow();
-//    }
-//};
-//// 手动下翻
-//next.onclick = function() {
-//    pauseSlideshow();
-//    nextSlide();
-//};
-//// 手动上翻
-//previous.onclick = function() {
-//    pauseSlideshow();
-//    previousSlide();
-//};
 
 // 推荐文章跳转
 $('.publish-list').on('click','.new-item',function(){
