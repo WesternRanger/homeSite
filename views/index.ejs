@@ -4,38 +4,34 @@
       <title><%= title %></title>
       <% include meta%>
       <link rel='stylesheet' href='/stylesheets/index.css' />
+      <link rel='stylesheet' href='/stylesheets/common/swiper-3.3.1.min.css' />
   </head>
   <body>
   <% include header %>
+      <!--S 轮播图-->
+      <div class="swiper" id="swiper" data-isswipe="1">
+          <div class="hd">
+              <ul class="swiper-pagination"></ul>
+          </div>
+          <div class="swiper-container">
+              <ul class="swiper-wrapper">
+                  <%[].concat(res[1]).forEach(function(item,index){%>
+                  <li class="swiper-slide">
+                      <a data-url="<%=item.url%>">
+                          <img src="<%=item.src%>" alt="<%=item.title%>" title="<%=item.title%>"/>
+                      </a>
+                  </li>
+                  <%})%>
+              </ul>
+          </div>
+      </div>
+      <!--E 轮播图-->
       <div class="row main-body">
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 
-            <!--S 轮播图-->
-            <div class="slide-content" onselectstart="return false">
-                <% for(var i=0; i < res[1].length; i++) { %>
-                <div class="img <%= i == 0?'ws-show':'ws-hide' %>">
-                    <a href="javascript:;" data-url="<%= res[1][i].url%>">
-                        <img src="<%= res[1][i].src%>" alt="">
-                        <p class="img-text"><%= res[1][i].title%></p>
-                    </a>
-                </div>
-                <% } %>
-                <ul class="slide-dot">
-                    <% for(var i=0; i < res[1].length; i++) { %>
-                    <li>
-                        <a href="javascript:;" class="dot-item<%= i == 0?' dot_active':'' %>"></a>
-                    </li>
-                    <% } %>
-                </ul>
-            </div>
-            <!--<button id="pause">暂停</button>-->
-            <!--<button id="next">下一张</button>-->
-            <!--<button id="previous">上一张</button>-->
-            <!--E 轮播图-->
-
             <!--S 最新发布 -->
             <div class="new-publish">
-                <h3>最新发布</h3>
+                <h3 style="margin:0 0 20px;">最新发布</h3>
                 <div class="publish-list">
                     <% for(var i=0; i < res[0].length; i++) { %>
                     <div data-url="/page/blog?id=<%= res[0][i].id%>" class="new-item clearfix">
@@ -62,7 +58,7 @@
         </div>
 
           <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-              <div class="item-block">
+              <div class="item-block" id="intro">
                   <h3>自我介绍</h3>
                   <ul>
                       <li><span class="intro-tip">家乡: </span><span>地道山东人</span></li>
@@ -90,6 +86,7 @@
           </div>
       </div>
     <% include footer %>
+      <script src="/javascripts/common/swiper-3.3.1.jquery.min.js"></script>
       <script src="/javascripts/index.js"></script>
   </body>
 </html>
