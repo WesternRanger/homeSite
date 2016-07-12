@@ -1,6 +1,6 @@
 {
-  "name": "test",
-  "version": "0.0.0",
+  "name": "home-site",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -70,7 +70,7 @@
     "type": "git",
     "url": "git+https://github.com/WesternRanger/homeSite.git"
   },
-  "author": "",
+  "author": "chenqi",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/WesternRanger/homeSite/issues"
