@@ -16,6 +16,7 @@ import    react        from 'gulp-react';
 import    livereload   from 'gulp-livereload';//自动刷新
 import    babel        from 'gulp-babel';//es6->es5
 import    rename       from 'gulp-rename'; // 重命名文件
+import    jshint       from 'gulp-jshint'; // js-hint
 
 //less转化css，并压缩
 gulp.task('lessParse', ()=> {
@@ -41,6 +42,8 @@ gulp.task('jsxParse', ()=> {
 // es6 编译并压缩 js
 gulp.task('es6Parse', function(){
     return gulp.src('./public/es6/*.*')
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'))
         .pipe(babel())
         .pipe(browserify())// 支持require
         //.pipe(concat())

@@ -4,7 +4,6 @@
 /**
  * Created by WesternRanger on 16/2/4.
  */
-
 $("#swiper li").removeClass("cs_hide");
 if ($("#swiper li").length > 1) {
     new Swiper('.swiper .swiper-container', {
@@ -53,7 +52,7 @@ fetchData(_url, _data, function (j) {
         _html_blog = '',
         _html_music = '';
 
-    j.res.forEach(function (item, index) {
+    j.res.forEach(function (item) {
         if (item.ctype == 'intro') {
             if (item.url) {
                 _html_intro += "<li>\n                <span class=\"intro-tip\">" + item.title.split('-')[0] + ":</span>\n                <a target=\"_blank\" href=\"" + item.url + "\">" + item.title.split('-')[1] + "</a>\n                </li>";
@@ -77,22 +76,6 @@ fetchData(_url, _data, function (j) {
     document.querySelector(".item-block#music ul").innerHTML = _html_music;
 });
 
-function fetchData1(_url, _data, func) {
-    fetch(_url, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(_data)
-
-    }).then(function (response) {
-        return response.json();
-    }).then(function (j) {
-        func(j);
-    }).catch(function (ex) {});
-}
-
 function fetchData(_url, _data, func) {
     $.ajax({
         url: _url,
@@ -103,4 +86,7 @@ function fetchData(_url, _data, func) {
         }
     });
 }
+
+var a = 14;
+console.log(a);
 },{}]},{},[1])

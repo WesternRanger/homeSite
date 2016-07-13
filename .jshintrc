@@ -1,0 +1,15 @@
+{
+  "globals":{
+      "$":false,
+      "document":false,
+      "window":false,
+      "console":false,
+      "module":false,
+      "Swiper":false
+  },
+  "esversion":6,//兼容es6语法
+  "undef": true,  // 所有的非全局变量，在使用前必须都被声明
+  "unused": true, // 所有的变量必须都被使用
+  "debug":true,//允许debugger
+  "predef": [ "MY_GLOBAL" ]  // 这里的变量可以不用检测是否已经提前声明
+}

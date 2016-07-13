@@ -3,4 +3,4 @@
  */
 $('.col-bar').on('click',function(){
     $('.nav-bar').toggleClass('cs_hide');
-})
+});

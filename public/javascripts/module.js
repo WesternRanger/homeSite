@@ -30,6 +30,7 @@ var Employee = function () {
 function fun_aa() {
     console.log('export fss success');
 }
+
 module.exports = {
     Employee: Employee,
     fun_aa: fun_aa

@@ -7,3 +7,4 @@ node_modules/
 .idea/misc.xml
 .idea/workspace.xml
 npm-debug.log
+node_modules/*

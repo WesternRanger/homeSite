@@ -1,7 +1,6 @@
 /**
  * Created by WesternRanger on 16/2/4.
  */
-
 $("#swiper li").removeClass("cs_hide");
 if($("#swiper li").length > 1){
     new Swiper('.swiper .swiper-container', {
@@ -18,13 +17,13 @@ if($("#swiper li").length > 1){
             $('#swiper li img').css({
                 'transform': 'scale(1.05,1.05)',
                 '-webkit-transform': 'scale(1.05,1.05)',
-            })
+            });
         },
         onTransitionEnd: function () {
             $('#swiper li img').css({
                 'transform': 'scale(1,1)',
                 '-webkit-transform': 'scale(1,1)',
-            })
+            });
         }
     });
 }else{
@@ -36,7 +35,7 @@ if($("#swiper li").length > 1){
 $('.publish-list').on('click','.new-item',function(){
     var se = $(this);
     window.location.href = se.attr('data-url');
-})
+});
 
 
 let _url = '/api/pushInfo/list',
@@ -52,7 +51,7 @@ fetchData(_url,_data,function(j){
         _html_blog = '',
         _html_music = '';
 
-    j.res.forEach(function(item,index){
+    j.res.forEach(function(item){
         if(item.ctype == 'intro'){
             if(item.url){
                 _html_intro += `<li>
@@ -85,31 +84,16 @@ fetchData(_url,_data,function(j){
     document.querySelector(".item-block#music ul").innerHTML = _html_music;
 });
 
-function fetchData1(_url,_data,func){
-    fetch(_url, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(_data)
-
-    }).then(function(response) {
-        return response.json();
-    }).then(function(j) {
-        func(j);
-    }).catch(function(ex) {
-
-    });
-}
-
 function fetchData(_url,_data,func){
     $.ajax({
         url:_url,
         data:_data,
         type:'post',
         success:function(j){
-            func(j)
+            func(j);
         }
     });
 }
+
+var a=14;
+console.log(a);

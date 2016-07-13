@@ -13,6 +13,7 @@ class Employee{
 function fun_aa(){
     console.log('export fss success');
 }
+
 module.exports = {
     Employee,
     fun_aa

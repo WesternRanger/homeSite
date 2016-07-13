@@ -1,8 +1,8 @@
 /**
  * Created by WesternRanger on 16/4/20.
  */
-import '../javascripts/common/tool.js'
-import showdown from '../javascripts/common/showdown.js' // markdown 实时转化
+import '../javascripts/common/tool.js';
+import showdown from '../javascripts/common/showdown.js'; // markdown 实时转化
 
 //编译markdown
 $('textarea#content').on('keyup',_compile);
