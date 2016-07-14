@@ -4,6 +4,8 @@
 /**
  * Created by WesternRanger on 16/2/4.
  */
+var siteItems = []; //图推荐站点缓存
+
 $("#swiper li").removeClass("cs_hide");
 if ($("#swiper li").length > 1) {
     new Swiper('.swiper .swiper-container', {
@@ -48,8 +50,9 @@ var _url = '/api/pushInfo/list',
 // 获取推荐列表
 fetchData(_url, _data, function (j) {
     var _html_intro = '',
-        _html_site = '',
-        _html_blog = '',
+
+    //_html_site = '',
+    _html_blog = '',
         _html_music = '';
 
     j.res.forEach(function (item) {
@@ -61,8 +64,10 @@ fetchData(_url, _data, function (j) {
             }
         }
         if (item.ctype == 'site') {
-            _html_site += "<li><a target=\"_blank\" href=\"" + item.url + "\">" + item.title + "</a></li>";
+            //_html_site += `<li><a target="_blank" href="${item.url}">${item.title}</a></li>`;
+            siteItems.push(item);
         }
+
         if (item.ctype == 'blog') {
             _html_blog += "<li><a target=\"_blank\" href=\"" + item.url + "\">" + item.title + "</a></li>";
         }
@@ -70,8 +75,15 @@ fetchData(_url, _data, function (j) {
             _html_music += "<li>\n                          <span class=\"intro-tip\">推荐</span>\n                          <a target=\"_blank\" href=\"" + item.url + "\">" + item.title + "</a>\n                      </li>";
         }
     });
+    debugger;
     document.querySelector(".item-block#intro ul").innerHTML = _html_intro;
-    document.querySelector(".item-block#site ul").innerHTML = _html_site;
+    //document.querySelector(".item-block#site ul").innerHTML = _html_site;
+    var site = new Vue({
+        el: '#site',
+        data: {
+            items: [{ title: 333, url: 'www' }, { title: 444, url: 'http' }]
+        }
+    });
     document.querySelector(".item-block#blog ul").innerHTML = _html_blog;
     document.querySelector(".item-block#music ul").innerHTML = _html_music;
 });
@@ -86,7 +98,4 @@ function fetchData(_url, _data, func) {
         }
     });
 }
-
-var a = 14;
-console.log(a);
 },{}]},{},[1])
