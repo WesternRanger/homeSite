@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.28, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.27, for osx10.8 (x86_64)
 --
 -- Host: localhost    Database: homesite
 -- ------------------------------------------------------
--- Server version	5.6.28
+-- Server version	5.6.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -56,7 +56,7 @@ CREATE TABLE `pushInfo` (
   `ctype` varchar(20) NOT NULL,
   `typename` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +65,7 @@ CREATE TABLE `pushInfo` (
 
 LOCK TABLES `pushInfo` WRITE;
 /*!40000 ALTER TABLE `pushInfo` DISABLE KEYS */;
-INSERT INTO `pushInfo` VALUES (1,'鑫空间鑫生活','http://www.zhangxinxu.com/','site','知名博客'),(2,'大前端','http://www.daqianduan.com/','site','知名博客'),(3,'轩风阁','http://www.xuanfengge.com/','site','知名博客'),(4,'75team','http://www.75team.com/','site','知名博客'),(5,'淘宝前端团队','http://taobaofed.org/','site','知名博客'),(6,'百度fex','http://fex.baidu.com/','site','知名博客'),(7,'alloyteam','http://www.alloyteam.com/','site','知名博客'),(8,'函数式编程离我们有多远','http://www.75team.com/post/functional-how-far.html','blog','精华博客推荐'),(9,'去除inline-block元素间间距的N种方法','http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/','blog','精华博客推荐'),(10,'Me and My Broken Heart','http://play.baidu.com/?__m=mboxCtrl.playSong&__a=119811234&__o=song/119811234||playBtn&fr=altg_new3||www.baidu.com#','music','今日音乐'),(11,'海外孤忠（你不知道的中国遗民）','https://www.douban.com/group/topic/44422470/','blog','精华博客推荐'),(12,'曹操真的是汉贼吗','http://www.jianshu.com/p/95e5a5c369e7?utm_campaign=hugo&utm_medium=reader_share&utm_content=note&utm_source=weixin-friends','blog','精华博客推荐');
+INSERT INTO `pushInfo` VALUES (1,'鑫空间鑫生活','http://www.zhangxinxu.com/','site','知名博客'),(2,'大前端','http://www.daqianduan.com/','site','知名博客'),(3,'轩风阁','http://www.xuanfengge.com/','site','知名博客'),(4,'75team','http://www.75team.com/','site','知名博客'),(5,'淘宝前端团队','http://taobaofed.org/','site','知名博客'),(6,'百度fex','http://fex.baidu.com/','site','知名博客'),(7,'alloyteam','http://www.alloyteam.com/','site','知名博客'),(8,'分分钟教你学会闭包','http://www.aliyue.net/1026.html','blog','精华博客推荐'),(9,'去除inline-block元素间间距的N种方法','http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/','blog','精华博客推荐'),(10,'Me and My Broken Heart','http://play.baidu.com/?__m=mboxCtrl.playSong&__a=119811234&__o=song/119811234||playBtn&fr=altg_new3||www.baidu.com#','music','今日音乐'),(11,'海外孤忠（你不知道的中国遗民）','https://www.douban.com/group/topic/44422470/','blog','精华博客推荐'),(12,'曹操真的是汉贼吗','http://www.jianshu.com/p/95e5a5c369e7?utm_campaign=hugo&utm_medium=reader_share&utm_content=note&utm_source=weixin-friends','blog','精华博客推荐'),(13,'家乡-地道山东人','','intro','自我介绍'),(14,'母校-山东财经大学','http://sdufe.edu.cn/','intro','自我介绍'),(15,'毕设-戳我看毕设','http://bishe.western-ranger.com/index','intro','自我介绍'),(16,'干活-前端开发菜鸟','','intro','自我介绍');
 /*!40000 ALTER TABLE `pushInfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,4 +104,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-12 18:23:57
+-- Dump completed on 2016-07-17 20:46:40
