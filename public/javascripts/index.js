@@ -24,6 +24,7 @@ var Index = function () {
             $.ajax({
                 url: "/api/pushInfo/list",
                 type: 'post',
+                dataType: 'json',
                 success: function success(j) {
                     var _data = {
                         intro: [],
@@ -48,6 +49,7 @@ var Index = function () {
                                 break;
                         }
                     });
+                    debugger;
                     new Vue({
                         el: 'body',
                         data: _data

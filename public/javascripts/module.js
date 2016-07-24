@@ -8,7 +8,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 /**
  * Created by WesternRanger on 16/4/14.
  */
-
 var Employee = function () {
     function Employee() {
         _classCallCheck(this, Employee);

@@ -14,8 +14,9 @@ class Index{
         $.ajax({
             url:"/api/pushInfo/list",
             type:'post',
+            dataType:'json',
             success:function(j){
-                let _data = {
+                var _data = {
                     intro:[],
                     site:[],
                     blog:[],
@@ -38,6 +39,7 @@ class Index{
                             break;
                     }
                 });
+                debugger;
                 new Vue({
                     el:'body',
                     data:_data
