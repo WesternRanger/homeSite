@@ -76,18 +76,11 @@ router.get('/fixBlog', function(req, resIndex) {
 
 // 发帖
 router.get('/recruit',(req, resIndex)=>{
-    //let id = req.query.id;
-    //tool.pool.getConnection((err, connection)=> {
-    //    let sql = 'select * from blogs where id=?',
-    //        sql_val = [id];
-    //    connection.query(sql, sql_val ,(error, res)=> {
-    //        let _content = res[0].content;
-    //        res[0].content = marked(_content);// markdown 转化为html
-    //        tool.renderPage(resIndex,'blog',res[0].title,res);
-    //    });
-    //    connection.release();
-    //});
     tool.renderPage(resIndex,'recruit','西泊园论坛');
 });
 
+// 发帖
+router.get('/react1',(req, resIndex)=>{
+    tool.renderPage(resIndex,'react1','reactDemo1');
+});
 module.exports = router;
