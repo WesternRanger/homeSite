@@ -74,13 +74,18 @@ router.get('/fixBlog', function(req, resIndex) {
     });
 });
 
-// 发帖
+// vue demo
 router.get('/recruit',(req, resIndex)=>{
     tool.renderPage(resIndex,'recruit','西泊园论坛');
 });
 
-// 发帖
+// react demo
 router.get('/react1',(req, resIndex)=>{
     tool.renderPage(resIndex,'react1','reactDemo1');
+});
+
+// ajax demo
+router.get('/ajax',(req, resIndex)=>{
+    tool.renderPage(resIndex,'ajax','zepto ajax');
 });
 module.exports = router;

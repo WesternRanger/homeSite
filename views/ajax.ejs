@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <% include meta%>
+    <style>
+        .wrapper{
+            width:100%;
+            height:500px;
+            border:solid 1px salmon;
+        }
+    </style>
+</head>
+<body>
+<% include header %>
+
+<div id="container">
+
+</div>
+
+<script src="/javascripts/common/zepto_ajax.js"></script>
+<!--<script src="/javascripts/common/zepto_demo.js"></script>-->
+<script>
+	// debugger;
+	chenqi.ajax({
+		url:'/api/pushInfo/list',
+		type:'post',
+		success:function(rs){
+
+		}
+	});
+</script>
+</body>
+</html>
