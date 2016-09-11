@@ -552,10 +552,10 @@ void function (global, factory) {
         $.ajax = function (options) {
             var settings = $.extend({}, options || {}),
                 deferred = $.Deferred && $.Deferred(),
-                urlAnchor, hashIndex
-            for (key in $.ajaxSettings) if (settings[key] === undefined) settings[key] = $.ajaxSettings[key]
+                urlAnchor, hashIndex;
+            for (key in $.ajaxSettings) if (settings[key] === undefined) settings[key] = $.ajaxSettings[key];
 
-            ajaxStart(settings)
+            ajaxStart(settings);
 
             if (!settings.crossDomain) {
                 urlAnchor = document.createElement('a')

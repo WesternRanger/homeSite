@@ -88,4 +88,9 @@ router.get('/react1',(req, resIndex)=>{
 router.get('/ajax',(req, resIndex)=>{
     tool.renderPage(resIndex,'ajax','zepto ajax');
 });
+
+// weixin sdk demo
+router.get('/wx',(req, resIndex)=>{
+    tool.renderPage(resIndex,'wx','微信sdk调用');
+});
 module.exports = router;

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <meta charset="utf-8">
+    <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0" name="viewport" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta content="telephone=no" name="format-detection" />
+    <style>
+        button{
+            display: block;
+            width:300px;
+            height:20px;
+            line-height: 20px;
+            text-align: center;
+            font-size:15px;
+            margin-bottom:30px;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">点击关闭微信webview</button>
+    <button>我逗你</button>
+    <button id="getLocation">获取经纬度</button>
+    <button id="checkJsApi">支持地理位置api?</button>
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <!--<script src="/javascripts/common/sha1.js"></script>-->
+    <script src="/javascripts/common/sha1_weixin.js"></script>
+    <script>
+        var createNonceStr = function () {
+            return Math.random().toString(36).substr(2, 15);
+        };
+
+        var createTimestamp = function () {
+            return parseInt(new Date().getTime() / 1000) + '';
+        };
+        var jsapi_ticket = 'kgt8ON7yVITDhtdwci0qeXkVQlN34EW82XmPHvBFDCM-wWLKHhTF9yMP_X1lPR4_gSD0x61BmVuOa04HvKIEFA';
+        var url = encodeURIComponent(window.location.href);
+        var fourParam = {
+            timestamp: createTimestamp(),
+            noncestr: createNonceStr(),
+            url: url,
+            jsapi_ticket: jsapi_ticket
+        };
+
+//        var raw = function (args) {
+//            var values = [];
+//            for(var i in args){
+//                values.push(args[i]);
+//            }
+//            values = values.sort();
+//            var newArgs = {};//排序之后的obj
+//            values.forEach(function (item) {
+//                for(var p in args){
+//                    if(item == args[p]){
+//                        newArgs[p] = item;
+//                    }
+//                }
+//            });
+//
+//            var string = '';
+//            for (var k in newArgs) {
+//                string += '&' + k + '=' + newArgs[k];
+//            }
+//            string = string.substr(1);
+//            return string;
+//        };
+        var raw = function (args) {
+            var keys = Object.keys(args);
+            keys = keys.sort()
+            var newArgs = {};
+            keys.forEach(function (key) {
+                newArgs[key.toLowerCase()] = args[key];
+            });
+
+            var string = '';
+            for (var k in newArgs) {
+                string += '&' + k + '=' + newArgs[k];
+            }
+            string = string.substr(1);
+            return string;
+        };
+
+        var signature_origin = raw(fourParam);
+        var s = new jsSHA(signature_origin,"TEXT");
+        var signature = s.getHash("SHA-1","HEX");
+
+
+//        var signature = hex_sha1(signature_origin);
+        var apiList = [
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+            'onMenuShareQZone',
+            'startRecord',
+            'stopRecord',
+            'onVoiceRecordEnd',
+            'playVoice',
+            'pauseVoice',
+            'stopVoice',
+            'onVoicePlayEnd',
+            'uploadVoice',
+            'downloadVoice',
+            'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage',
+            'translateVoice',
+            'getNetworkType',
+            'openLocation',
+            'getLocation',
+            'hideOptionMenu',
+            'showOptionMenu',
+            'hideMenuItems',
+            'showMenuItems',
+            'hideAllNonBaseMenuItem',
+            'showAllNonBaseMenuItem',
+            'closeWindow',
+            'scanQRCode',
+            'chooseWXPay',
+            'openProductSpecificView',
+            'addCard',
+            'chooseCard',
+            'openCard'
+        ];
+
+        wx.config({
+            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId: 'wx20e4bd80ab0ceb6b', // 必填，公众号的唯一标识
+            timestamp:createTimestamp() , // 必填，生成签名的时间戳
+            nonceStr: createNonceStr(), // 必填，生成签名的随机串
+            signature: signature,// 必填，签名，见附录1
+            jsApiList: apiList // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+
+        wx.ready(function(){
+            // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+
+            // 1 判断当前版本是否支持指定 JS 接口，支持批量判断
+            document.querySelector('#checkJsApi').onclick = function () {
+                wx.checkJsApi({
+                    jsApiList: [
+                        'getLocation'
+                    ],
+                    success: function (res) {
+                        alert('获取用户地理位置:'+JSON.stringify(res));
+                    }
+                });
+            };
+            document.querySelector('#btn').onclick = function () {
+                wx.closeWindow();
+            };
+            // 7.2 获取当前地理位置
+            document.querySelector('#getLocation').onclick = function () {
+                wx.getLocation({
+                    success: function (res) {
+                        alert(JSON.stringify(res));
+                    },
+                    cancel: function (res) {
+                        alert('用户拒绝授权获取地理位置');
+                    }
+                });
+            };
+        });
+
+
+        wx.error(function(res){
+            // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+        });
+
+
+    </script>
+</body>
+</html>
