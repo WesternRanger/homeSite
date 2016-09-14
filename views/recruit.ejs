@@ -4,141 +4,115 @@
     <title><%= title %></title>
     <% include meta%>
     <style>
-        .content{
-            max-width:1100px;
-            min-width:320px;
-            margin:30px auto;
-        }
-        .zhao-col{
-            background: #fff;
-            border:solid 1px #efefef;
-            border-radius:3px;
-            color:#999;
-            margin-bottom:30px;
-            padding-bottom:20px;
-        }
-        .zhao-col ul,.zhao-col li{
-            padding:0;
-            margin:0;
-            list-style: none;
-        }
-        .zhao-col li{
-            width:100%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            margin-bottom:8px;
-            color:#778899;
-        }
-        .zhao-col li:hover{
-            cursor:pointer;
-            text-decoration: underline;
-        }
-        .liuyan-col{
-            width:99%;
-            margin:auto;
-            background: #fff;
-            border:solid 1px #efefef;
-            border-radius:3px;
-            color:#333;
-        }
-
-        /*-S- vue demo*/
-        textarea, #editor div {
-            display: inline-block;
-            width: 49%;
-            height: 100%;
-            vertical-align: top;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            padding: 0 20px;
-        }
-
-        textarea {
-            border: none;
-            border-right: 1px solid #ccc;
-            resize: none;
-            outline: none;
-            background-color: #f6f6f6;
-            font-size: 14px;
-            font-family: 'Monaco', courier, monospace;
-            padding: 20px;
-        }
-
-        code {
-            color: #f66;
-        }
-        /*-E- vue demo*/
 
     </style>
 </head>
 <body>
 <% include header %>
-
-<div class="row content">
-    <div class="zhao-col col-xs-12 col-sm-2 col-md-2">
-        <h4 style="text-align:center;color:#000;">精华帖子</h4>
-        <hr>
-        <ul>
-            <li title="关于西泊园优化提议">关于西泊园优化提议</li>
-            <li title="谈谈你的技术成长起点">谈谈你的技术成长起点</li>
-            <li title="初入职场的技术菜鸟如何快速成长">初入职场的技术菜鸟如何快速成长</li>
-            <li title="前端前景">前端前景</li>
-        </ul>
-    </div>
-    <div class="col-xs-12 col-sm-10 col-md-10">
-        <div class="liuyan-col">
-            <h3 id="h3" style="text-align: center;">{{ message }}</h3>
-            <hr>
-            <div id="app">
-                <input v-model="newTodo" v-on:keyup.enter="addTodo">
-                <ul>
-                    <li v-for="todo in todos">
-                        <span>{{ todo.text }}</span>
-                        <button v-on:click="removeTodo($index)">X</button>
-                    </li>
-                </ul>
-
-                <div v-if="Math.random() > 0.5">
-                    Sorry
-                </div>
-                <div v-else>
-                    Not sorry
-                </div>
-            </div>
-        </div>
-    </div>
-
+<div class="vm">
+    {{name}}
+    <button v-tap="tapTest">点击</button>
 </div>
-
-<% include footer %>
 <script src="/javascripts/common/vue.min.js"></script>
 <script>
     new Vue({
-        el: '#h3',
+        el: '.vm',
         data: {
-            message: 'Hello Vue.js!'
-        }
-    });
-    new Vue({
-        el: '#app',
-        data: {
-            newTodo: '',
-            todos: [
-                { text: 'Add some todos' }
-            ]
+            name: 'hhhh'
         },
         methods: {
-            addTodo: function () {
-                var text = this.newTodo.trim()
-                if (text) {
-                    this.todos.push({ text: text })
-                    this.newTodo = ''
+            tapTest:function(){
+                alert(444);
+            }
+        },
+        directives:{
+            tap:{
+                isFn : true,
+                acceptStatement : true,
+                bind : function() {
+                    //bind callback
+                },
+                update : function(fn) {
+                    var self = this;
+                    self.tapObj = {};
+
+                    if(typeof fn !== 'function') {
+                        return console.error('The param of directive "v-tap" must be a function!');
+                    }
+                    self.handler = function(e) { //This directive.handler
+                        e.tapObj = self.tapObj;
+                        fn.call(self,e);
+                    };
+                    if(self.isPC()) {
+                        self.el.addEventListener('click',function(e) {
+                            e.preventDefault();
+                            fn.call(self,e);
+                        },false);
+                    } else {
+                        this.el.addEventListener('touchstart',function(e) {
+
+                            if(self.modifiers.stop)
+                                e.stopPropagation();
+                            if(self.modifiers.prevent)
+                                e.preventDefault();
+                            self.touchstart(e,self);
+                        },false);
+                        this.el.addEventListener('touchend',function(e) {
+                            Object.defineProperties(e, { // 重写currentTarget对象 与jq相同
+                                "currentTarget": {
+                                    value : self.el,
+                                    writable: true,
+                                    enumerable: true,
+                                    configurable: true
+                                },
+                            });
+                            e.preventDefault();
+                            if(!self.modifiers.prevent && self.el.tagName.toLocaleLowerCase() === 'a' && self.el.href) {
+                                return window.location = self.el.href;
+                            }
+                            return self.touchend(e,self,fn);
+                        },false);
+                    }
+                },
+                unbind : function() {},
+                isTap : function() {
+                    var self   = this;
+                    if(self.el.disabled){
+                        return false;
+                    }
+                    var tapObj = this.tapObj;
+                    return this.time < 150 && Math.abs(tapObj.distanceX) < 2 && Math.abs(tapObj.distanceY) < 2;
+                },
+                isPC : function() {
+                    var uaInfo = navigator.userAgent;
+                    var agents = ["Android", "iPhone", "Windows Phone", "iPad", "iPod"];
+                    var flag = true;
+                    for (var i = 0; i < agents.length; i++) {
+                        if (uaInfo.indexOf(agents[i]) > 0) { flag = false; break; }
+                    }
+                    return flag;
+                },
+                touchstart : function(e,self) {
+                    var touches = e.touches[0];
+                    var tapObj = self.tapObj;
+                    tapObj.pageX = touches.pageX;
+                    tapObj.pageY = touches.pageY;
+                    tapObj.clientX = touches.clientX;
+                    tapObj.clientY = touches.clientY;
+                    self.time = +new Date();
+                },
+                touchend : function(e,self) {
+                    var touches = e.changedTouches[0];
+                    var tapObj = self.tapObj;
+                    self.time = +new Date() - self.time;
+                    tapObj.distanceX = tapObj.pageX - touches.pageX;
+                    tapObj.distanceY = tapObj.pageY - touches.pageY;
+
+                    if (!self.isTap(tapObj)) return;
+                    setTimeout(function() {
+                        self.handler(e);
+                    },150)
                 }
-            },
-            removeTodo: function (index) {
-                this.todos.splice(index, 1)
             }
         }
     })
