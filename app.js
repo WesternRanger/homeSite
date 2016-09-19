@@ -28,6 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 //解析xml
 app.use(bodyParser.xml({
     limit: '1MB',   // Reject payload bigger than 1 MB

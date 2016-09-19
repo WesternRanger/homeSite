@@ -93,4 +93,9 @@ router.get('/ajax',(req, resIndex)=>{
 router.get('/wx',(req, resIndex)=>{
     tool.renderPage(resIndex,'wx','微信sdk调用');
 });
+
+// vueloader demo
+router.get('/vueloader',(req, resIndex)=>{
+    tool.renderPage(resIndex,'vueloader','vueloader demo');
+});
 module.exports = router;
