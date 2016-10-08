@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <% include meta%>
+    <style>
+
+    </style>
+</head>
+<body>
+<% include header %>
+<div class="vue2">
+    {{name}}
+    <ul>
+        <li v-for="(item,index) in items">{{index}} ++ {{item.name}} ++ {{item.age}}</li>
+    </ul> 
+    
+
+</div>
+<script src="/javascripts/common/vue2.0dev.js"></script>
+<script>
+    new Vue({
+        el: '.vue2',
+        data: {
+            name: 'vue 2.0 demo',
+            hasList:'444',
+            items:[
+                {
+                    name:'chenqi',
+                    age:18
+                },
+                {
+                    name:'western-ranger',
+                    age:21
+                }
+            ]
+        }
+    })
+</script>
+</body>
+</html>

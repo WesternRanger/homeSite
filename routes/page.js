@@ -75,8 +75,13 @@ router.get('/fixBlog', function(req, resIndex) {
 });
 
 // vue demo
-router.get('/recruit',(req, resIndex)=>{
-    tool.renderPage(resIndex,'recruit','西泊园论坛');
+router.get('/vue1tapdemo',(req, resIndex)=>{
+    tool.renderPage(resIndex,'vue1tapdemo','西泊园论坛');
+});
+
+// vue 2.0 demo
+router.get('/vue2demo',(req, resIndex)=>{
+    tool.renderPage(resIndex,'vue2demo','vue 2.0 demo');
 });
 
 // react demo
