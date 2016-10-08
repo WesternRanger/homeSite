@@ -98,4 +98,10 @@ router.get('/wx',(req, resIndex)=>{
 router.get('/vueloader',(req, resIndex)=>{
     tool.renderPage(resIndex,'vueloader','vueloader demo');
 });
+
+// 模拟抢票
+router.get('/qiang',(req, resIndex)=>{
+    tool.renderPage(resIndex,'qiang','模拟抢票');
+});
+
 module.exports = router;

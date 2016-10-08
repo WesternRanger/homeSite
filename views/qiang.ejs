@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <% include meta%>
+</head>
+<style type="text/css">
+    .vm{
+        text-align: center;
+        font-size:20px;
+        padding:30px 0;
+    }
+</style>
+<body>
+<% include header %>
+<div class="vm">
+    快抢啊。。。同志们
+</div>
+<% include footer %>
+<script src="/javascripts/common/tool.js"></script>
+<script>
+    var flag = true,
+        timer = '';
+
+    function showDialog(){
+
+        $('.vm').dialogBox({
+            width: 300,
+            height: 200,
+            titleIcon: true,
+            titleShow: true,
+            contentShow: true,
+            title: '抢票模拟',
+            cancelBtn: true,
+            cBtnText: '取消',
+            sBtnText: '确定',
+            noBtn: false,
+            cancelCallback: $.noop,
+            subCallback: function(){
+                timer = setInterval(showDialog,3000);
+            },
+            maskColor: null,
+        });   
+
+        clearTimeout(timer);
+         
+    }
+    timer = setInterval(showDialog,3000);
+
+
+</script>
+<script type="text/javascript">
+
+
+</script>
+</body>
+</html>
