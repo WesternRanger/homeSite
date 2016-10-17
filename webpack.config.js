@@ -6,7 +6,8 @@ var path = require("path");
 module.exports = {
     // 入口文件
     entry: {
-        vuedemo:'./public/vue/vuedemo.js'
+        vuedemo:'./public/vue/vuedemo.js',
+        vuexdemo:'./public/vue/vuexdemo.js'
     },
     output: {
         path: __dirname, // 输出文件的保存路径

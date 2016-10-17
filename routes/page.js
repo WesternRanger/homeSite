@@ -109,4 +109,9 @@ router.get('/qiang',(req, resIndex)=>{
     tool.renderPage(resIndex,'qiang','模拟抢票');
 });
 
+// vuex 存在意义，解决全局变量
+router.get('/vuex',(req, resIndex)=>{
+    tool.renderPage(resIndex,'vuex','vuex demo');
+});
+
 module.exports = router;

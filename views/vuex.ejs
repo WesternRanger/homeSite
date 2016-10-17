@@ -9,11 +9,12 @@
     <meta content="telephone=no" name="format-detection" />
 </head>
 <body>
-    <h1 class="v-demo" @click="tapTest">{{name}}</h1>
-    <box></box>
-    <swiper></swiper>
-    <!-- <index></index> -->
-    <script src="/javascripts/common/vue.min.js"></script>
-    <script src="/javascripts/vuedemo.js"></script>
+  <div class="vm">
+    <h1>{{name}}</h1>
+      <child></child>
+  </div>
+
+    <script src="/javascripts/common/vue2.0dev.js"></script>
+    <script src="/javascripts/vuexdemo.js"></script>
 </body>
 </html>

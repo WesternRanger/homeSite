@@ -4,7 +4,9 @@
     <title><%= title %></title>
     <% include meta%>
     <style>
-
+        .demo{
+            background:red;
+        }
     </style>
 </head>
 <body>
@@ -13,8 +15,8 @@
     {{name}}
     <ul>
         <li v-for="(item,index) in items">{{index}} ++ {{item.name}} ++ {{item.age}}</li>
-    </ul> 
-    
+    </ul>
+
 
 </div>
 <script src="/javascripts/common/vue2.0dev.js"></script>
