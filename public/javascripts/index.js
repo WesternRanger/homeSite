@@ -49,7 +49,6 @@ var Index = function () {
                                 break;
                         }
                     });
-                    debugger;
                     new Vue({
                         el: 'body',
                         data: _data

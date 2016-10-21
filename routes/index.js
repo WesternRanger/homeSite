@@ -27,13 +27,13 @@ let randomImg = [ // 推荐文章配图
     'http://7xp7rf.com1.z0.glb.clouddn.com/js.jpg'
 ];
 
-// 首页
-router.get('/',(req, renderPage)=> {
-
+function queryBody(renderPage){
     let sql = 'select * from blogs order by id desc',
         sql_val = [];
 
+    //数据库链接
     tool.pool.getConnection((err, connection)=> {
+
         connection.query(sql ,sql_val,(error, result)=> {
 
             let newArr = []; // 存储4个最新文章
@@ -73,16 +73,30 @@ router.get('/',(req, renderPage)=> {
                     }
                 });
                 var comboArr = [newArr,ress];
-
                 tool.renderPage(renderPage,'index','',comboArr);
+                
             });
 
         });
 
         connection.release();
+        
     });
+}
+// 首页
+router.get('/',(req, renderPage)=> {
 
+    var deviceAgent = req.headers["user-agent"].toLowerCase();
+    var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
+    if(agentID){//移动端
 
+        renderPage.redirect('https://www.baidu.com');
+
+    }else{
+        //pc
+        queryBody(renderPage);
+        
+    }
 });
 
 module.exports = router;

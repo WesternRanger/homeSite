@@ -28,30 +28,51 @@ let randomImg = [ // 推荐文章配图 首页
 
 // 博客页
 router.get('/blog',(req, resIndex)=>{
-    let id = req.query.id;
-    tool.pool.getConnection((err, connection)=> {
-        let sql = 'select * from blogs where id=?',
-            sql_val = [id];
-        connection.query(sql, sql_val ,(error, res)=> {
-            let _content = res[0].content;
-            res[0].content = marked(_content);// markdown 转化为html
-            tool.renderPage(resIndex,'blog',res[0].title,res);
+
+    var deviceAgent = req.headers["user-agent"].toLowerCase();
+    var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
+    if(agentID){//移动端
+
+        resIndex.redirect('https://www.baidu.com');
+
+    }else{
+        //pc
+        let id = req.query.id;
+        tool.pool.getConnection((err, connection)=> {
+            let sql = 'select * from blogs where id=?',
+                sql_val = [id];
+            connection.query(sql, sql_val ,(error, res)=> {
+                let _content = res[0].content;
+                res[0].content = marked(_content);// markdown 转化为html
+                tool.renderPage(resIndex,'blog',res[0].title,res);
+            });
+            connection.release();
         });
-        connection.release();
-    });
+    }
+    
 });
 
 //  博客列表
 router.get('/bloglist',(req, resIndex)=> {
-    let type = req.query.type,
-        sql = 'select * from blogs where type = ?',
-        sql_val = [type];
-    tool.pool.getConnection((err, connection)=> {
-        connection.query(sql ,sql_val,(error, res)=> {
-            tool.renderPage(resIndex,'bloglist','',res);
+
+    var deviceAgent = req.headers["user-agent"].toLowerCase();
+    var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
+    if(agentID){//移动端
+
+        resIndex.redirect('https://www.baidu.com');
+
+    }else{
+        let type = req.query.type,
+            sql = 'select * from blogs where type = ?',
+            sql_val = [type];
+        tool.pool.getConnection((err, connection)=> {
+            connection.query(sql ,sql_val,(error, res)=> {
+                tool.renderPage(resIndex,'bloglist','',res);
+            });
+            connection.release();
         });
-        connection.release();
-    });
+    }
+    
 });
 
 // publish 文章,markdown方式
