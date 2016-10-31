@@ -7,7 +7,9 @@ module.exports = {
     // 入口文件
     entry: {
         vuedemo:'./public/vue/vuedemo.js',
-        vuexdemo:'./public/vue/vuexdemo.js'
+        vuexdemo:'./public/vue/vuexdemo.js',
+        spa:'./public/vue/spa.js',
+        spa_history:'./public/vue/spa_history.js'
     },
     output: {
         path: __dirname, // 输出文件的保存路径

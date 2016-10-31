@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <meta charset="utf-8">
+    <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0" name="viewport" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta content="telephone=no" name="format-detection" />
+    <style>
+        body{
+            padding:0;
+            margin:0;
+        }
+        .wrapper{
+            position:relative;
+        }
+        .nav{
+            position: fixed;
+            top:0;
+            left:0;
+            width:100%;
+            display: box;
+            display: -webkit-box;
+            box-align:center;
+            -webkit-box-align:center;
+            box-pack:center;
+            -webkit-box-align:center;
+            background: #999;
+        }
+        .item{
+            display: block;
+            text-decoration: none;
+            box-flex:1;
+            -webkit-box-flex:1;
+            padding:10px 0;
+            text-align: center;
+            color:#333;
+        }
+        .item.cur{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+  <div class="wrapper">
+      <div class="nav">
+          <a class="item" :href="item.href" :class="{'cur':item.cur}" v-for="item in navbar">{{item.name}}</a>
+      </div>
+      <component :is="currentView"></component>
+  </div>
+
+    <script src="/javascripts/common/vue2.0dev.js"></script>
+    <script src="/javascripts/spa_history.js"></script>
+</body>
+</html>

@@ -49,7 +49,7 @@ router.get('/blog',(req, resIndex)=>{
             connection.release();
         });
     }
-    
+
 });
 
 //  博客列表
@@ -72,7 +72,7 @@ router.get('/bloglist',(req, resIndex)=> {
             connection.release();
         });
     }
-    
+
 });
 
 // publish 文章,markdown方式
@@ -133,6 +133,11 @@ router.get('/qiang',(req, resIndex)=>{
 // vuex 存在意义，解决全局变量
 router.get('/vuex',(req, resIndex)=>{
     tool.renderPage(resIndex,'vuex','vuex demo');
+});
+
+// spa 页面滚动调研
+router.get('/spa',(req, resIndex)=>{
+    tool.renderPage(resIndex,'spa','spa scroll demo');
 });
 
 module.exports = router;

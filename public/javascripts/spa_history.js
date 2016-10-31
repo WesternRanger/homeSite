@@ -40,37 +40,160 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _children = __webpack_require__(143);
+	var _spaOne = __webpack_require__(1);
 
-	var _children2 = _interopRequireDefault(_children);
+	var _spaOne2 = _interopRequireDefault(_spaOne);
+
+	var _spaTwo = __webpack_require__(8);
+
+	var _spaTwo2 = _interopRequireDefault(_spaTwo);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var GLOBAL = '我是全局变量'; /**
-	                        * Created by WesternRanger on 16/10/14.
-	                        */
-
-
-	var vm = new Vue({
-	    el: '.vm',
+	new Vue({
+	    el: '.wrapper',
 	    data: {
-	        name: 'WesternRanger'
+	        navbar: [{
+	            name: "第一列",
+	            cur: true,
+	            href: '#/one'
+	        }, {
+	            name: '第二列',
+	            cur: false,
+	            href: '#/two'
+	        }],
+	        currentView: ''
 	    },
 	    components: {
-	        Child: _children2.default
+	        one: _spaOne2.default,
+	        two: _spaTwo2.default
+	    },
+	    methods: {
+	        //解析hash
+	        hashCheck: function hashCheck(hash) {
+	            var hashV = hash.slice(2);
+	            return hashV.split('/');
+	        },
+	        tabChange: function tabChange() {
+	            var _this = this;
+
+	            var curHash = this.hashCheck(location.hash)[0] || 'one';
+	            this.navbar.forEach(function (rs) {
+	                rs.cur = false;
+	                if (_this.hashCheck(rs.href)[0] == curHash) rs.cur = true;
+	            });
+	            this.currentView = curHash;
+	        },
+	        addToHistory: function addToHistory(hash, noState) {
+	            var obj = {
+	                hash: hash
+	            };
+	            if (noState) {
+	                // _history.shift(obj) ;
+	                window.history.replaceState(obj, "", hash);
+	            } else {
+	                window.history.pushState(obj, "", hash);
+	            }
+	            //  _history.unshift(obj) ;
+	        }
+	    },
+	    created: function created() {
+	        // this.addToHistory('one',false);
+	        // this.tabChange();
+	        //hashchange 用来处理本页面的不同tab间跳转
+	        // window.addEventListener("hashchange",()=>{
+	        //     this.tabChange();
+	        // });
+	        // window.addEventListener("popstate",(e)=>{
+	        //     debugger;
+	        //     if(e.state && e.state.hash){
+	        //         var hash = e.state.hash ;
+	        //         var curHash = this.hashCheck(location.hash)[0]||'one';
+	        //         if(curHash == hash){
+	        //             this.tabChange();
+	        //         }
+	        //     }
+	        // },false);
 	    }
 	});
 
 /***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
 
-/***/ 4:
+	var __vue_script__, __vue_template__
+	__webpack_require__(2)
+	__vue_script__ = __webpack_require__(6)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] public/vue/spaOne.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(7)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) {
+	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	}
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "./spaOne.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(3);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./spaOne.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./spaOne.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\nul,li{\n    padding:0;\n    margin:0;\n    list-style: none;\n}\nul{\n    width:100%;\n    background: blue;\n}\nul li{\n    line-height: 30px;\n    text-align: center;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 4 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -125,8 +248,7 @@
 	};
 
 /***/ },
-
-/***/ 5:
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -348,18 +470,38 @@
 
 
 /***/ },
+/* 6 */
+/***/ function(module, exports) {
 
-/***/ 143:
+	'use strict';
+
+	module.exports = {
+	    data: function data() {
+	        return {
+	            name: 'spaOne'
+	        };
+	    },
+	    created: function created() {}
+	};
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<ul>\n    <li>\n        <h2>{{name}}</h2>\n        hello\n    </li>\n    <li>1helloasdf</li>\n    <li>2hello</li>\n    <li>3hello</li>\n    <li>4hellsdafo</li>\n    <li>5hello</li>\n    <li>6hello</li>\n    <li>7hello</li>\n    <li>8helloasdfsdafsd</li>\n    <li>9hello</li>\n    <li>10hellsdafasdfsdao</li>\n    <li>11hello</li>\n    <li>12hello</li>\n    <li>13helloasdf</li>\n    <li>14hello</li>\n    <li>15hello</li>\n    <li>16hellsdafo</li>\n    <li>17hello</li>\n    <li>18hello</li>\n    <li>19hello</li>\n    <li>20helloasdfsdafsd</li>\n    <li>21hello</li>\n    <li>22hellsdafasdfsdao</li>\n    <li>23hello</li>\n    <li>24hello</li>\n    <li>25helloasdf</li>\n    <li>26hello</li>\n    <li>27hello</li>\n    <li>28hellsdafo</li>\n    <li>29hello</li>\n    <li>30hello</li>\n    <li>31hello</li>\n    <li>32helloasdfsdafsd</li>\n    <li>33hello</li>\n    <li>34hellsdafasdfsdao</li>\n    <li>35hello</li>\n    <li>36hello</li>\n    <li>37helloasdf</li>\n    <li>38hello</li>\n    <li>39hello</li>\n    <li>40hellsdafo</li>\n    <li>41hello</li>\n    <li>42hello</li>\n    <li>43hello</li>\n    <li>44helloasdfsdafsd</li>\n    <li>45hello</li>\n    <li>46hellsdafasdfsdao</li>\n    <li>47hello</li>\n    <li>48hello</li>\n    <li>49helloasdf</li>\n    <li>50hello</li>\n    <li>hello</li>\n    <li>hellsdafo</li>\n    <li>hello</li>\n    <li>hello</li>\n    <li>hello</li>\n    <li>helloasdfsdafsd</li>\n    <li>hello</li>\n    <li>hellsdafasdfsdao</li>\n    <li>hello</li>\n    <li>hello</li>\n    <li>helloasdf</li>\n    <li>hello</li>\n    <li>hello</li>\n    <li>hellsdafo</li>\n    <li>hello</li>\n    <li>hello</li>\n    <li>hello</li>\n    <li>helloasdfsdafsd</li>\n    <li>hello</li>\n    <li>hellsdafasdfsdao</li>\n    <li>hello</li>\n    <li>hello</li>\n    <li>helloasdf</li>\n    <li>hello</li>\n    <li>hello</li>\n    <li>hellsdafo</li>\n    <li>hello</li>\n    <li>hello</li>\n    <li>hello</li>\n    <li>helloasdfsdafsd</li>\n    <li>hello</li>\n    <li>hellsdafasdfsdao</li>\n    <li>hello</li>\n</ul>\n";
+
+/***/ },
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(144)
-	__vue_script__ = __webpack_require__(146)
+	__webpack_require__(9)
+	__vue_script__ = __webpack_require__(11)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
-	  console.warn("[vue-loader] public/vue/children.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(147)
+	  console.warn("[vue-loader] public/vue/spaTwo.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(12)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -369,7 +511,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "./children.vue"
+	  var id = "./spaTwo.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -378,14 +520,13 @@
 	})()}
 
 /***/ },
-
-/***/ 144:
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(145);
+	var content = __webpack_require__(10);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -394,8 +535,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./children.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./children.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./spaTwo.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./spaTwo.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -405,8 +546,7 @@
 	}
 
 /***/ },
-
-/***/ 145:
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -414,32 +554,31 @@
 
 
 	// module
-	exports.push([module.id, "\n.aa{\n  color:red;\n}\n", ""]);
+	exports.push([module.id, "\n.list{\n    width:100%;\n    background: yellow;\n\n}\n.item{\n    line-height: 30px;\n    text-align: center;\n}\n", ""]);
 
 	// exports
 
 
 /***/ },
-
-/***/ 146:
+/* 11 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	module.exports = {
 	    data: function data() {
-	        return {};
+	        return {
+	            name: 'spaTwo'
+	        };
 	    },
 	    created: function created() {}
 	};
 
 /***/ },
-
-/***/ 147:
+/* 12 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n\n\n\n\n\n<h2 class=\"aa\">hello world</h2>\n\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n<div class=\"list\">\n    <h2>{{name}}</h2>\n    <div class=\"item\">1spaTwo</div>\n    <div class=\"item\">2spaTwo</div>\n    <div class=\"item\">3spaTwo</div>\n    <div class=\"item\">4spaTwo</div>\n    <div class=\"item\">5spaTwo</div>\n    <div class=\"item\">6spaTwo</div>\n    <div class=\"item\">7spaTwo</div>\n    <div class=\"item\">8spaTwo</div>\n    <div class=\"item\">9spaTwo</div>\n    <div class=\"item\">10spaTwo</div>\n    <div class=\"item\">11spaTwo</div>\n    <div class=\"item\">12spaTwo</div>\n    <div class=\"item\">13spaTwo</div>\n    <div class=\"item\">14spaTwo</div>\n    <div class=\"item\">15spaTwo</div>\n    <div class=\"item\">16spaTwo</div>\n    <div class=\"item\">17spaTwo</div>\n    <div class=\"item\">18spaTwo</div>\n    <div class=\"item\">19spaTwo</div>\n    <div class=\"item\">20spaTwo</div>\n    <div class=\"item\">21spaTwo</div>\n    <div class=\"item\">22spaTwo</div>\n    <div class=\"item\">23spaTwo</div>\n    <div class=\"item\">24spaTwo</div>\n    <div class=\"item\">25spaTwo</div>\n    <div class=\"item\">26spaTwo</div>\n    <div class=\"item\">27spaTwo</div>\n    <div class=\"item\">28spaTwo</div>\n    <div class=\"item\">29spaTwo</div>\n    <div class=\"item\">30spaTwo</div>\n</div>\n";
 
 /***/ }
-
-/******/ });
+/******/ ]);
