@@ -140,4 +140,9 @@ router.get('/spa',(req, resIndex)=>{
     tool.renderPage(resIndex,'spa','spa scroll demo');
 });
 
+// spa 页面滚动调研
+router.get('/spa_history',(req, resIndex)=>{
+    tool.renderPage(resIndex,'spa_history','spa_history scroll demo');
+});
+
 module.exports = router;
