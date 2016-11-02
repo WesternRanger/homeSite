@@ -8,12 +8,14 @@ new Vue({
             {
                 name:"第一列",
                 cur:true,
-                href:'#/one'
+                hash:'one',
+                url:'/page/one'
             },
             {
                 name:'第二列',
                 cur:false,
-                href:'#/two'
+                hash:'two',
+                url:'/page/two'
             }
         ],
         currentView:'',
@@ -23,49 +25,24 @@ new Vue({
         two
     },
     methods:{
-        //解析hash
-        hashCheck(hash){
-            var hashV = hash.slice(2);
-            return hashV.split('/');
-        },
-        tabChange(){
-            var curHash = this.hashCheck(location.hash)[0]||'one';
-            this.navbar.forEach((rs)=>{
-                rs.cur = false;
-                if(this.hashCheck(rs.href)[0] == curHash) rs.cur = true;
-            });
-            this.currentView = curHash;
-        },
-        addToHistory(hash,noState){
-            var obj = {
-                hash : hash
-            } ;
-            if(noState){
-                // _history.shift(obj) ;
-                window.history.replaceState(obj,"",hash) ;
-            }
-            else{
-                 window.history.pushState(obj,"",hash) ;
-            }
-            //  _history.unshift(obj) ;
+        //手动切换tab
+        eqTab(item){
+            // console.log(item.cur);
+            if(item.cur) return;
+            window.history.pushState({hash:item.hash},null,item.url);
+            this.currentView = item.hash;
+            // 处理 nav 高亮
+            this.navbar.forEach( rs => rs.cur = (rs.hash == item.hash) ? true : false );
         }
     },
     created(){
-        // this.addToHistory('one',false);
-        // this.tabChange();
-        //hashchange 用来处理本页面的不同tab间跳转
-        // window.addEventListener("hashchange",()=>{
-        //     this.tabChange();
-        // });
-        // window.addEventListener("popstate",(e)=>{
-        //     debugger;
-        //     if(e.state && e.state.hash){
-        //         var hash = e.state.hash ;
-        //         var curHash = this.hashCheck(location.hash)[0]||'one';
-        //         if(curHash == hash){
-        //             this.tabChange();
-        //         }
-        //     }
-        // },false);
+        this.currentView = one;// 默认加载
+        // 浏览器返回 历史记录
+        window.addEventListener("popstate",(e)=>{
+            if(!e.state) return;
+            this.currentView = e.state.hash;
+            //处理 nav 高亮
+            this.navbar.forEach( rs => rs.cur = (rs.hash == e.state.hash) ? true : false );
+        },false);
     }
 });

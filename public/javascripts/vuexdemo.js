@@ -47,7 +47,7 @@
 
 	'use strict';
 
-	var _children = __webpack_require__(143);
+	var _children = __webpack_require__(146);
 
 	var _children2 = _interopRequireDefault(_children);
 
@@ -349,17 +349,17 @@
 
 /***/ },
 
-/***/ 143:
+/***/ 146:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(144)
-	__vue_script__ = __webpack_require__(146)
+	__webpack_require__(147)
+	__vue_script__ = __webpack_require__(149)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] public/vue/children.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(147)
+	__vue_template__ = __webpack_require__(150)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -379,13 +379,13 @@
 
 /***/ },
 
-/***/ 144:
+/***/ 147:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(145);
+	var content = __webpack_require__(148);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -406,7 +406,7 @@
 
 /***/ },
 
-/***/ 145:
+/***/ 148:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -421,7 +421,7 @@
 
 /***/ },
 
-/***/ 146:
+/***/ 149:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -435,7 +435,7 @@
 
 /***/ },
 
-/***/ 147:
+/***/ 150:
 /***/ function(module, exports) {
 
 	module.exports = "\n\n\n\n\n\n\n<h2 class=\"aa\">hello world</h2>\n\n";

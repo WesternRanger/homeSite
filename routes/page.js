@@ -140,9 +140,20 @@ router.get('/spa',(req, resIndex)=>{
     tool.renderPage(resIndex,'spa','spa scroll demo');
 });
 
-// spa 页面滚动调研
+// spa 页面滚动调研 history pushState
 router.get('/spa_history',(req, resIndex)=>{
     tool.renderPage(resIndex,'spa_history','spa_history scroll demo');
+});
+router.get('/one',(req, resIndex)=>{
+    resIndex.redirect('/page/spa_history');
+});
+router.get('/two',(req, resIndex)=>{
+    resIndex.redirect('/page/spa_history');
+});
+
+// spa 页面 vue router
+router.get('/spa_vuerouter',(req, resIndex)=>{
+    tool.renderPage(resIndex,'spa_vuerouter','spa_vuerouter demo');
 });
 
 module.exports = router;

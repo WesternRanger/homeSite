@@ -62,11 +62,13 @@
 	        navbar: [{
 	            name: "第一列",
 	            cur: true,
-	            href: '#/one'
+	            hash: 'one',
+	            url: '/page/one'
 	        }, {
 	            name: '第二列',
 	            cur: false,
-	            href: '#/two'
+	            hash: 'two',
+	            url: '/page/two'
 	        }],
 	        currentView: ''
 	    },
@@ -75,51 +77,31 @@
 	        two: _spaTwo2.default
 	    },
 	    methods: {
-	        //解析hash
-	        hashCheck: function hashCheck(hash) {
-	            var hashV = hash.slice(2);
-	            return hashV.split('/');
-	        },
-	        tabChange: function tabChange() {
-	            var _this = this;
-
-	            var curHash = this.hashCheck(location.hash)[0] || 'one';
+	        //手动切换tab
+	        eqTab: function eqTab(item) {
+	            // console.log(item.cur);
+	            if (item.cur) return;
+	            window.history.pushState({ hash: item.hash }, null, item.url);
+	            this.currentView = item.hash;
+	            // 处理 nav 高亮
 	            this.navbar.forEach(function (rs) {
-	                rs.cur = false;
-	                if (_this.hashCheck(rs.href)[0] == curHash) rs.cur = true;
+	                return rs.cur = rs.hash == item.hash ? true : false;
 	            });
-	            this.currentView = curHash;
-	        },
-	        addToHistory: function addToHistory(hash, noState) {
-	            var obj = {
-	                hash: hash
-	            };
-	            if (noState) {
-	                // _history.shift(obj) ;
-	                window.history.replaceState(obj, "", hash);
-	            } else {
-	                window.history.pushState(obj, "", hash);
-	            }
-	            //  _history.unshift(obj) ;
 	        }
 	    },
 	    created: function created() {
-	        // this.addToHistory('one',false);
-	        // this.tabChange();
-	        //hashchange 用来处理本页面的不同tab间跳转
-	        // window.addEventListener("hashchange",()=>{
-	        //     this.tabChange();
-	        // });
-	        // window.addEventListener("popstate",(e)=>{
-	        //     debugger;
-	        //     if(e.state && e.state.hash){
-	        //         var hash = e.state.hash ;
-	        //         var curHash = this.hashCheck(location.hash)[0]||'one';
-	        //         if(curHash == hash){
-	        //             this.tabChange();
-	        //         }
-	        //     }
-	        // },false);
+	        var _this = this;
+
+	        this.currentView = _spaOne2.default; // 默认加载
+	        // 浏览器返回 历史记录
+	        window.addEventListener("popstate", function (e) {
+	            if (!e.state) return;
+	            _this.currentView = e.state.hash;
+	            //处理 nav 高亮
+	            _this.navbar.forEach(function (rs) {
+	                return rs.cur = rs.hash == e.state.hash ? true : false;
+	            });
+	        }, false);
 	    }
 	});
 
