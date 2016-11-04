@@ -31,11 +31,11 @@ router.get('/blog',(req, resIndex)=>{
 
     var deviceAgent = req.headers["user-agent"].toLowerCase();
     var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
-    if(agentID){//移动端
+    // if(agentID){//移动端
 
-        resIndex.redirect('https://www.baidu.com');
+        // resIndex.redirect('https://www.baidu.com');
 
-    }else{
+    // }else{
         //pc
         let id = req.query.id;
         tool.pool.getConnection((err, connection)=> {
@@ -48,7 +48,7 @@ router.get('/blog',(req, resIndex)=>{
             });
             connection.release();
         });
-    }
+    // }
 
 });
 
@@ -57,11 +57,11 @@ router.get('/bloglist',(req, resIndex)=> {
 
     var deviceAgent = req.headers["user-agent"].toLowerCase();
     var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
-    if(agentID){//移动端
+    // if(agentID){//移动端
 
-        resIndex.redirect('https://www.baidu.com');
+        // resIndex.redirect('https://www.baidu.com');
 
-    }else{
+    // }else{
         let type = req.query.type,
             sql = 'select * from blogs where type = ?',
             sql_val = [type];
@@ -71,7 +71,7 @@ router.get('/bloglist',(req, resIndex)=> {
             });
             connection.release();
         });
-    }
+    // }
 
 });
 

@@ -74,13 +74,13 @@ function queryBody(renderPage){
                 });
                 var comboArr = [newArr,ress];
                 tool.renderPage(renderPage,'index','',comboArr);
-                
+
             });
 
         });
 
         connection.release();
-        
+
     });
 }
 // 首页
@@ -88,15 +88,15 @@ router.get('/',(req, renderPage)=> {
 
     var deviceAgent = req.headers["user-agent"].toLowerCase();
     var agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
-    if(agentID){//移动端
+    // if(agentID){//移动端
 
-        renderPage.redirect('https://www.baidu.com');
+        // renderPage.redirect('https://www.baidu.com');
 
-    }else{
+    // }else{
         //pc
         queryBody(renderPage);
-        
-    }
+
+    // }
 });
 
 module.exports = router;
