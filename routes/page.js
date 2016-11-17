@@ -77,8 +77,36 @@ router.get('/bloglist',(req, resIndex)=> {
 
 // publish 文章,markdown方式
 router.get('/publishMD', function(req, res) {
+    var sessionId = '';
+    if(sessionId){//移动端
+        res.redirect('/page/login');
+    }
     tool.renderPage(res,'publishBlog','');
+    // res.cookie('western-ranger-cookie','cookie-WS',{
+    //     maxAge: 20000,
+    //     httpOnly:true,
+    //     path:'/',
+    //     secure:true
+    // });
+    // res.render('publishBlog',{
+    //     title:'西泊园',
+    //     res:''
+    // });
 });
+
+router.get('/login', function(req, res) {
+    tool.renderPage(res,'login','登陆');
+    // res.cookie('western-ranger-cookie','cookie-WS',{
+    //     maxAge: 20000,
+    //     httpOnly:true,
+    //     path:'/',
+    //     secure:true
+    // });
+    // res.render('login',{
+    //     title:'登陆',
+    //     res:''
+    // });
+})
 
 // 修改文章,markdown方式
 router.get('/fixBlog', function(req, resIndex) {

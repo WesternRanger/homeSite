@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title><%= title %></title>
+      <% include meta%>
+      <style>
+          *{
+              padding:0;
+              margin:0;
+              border:0;
+              outline: none;
+          }
+          .login-wrapper{
+              padding:40px 20px;
+              color:#333;
+              font-size:15px;
+          }
+          .base-line{
+              width:100%;
+              max-width: 500px;
+              margin:0 auto 20px;
+              display: box;
+              display: -webkit-box;
+              box-pack:center;
+              -webkit-box-pack:center;
+              box-align:center;
+              -webkit-box-align:center;
+              height:28px;
+              line-height: 28px;
+          }
+          label{
+              display:block;
+              width:25%;
+          }
+          input{
+              display: block;
+              width:75%;
+              text-indent: 8px;
+              font-size:13px;
+          }
+          .submit-btn{
+              display: block;
+              border-radius:3px;
+              width:250px;
+              text-align: center;
+              height:28px;
+              line-height: 28px;
+              background:#78d870;
+              color:#fff;
+              font-size:16px;
+          }
+          .submit-btn:active{
+              box-shadow: 0 2px 0 #999;
+          }
+      </style>
+  </head>
+  <body>
+    <% include header %>
+    <div class="login-wrapper">
+        <div class="base-line">
+            <label for="">用户名：</label>
+            <input type="text" placeholder="请输入用户名" name="username">
+        </div>
+        <div class="base-line">
+            <label for="">密码：</label>
+            <input type="text" placeholder="请输入密码" name="password">
+        </div>
+        <div class="base-line">
+            <span class="submit-btn">管理员登录</span>
+        </div>
+    </div>
+    <% include footer %>
+    <script src="/javascripts/login.js"></script>
+  </body>
+</html>
