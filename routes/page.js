@@ -184,4 +184,9 @@ router.get('/spa_vuerouter',(req, resIndex)=>{
     tool.renderPage(resIndex,'spa_vuerouter','spa_vuerouter demo');
 });
 
+// promise 探索
+router.get('/promise',(req, resIndex)=>{
+    tool.renderPage(resIndex,'promise','promise demo');
+});
+
 module.exports = router;
